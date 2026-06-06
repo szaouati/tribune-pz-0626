@@ -20,7 +20,7 @@ AXES = {
     "Axe 1 — Bonheur déclaré vs performance économique": {
         "dir": "axe1",
         "data": "data/axe1/axe1_bonheur_economie.xlsx",
-        "note": "notes/axe1_note_synthese.md",
+        "note": "notes/axe1.html",
         "charts": [
             ("axe1_bulles_bonheur_pib", "Bonheur × PIB/habitant (bulles, 2024)"),
             ("axe1_easterlin_pib_bonheur", "Paradoxe d'Easterlin (USA, 1970-2024)"),
@@ -29,7 +29,7 @@ AXES = {
     "Axe 2 — L'Europe heureuse et son déclin relatif": {
         "dir": "axe2",
         "data": "data/axe2/axe2_europe_declin.xlsx",
-        "note": "notes/axe2_note_synthese.md",
+        "note": "notes/axe2.html",
         "charts": [
             ("axe2_part_pib_mondial", "Part du PIB mondial par zone (1990-2024)"),
             ("axe2_ecart_pib_bli", "Écart de PIB/hab + Better Life Index"),
@@ -39,7 +39,7 @@ AXES = {
     "Axe 3 — Composants du bonheur et sous-jacents économiques": {
         "dir": "axe3",
         "data": "data/axe3/axe3_composants_bonheur.xlsx",
-        "note": "notes/axe3_note_synthese.md",
+        "note": "notes/axe3.html",
         "charts": [
             ("axe3_rd_esperance_vie", "R&D pharma vs espérance de vie (par zone)"),
             ("axe3_origine_molecules", "Origine des nouvelles molécules (2024)"),
@@ -49,7 +49,7 @@ AXES = {
     "Axe 4 — Tensions bonheur individuel / prospérité collective": {
         "dir": "axe4",
         "data": "data/axe4/axe4_arbitrages.xlsx",
-        "note": "notes/axe4_note_synthese.md",
+        "note": "notes/axe4.html",
         "charts": [
             ("axe4_small_multiples", "Fécondité, investissement, défense (small multiples)"),
             ("axe4_soutenabilite_dette", "Dette publique & solde primaire"),
@@ -119,10 +119,10 @@ html = f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
 <main>
   <div class="docs">
     <strong>Documents de cadrage &amp; pilotage :</strong>
-    <a href="livrables/charte/charte_graphique.md">Charte graphique</a> ·
-    <a href="livrables/proposition/proposition_commerciale.md">Proposition commerciale</a> ·
-    <a href="notes/note_synthese_globale.md">Synthèse globale</a> ·
-    <a href="notes/rapport_verification_donnees.md">Rapport de vérification</a> ·
+    <a href="notes/charte.html">Charte graphique</a> ·
+    <a href="notes/proposition.html">Proposition commerciale</a> ·
+    <a href="notes/synthese-globale.html">Synthèse globale</a> ·
+    <a href="notes/verification.html">Rapport de vérification</a> ·
     <a href="SOURCES.md">Documentation des sources</a> ·
     <a href="README.md">Guide de livraison</a>
   </div>

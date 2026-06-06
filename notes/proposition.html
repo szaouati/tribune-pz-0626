@@ -1,0 +1,205 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposition de prestation — Base de données & visualisations — Tribune PZ-0626</title>
+<style>
+:root{--encre:#1A1A1A;--gris:#595959;--fond:#FBF9F5;--accent:#9C2B2E;--grille:#E2DED7;}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--encre);
+     background:var(--fond);margin:0;line-height:1.62;font-size:17px;}
+.bar{max-width:820px;margin:0 auto;padding:16px 20px 0;}
+.bar a{color:var(--accent);text-decoration:none;font-size:14px;}
+.bar a:hover{text-decoration:underline;}
+main{max-width:820px;margin:0 auto;padding:8px 20px 64px;}
+h1.page{font-size:27px;line-height:1.2;margin:14px 0 6px;}
+.charts{margin:18px 0 30px;display:flex;flex-direction:column;gap:16px;}
+figure{margin:0;background:#fff;border:1px solid var(--grille);border-radius:10px;overflow:hidden;
+       box-shadow:0 1px 3px rgba(0,0,0,.05);}
+figure img{width:100%;height:auto;display:block;}
+figcaption{font-size:14px;font-weight:600;padding:10px 14px 2px;}
+figure .lk{display:block;padding:0 14px 12px;font-size:13px;}
+figure .lk a{color:var(--gris);text-decoration:none;}
+figure .lk a:hover{color:var(--accent);}
+article h1{font-size:22px;margin:30px 0 4px;border-left:4px solid var(--accent);padding-left:12px;}
+article h2{font-size:20px;margin:28px 0 6px;}
+article h3{font-size:15px;color:var(--gris);font-weight:600;margin:4px 0 18px;}
+article p{margin:12px 0;}
+article ul{padding-left:22px;}
+article li{margin:6px 0;}
+article strong{color:var(--encre);}
+article em{color:var(--gris);}
+article a{color:var(--accent);}
+article code{background:#efeae1;padding:1px 5px;border-radius:4px;font-size:.9em;}
+hr{border:0;border-top:1px solid var(--grille);margin:26px 0;}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px;}
+th,td{border:1px solid var(--grille);padding:7px 10px;text-align:left;vertical-align:top;}
+th{background:#f0ebe1;}
+footer{max-width:820px;margin:0 auto;padding:22px 20px;color:var(--gris);font-size:13px;
+       border-top:1px solid var(--grille);}
+@media(max-width:600px){body{font-size:16px;}h1.page{font-size:23px;}main{padding:8px 16px 56px;}}
+</style></head><body>
+<nav class="bar"><a href="../index.html">← Tous les livrables</a></nav>
+<main>
+  <h1 class="page">Proposition de prestation — Base de données & visualisations</h1>
+  
+  <article><h2>Tribune « La mesure du bonheur et ses implications économiques et politiques »</h2>
+<h3>Réf. PZ-0626 · proposition du 06/06/2026</h3>
+<blockquote>
+<p><strong>Note d'usage</strong> — Ce document est un modèle de proposition à adapter (montants, TJM, délais) à
+votre positionnement commercial avant envoi au client. Les montants sont <strong>indicatifs</strong>.</p>
+</blockquote>
+<hr />
+<h2>1. Compréhension de la demande</h2>
+<p>Vous préparez une tribune interrogeant la pertinence des indicateurs alternatifs au PIB comme
+boussole de l'action publique. Thèse : <em>la somme des bonheurs individuels ne garantit pas la
+prospérité collective de long terme ; le bien-être présent peut être une consommation du capital
+accumulé</em>. Vous demandez une <strong>double livraison</strong> — données structurées <strong>+</strong> visualisations prêtes à
+publier — sur <strong>quatre axes</strong>, avec notes de synthèse et sources documentées.</p>
+<h2>2. Périmètre des livrables</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Livrable</th>
+<th>Détail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bases de données</strong></td>
+<td>1 classeur Excel par axe (+ CSV unitaires), feuille de métadonnées (source, unité, période, date d'extraction, notes méthodologiques)</td>
+</tr>
+<tr>
+<td><strong>Visualisations</strong></td>
+<td>Pour chaque axe, graphique(s) en <strong>3 formats</strong> : HTML interactif (embed web), SVG vectoriel, PNG 300 dpi (impression) — gabarits presse (700 px web / 180 mm print)</td>
+</tr>
+<tr>
+<td><strong>Notes de synthèse</strong></td>
+<td>1 note d'une page par axe : tendances, tensions/corrélations, limites des données</td>
+</tr>
+<tr>
+<td><strong>Charte graphique</strong></td>
+<td>Document de charte (palette, typographie, gabarits) à valider</td>
+</tr>
+<tr>
+<td><strong>Documentation sources</strong></td>
+<td>Registre des sources primaires (URL + date d'extraction) + note méthodologique globale</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Sources mobilisées</strong> : Banque mondiale (WDI), FMI (WEO), OCDE (Better Life Index, ANBERD, heures
+travaillées), World Happiness Report / Gallup, General Social Survey (NORC), EFPIA, OMS/SIPRI.
+Collecte <strong>programmatique et reproductible</strong> (API officielles), garantissant traçabilité et mises à
+jour faciles.</p>
+<h2>3. Détail des graphiques (9 livrés)</h2>
+<ul>
+<li><strong>Axe 1</strong> : nuage de bulles bonheur × PIB/hab ; double axe paradoxe d'Easterlin (USA, 1970-2024).</li>
+<li><strong>Axe 2</strong> : aires empilées part du PIB mondial ; double panneau écart PIB/hab + Better Life Index ; (+ heures travaillées).</li>
+<li><strong>Axe 3</strong> : combiné R&amp;D pharma / espérance de vie par zone ; origine des nouvelles molécules (2024) ; (+ PM2.5).</li>
+<li><strong>Axe 4</strong> : small multiples fécondité / investissement / défense ; dette publique &amp; solde primaire.</li>
+</ul>
+<h2>4. Calendrier proposé</h2>
+<p>Livraison <strong>prioritaire des axes 1 et 2</strong>, puis 3 et 4, conformément à votre demande.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Contenu</th>
+<th>Délai (jours ouvrés)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 — Cadrage</td>
+<td>Validation charte graphique &amp; choix de visualisation</td>
+<td>J0 → J+2</td>
+</tr>
+<tr>
+<td>1 — Lot prioritaire</td>
+<td>Axes 1 &amp; 2 (données + graphiques + notes)</td>
+<td>J+2 → J+7</td>
+</tr>
+<tr>
+<td>2 — Lot complémentaire</td>
+<td>Axes 3 &amp; 4 (données + graphiques + notes)</td>
+<td>J+7 → J+12</td>
+</tr>
+<tr>
+<td>3 — Finition</td>
+<td>Vérification croisée, documentation sources, livraison packagée</td>
+<td>J+12 → J+14</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Délai global indicatif : ~3 semaines</strong> à compter de la validation de la charte. Un point
+d'étape est prévu à la livraison du lot prioritaire (axes 1 &amp; 2).</p>
+</blockquote>
+<h2>5. Tarification (indicative, € HT)</h2>
+<p>Sur la base d'un taux journalier de <strong>500 € HT/jour</strong>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Poste</th>
+<th>Charge (j)</th>
+<th>Montant HT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cadrage méthodologique + charte graphique</td>
+<td>1,0</td>
+<td>500 €</td>
+</tr>
+<tr>
+<td>Axe 1 — données, 2 graphiques, note</td>
+<td>2,0</td>
+<td>1 000 €</td>
+</tr>
+<tr>
+<td>Axe 2 — données, 3 graphiques, note</td>
+<td>2,0</td>
+<td>1 000 €</td>
+</tr>
+<tr>
+<td>Axe 3 — données (R&amp;D pharma), 3 graphiques, note</td>
+<td>2,5</td>
+<td>1 250 €</td>
+</tr>
+<tr>
+<td>Axe 4 — données, 2 graphiques, note</td>
+<td>2,0</td>
+<td>1 000 €</td>
+</tr>
+<tr>
+<td>Vérification croisée, documentation, packaging</td>
+<td>1,5</td>
+<td>750 €</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>11,0 j</strong></td>
+<td><strong>5 500 € HT</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Options</strong>
+- Lot prioritaire seul (cadrage + axes 1 &amp; 2 + finition partielle) : <strong>~2 750 € HT</strong>.
+- Déclinaisons supplémentaires (autres pays, variantes de charte, formats sociaux) : sur devis.
+- Forfait de mise à jour annuelle des données (nouvelle édition WHR/WEO/BLI) : <strong>~600 € HT/an</strong>.</p>
+<p><em>TVA non applicable / applicable selon votre régime. Acompte de 30 % à la commande, solde à la
+livraison. Cession des droits d'usage des graphiques pour la tribune et ses rééditions incluse.</em></p>
+<h2>6. Modalités &amp; garanties</h2>
+<ul>
+<li><strong>Reproductibilité</strong> : toute la chaîne (collecte → graphiques) est scriptée ; régénération en
+  quelques minutes après ajustement de la charte ou mise à jour des sources.</li>
+<li><strong>Traçabilité</strong> : chaque série documentée (source primaire, URL, date d'extraction, unité).</li>
+<li><strong>Révisions</strong> : 2 tours de modifications inclus par graphique après la validation de la charte.</li>
+<li><strong>Indépendance des données</strong> : aucune donnée propriétaire ; sources publiques et citables.</li>
+</ul>
+<p><em>Je reste à votre disposition pour un échange préalable afin de préciser les périmètres ou arbitrer
+sur les choix méthodologiques et visuels.</em></p></article>
+</main>
+<footer>Tribune « La mesure du bonheur » · Commande PZ-0626 · données extraites le 06/06/2026.
+Sources : Banque mondiale, FMI, OCDE, World Happiness Report/Gallup, GSS/NORC, EFPIA, OMS/SIPRI.</footer>
+</body></html>
