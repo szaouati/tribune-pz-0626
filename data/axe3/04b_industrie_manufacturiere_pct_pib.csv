@@ -1,0 +1,187 @@
+﻿iso3,pays,annee,manuf_pct_pib
+CHN,Chine,2004,31.51
+CHN,Chine,2005,31.66
+CHN,Chine,2006,31.99
+CHN,Chine,2007,31.9
+CHN,Chine,2008,31.62
+CHN,Chine,2009,31.06
+CHN,Chine,2010,31.07
+CHN,Chine,2011,31.56
+CHN,Chine,2012,31.01
+CHN,Chine,2013,30.13
+CHN,Chine,2014,29.83
+CHN,Chine,2015,28.39
+CHN,Chine,2016,27.52
+CHN,Chine,2017,27.6
+CHN,Chine,2018,27.34
+CHN,Chine,2019,26.26
+CHN,Chine,2020,25.74
+CHN,Chine,2021,26.97
+CHN,Chine,2022,26.42
+CHN,Chine,2023,25.5
+DEU,Allemagne,2000,20.28
+DEU,Allemagne,2001,20.09
+DEU,Allemagne,2002,19.48
+DEU,Allemagne,2003,19.55
+DEU,Allemagne,2004,19.79
+DEU,Allemagne,2005,19.77
+DEU,Allemagne,2006,20.34
+DEU,Allemagne,2007,20.53
+DEU,Allemagne,2008,19.76
+DEU,Allemagne,2009,17.34
+DEU,Allemagne,2010,19.43
+DEU,Allemagne,2011,20.12
+DEU,Allemagne,2012,20.05
+DEU,Allemagne,2013,19.76
+DEU,Allemagne,2014,20.11
+DEU,Allemagne,2015,20.14
+DEU,Allemagne,2016,20.41
+DEU,Allemagne,2017,20.09
+DEU,Allemagne,2018,19.81
+DEU,Allemagne,2019,19.31
+DEU,Allemagne,2020,18.53
+DEU,Allemagne,2021,18.57
+DEU,Allemagne,2022,18.32
+DEU,Allemagne,2023,18.94
+ESP,Espagne,2000,16.27
+ESP,Espagne,2001,15.83
+ESP,Espagne,2002,15.19
+ESP,Espagne,2003,14.6
+ESP,Espagne,2004,14.02
+ESP,Espagne,2005,13.5
+ESP,Espagne,2006,13.07
+ESP,Espagne,2007,12.61
+ESP,Espagne,2008,12.4
+ESP,Espagne,2009,11.33
+ESP,Espagne,2010,11.11
+ESP,Espagne,2011,11.2
+ESP,Espagne,2012,10.81
+ESP,Espagne,2013,10.87
+ESP,Espagne,2014,11.0
+ESP,Espagne,2015,11.01
+ESP,Espagne,2016,10.95
+ESP,Espagne,2017,11.11
+ESP,Espagne,2018,10.79
+ESP,Espagne,2019,10.7
+ESP,Espagne,2020,10.85
+ESP,Espagne,2021,11.26
+ESP,Espagne,2022,11.03
+ESP,Espagne,2023,10.95
+FRA,France,2000,14.39
+FRA,France,2001,13.93
+FRA,France,2002,13.46
+FRA,France,2003,12.99
+FRA,France,2004,12.57
+FRA,France,2005,12.15
+FRA,France,2006,11.64
+FRA,France,2007,11.58
+FRA,France,2008,11.07
+FRA,France,2009,10.52
+FRA,France,2010,10.28
+FRA,France,2011,10.31
+FRA,France,2012,10.25
+FRA,France,2013,10.25
+FRA,France,2014,10.18
+FRA,France,2015,10.32
+FRA,France,2016,10.17
+FRA,France,2017,10.01
+FRA,France,2018,9.89
+FRA,France,2019,9.91
+FRA,France,2020,9.25
+FRA,France,2021,9.1
+FRA,France,2022,9.3
+FRA,France,2023,9.77
+ITA,Italie,2000,17.67
+ITA,Italie,2001,17.2
+ITA,Italie,2002,16.83
+ITA,Italie,2003,16.13
+ITA,Italie,2004,15.87
+ITA,Italie,2005,15.52
+ITA,Italie,2006,15.57
+ITA,Italie,2007,15.96
+ITA,Italie,2008,15.48
+ITA,Italie,2009,13.66
+ITA,Italie,2010,14.16
+ITA,Italie,2011,14.13
+ITA,Italie,2012,13.76
+ITA,Italie,2013,13.76
+ITA,Italie,2014,13.84
+ITA,Italie,2015,14.26
+ITA,Italie,2016,14.66
+ITA,Italie,2017,14.82
+ITA,Italie,2018,14.95
+ITA,Italie,2019,14.8
+ITA,Italie,2020,14.48
+ITA,Italie,2021,15.37
+ITA,Italie,2022,15.38
+ITA,Italie,2023,15.48
+JPN,Japon,2000,22.45
+JPN,Japon,2001,21.12
+JPN,Japon,2002,20.71
+JPN,Japon,2003,20.92
+JPN,Japon,2004,21.12
+JPN,Japon,2005,21.42
+JPN,Japon,2006,21.4
+JPN,Japon,2007,21.88
+JPN,Japon,2008,21.27
+JPN,Japon,2009,19.05
+JPN,Japon,2010,20.77
+JPN,Japon,2011,19.54
+JPN,Japon,2012,19.67
+JPN,Japon,2013,19.33
+JPN,Japon,2014,19.59
+JPN,Japon,2015,20.46
+JPN,Japon,2016,20.29
+JPN,Japon,2017,20.44
+JPN,Japon,2018,20.62
+JPN,Japon,2019,20.22
+JPN,Japon,2020,20.05
+JPN,Japon,2021,20.78
+JPN,Japon,2022,19.82
+JPN,Japon,2023,20.58
+KOR,Corée du Sud,2000,26.59
+KOR,Corée du Sud,2001,25.14
+KOR,Corée du Sud,2002,24.78
+KOR,Corée du Sud,2003,24.43
+KOR,Corée du Sud,2004,26.41
+KOR,Corée du Sud,2005,26.09
+KOR,Corée du Sud,2006,25.72
+KOR,Corée du Sud,2007,25.92
+KOR,Corée du Sud,2008,26.08
+KOR,Corée du Sud,2009,26.3
+KOR,Corée du Sud,2010,28.1
+KOR,Corée du Sud,2011,29.0
+KOR,Corée du Sud,2012,28.74
+KOR,Corée du Sud,2013,28.87
+KOR,Corée du Sud,2014,28.28
+KOR,Corée du Sud,2015,27.82
+KOR,Corée du Sud,2016,27.51
+KOR,Corée du Sud,2017,28.03
+KOR,Corée du Sud,2018,27.77
+KOR,Corée du Sud,2019,26.37
+KOR,Corée du Sud,2020,25.7
+KOR,Corée du Sud,2021,26.25
+KOR,Corée du Sud,2022,26.5
+KOR,Corée du Sud,2023,25.46
+USA,États-Unis,2000,15.12
+USA,États-Unis,2001,13.92
+USA,États-Unis,2002,13.45
+USA,États-Unis,2003,13.32
+USA,États-Unis,2004,13.17
+USA,États-Unis,2005,12.98
+USA,États-Unis,2006,12.99
+USA,États-Unis,2007,12.77
+USA,États-Unis,2008,12.22
+USA,États-Unis,2009,11.7
+USA,États-Unis,2010,11.91
+USA,États-Unis,2011,11.95
+USA,États-Unis,2012,11.86
+USA,États-Unis,2013,11.8
+USA,États-Unis,2014,11.66
+USA,États-Unis,2015,11.66
+USA,États-Unis,2016,11.22
+USA,États-Unis,2017,11.26
+USA,États-Unis,2018,11.35
+USA,États-Unis,2019,11.06
+USA,États-Unis,2020,10.63
+USA,États-Unis,2021,10.71

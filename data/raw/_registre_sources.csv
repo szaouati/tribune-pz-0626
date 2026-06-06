@@ -1,0 +1,25 @@
+serie,source,url,date_extraction,n_observations
+test,Banque mondiale (WDI),https://api.worldbank.org/v2/country/FRA;USA/indicator/NY.GDP.PCAP.PP.CD?format=json&date=2020%3A2023,2026-06-06,8
+WHR_cantril,Our World in Data,https://ourworldindata.org/grapher/happiness-cantril-ladder.csv?v=1&csvType=full&useColumnShortNames=true,2026-06-06,2270
+PIB_hab_PPA,Banque mondiale (WDI),https://api.worldbank.org/v2/country/BTN;DNK;FIN;NOR;SWE;ISL;USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/NY.GDP.PCAP.PP.CD?format=json&date=2012%3A2024,2026-06-06,181
+population,Banque mondiale (WDI),https://api.worldbank.org/v2/country/BTN;DNK;FIN;NOR;SWE;ISL;USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/SP.POP.TOTL?format=json&date=2012%3A2024,2026-06-06,182
+PIB_reel_hab_US,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA/indicator/NY.GDP.PCAP.KD?format=json&date=1970%3A2024,2026-06-06,55
+PIB_zones,Banque mondiale (WDI),https://api.worldbank.org/v2/country/EUU;USA;CHN;WLD/indicator/NY.GDP.MKTP.CD?format=json&date=1990%3A2024,2026-06-06,140
+PIB_hab_PPA_axe2,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP/indicator/NY.GDP.PCAP.PP.CD?format=json&date=2000%3A2024,2026-06-06,125
+heures_travaillees,Our World in Data,https://ourworldindata.org/grapher/annual-working-hours-per-worker.csv?v=1&csvType=full&useColumnShortNames=true,2026-06-06,5063
+esperance_vie,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;JPN;KOR;CHN;BTN/indicator/SP.DYN.LE00.IN?format=json&date=1990%3A2023,2026-06-06,238
+RD_pharma,OCDE (SDMX),"https://sdmx.oecd.org/public/rest/data/OECD.STI.STP,DSD_ANBERD@DF_ANBERDi4,1.0/.A.MA.C21.USD_PPP.V.B?dimensionAtObservation=AllDimensions&startPeriod=2000&endPeriod=2023",2026-06-06,0
+sante_publique,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/SH.XPD.GHED.GD.ZS?format=json&date=2000%3A2023,2026-06-06,192
+pm25,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/EN.ATM.PM25.MC.M3?format=json&date=1990%3A2022,2026-06-06,248
+industrie_manuf,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/NV.IND.MANF.ZS?format=json&date=2000%3A2023,2026-06-06,186
+fecondite,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/SP.DYN.TFRT.IN?format=json&date=1990%3A2023,2026-06-06,272
+FBCF,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/NE.GDI.FTOT.ZS?format=json&date=2000%3A2023,2026-06-06,192
+defense,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/MS.MIL.XPND.GD.ZS?format=json&date=2000%3A2023,2026-06-06,192
+fecondite,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/SP.DYN.TFRT.IN?format=json&date=1990%3A2023,2026-06-06,272
+FBCF,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/NE.GDI.FTOT.ZS?format=json&date=2000%3A2023,2026-06-06,192
+defense,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/MS.MIL.XPND.GD.ZS?format=json&date=2000%3A2023,2026-06-06,192
+fecondite,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/SP.DYN.TFRT.IN?format=json&date=1990%3A2023,2026-06-06,272
+FBCF,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/NE.GDI.FTOT.ZS?format=json&date=2000%3A2023,2026-06-06,192
+defense,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/MS.MIL.XPND.GD.ZS?format=json&date=2000%3A2023,2026-06-06,192
+dette_publique,FMI (World Economic Outlook / DataMapper),https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP,2026-06-06,351
+solde_primaire,FMI (World Economic Outlook / DataMapper),https://www.imf.org/external/datamapper/api/v1/pb,2026-06-06,929

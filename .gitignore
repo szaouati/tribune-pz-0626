@@ -1,0 +1,14 @@
+# Caches Python
+__pycache__/
+*.pyc
+
+# Archive de livraison (redondante avec le contenu du dépôt)
+tribune-pz-0626-livrables.zip
+
+# Fichiers sources bruts volumineux (régénérables via les scripts)
+data/raw/GSS_stata.zip
+data/raw/efpia_figures_2020.pdf
+data/raw/efpia_figures_2025.pdf
+
+# Système
+.DS_Store

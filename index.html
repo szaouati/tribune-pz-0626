@@ -1,0 +1,174 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tribune « La mesure du bonheur » — Livrables PZ-0626</title>
+<style>
+  :root { --encre:#1A1A1A; --gris:#595959; --fond:#FBF9F5; --accent:#9C2B2E; --grille:#E2DED7; }
+  * { box-sizing:border-box; }
+  body { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; color:var(--encre);
+          background:var(--fond); margin:0; line-height:1.5; }
+  header { padding:48px 24px 28px; border-bottom:3px solid var(--accent); max-width:1100px; margin:0 auto; }
+  h1 { font-size:30px; margin:0 0 6px; }
+  .sub { color:var(--gris); font-size:16px; max-width:760px; }
+  main { max-width:1100px; margin:0 auto; padding:12px 24px 60px; }
+  .axe { margin:42px 0; }
+  h2 { font-size:21px; border-left:4px solid var(--accent); padding-left:12px; margin-bottom:6px; }
+  .meta a { color:var(--accent); text-decoration:none; margin-right:10px; font-size:14px; }
+  .meta a:hover { text-decoration:underline; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:22px; margin-top:18px; }
+  figure.chart { margin:0; background:#fff; border:1px solid var(--grille); border-radius:8px;
+                  overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  figure.chart img { width:100%; display:block; }
+  figcaption { font-size:14px; font-weight:600; padding:10px 14px 4px; }
+  .links { padding:0 14px 12px; font-size:13px; }
+  .links a { color:var(--gris); text-decoration:none; margin-right:12px; }
+  .links a:hover { color:var(--accent); }
+  footer { max-width:1100px; margin:0 auto; padding:24px; color:var(--gris); font-size:13px;
+            border-top:1px solid var(--grille); }
+  .docs { background:#fff; border:1px solid var(--grille); border-radius:8px; padding:18px 22px; margin-top:20px; }
+  .docs a { color:var(--accent); }
+</style></head><body>
+<header>
+  <h1>La mesure du bonheur — et ses implications économiques</h1>
+  <p class="sub">Base de données structurée &amp; visualisations prêtes à publier · 4 axes ·
+     10 graphiques (HTML interactif + SVG + PNG 300 dpi) · Commande PZ-0626 · données extraites le 06/06/2026.</p>
+</header>
+<main>
+  <div class="docs">
+    <strong>Documents de cadrage &amp; pilotage :</strong>
+    <a href="livrables/charte/charte_graphique.md">Charte graphique</a> ·
+    <a href="livrables/proposition/proposition_commerciale.md">Proposition commerciale</a> ·
+    <a href="notes/note_synthese_globale.md">Synthèse globale</a> ·
+    <a href="notes/rapport_verification_donnees.md">Rapport de vérification</a> ·
+    <a href="SOURCES.md">Documentation des sources</a> ·
+    <a href="README.md">Guide de livraison</a>
+  </div>
+  
+    <section class="axe">
+      <h2>Axe 1 — Bonheur déclaré vs performance économique</h2>
+      <p class="meta">
+        <a href="data/axe1/axe1_bonheur_economie.xlsx">📊 Données (Excel)</a> ·
+        <a href="notes/axe1_note_synthese.md">📝 Note de synthèse</a>
+      </p>
+      <div class="grid">
+        <figure class="chart">
+          <img src="visualisations/axe1/axe1_bulles_bonheur_pib.png" alt="Bonheur × PIB/habitant (bulles, 2024)" loading="lazy">
+          <figcaption>Bonheur × PIB/habitant (bulles, 2024)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe1/axe1_bulles_bonheur_pib.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe1/axe1_bulles_bonheur_pib.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe1/axe1_bulles_bonheur_pib.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe1/axe1_easterlin_pib_bonheur.png" alt="Paradoxe d'Easterlin (USA, 1970-2024)" loading="lazy">
+          <figcaption>Paradoxe d'Easterlin (USA, 1970-2024)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe1/axe1_easterlin_pib_bonheur.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe1/axe1_easterlin_pib_bonheur.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe1/axe1_easterlin_pib_bonheur.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure></div>
+    </section>
+    <section class="axe">
+      <h2>Axe 2 — L'Europe heureuse et son déclin relatif</h2>
+      <p class="meta">
+        <a href="data/axe2/axe2_europe_declin.xlsx">📊 Données (Excel)</a> ·
+        <a href="notes/axe2_note_synthese.md">📝 Note de synthèse</a>
+      </p>
+      <div class="grid">
+        <figure class="chart">
+          <img src="visualisations/axe2/axe2_part_pib_mondial.png" alt="Part du PIB mondial par zone (1990-2024)" loading="lazy">
+          <figcaption>Part du PIB mondial par zone (1990-2024)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe2/axe2_part_pib_mondial.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe2/axe2_part_pib_mondial.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe2/axe2_part_pib_mondial.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe2/axe2_ecart_pib_bli.png" alt="Écart de PIB/hab + Better Life Index" loading="lazy">
+          <figcaption>Écart de PIB/hab + Better Life Index</figcaption>
+          <div class="links">
+            <a href="visualisations/axe2/axe2_ecart_pib_bli.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe2/axe2_ecart_pib_bli.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe2/axe2_ecart_pib_bli.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe2/axe2_heures_travaillees.png" alt="Heures travaillées (2000-2023)" loading="lazy">
+          <figcaption>Heures travaillées (2000-2023)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe2/axe2_heures_travaillees.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe2/axe2_heures_travaillees.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe2/axe2_heures_travaillees.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure></div>
+    </section>
+    <section class="axe">
+      <h2>Axe 3 — Composants du bonheur et sous-jacents économiques</h2>
+      <p class="meta">
+        <a href="data/axe3/axe3_composants_bonheur.xlsx">📊 Données (Excel)</a> ·
+        <a href="notes/axe3_note_synthese.md">📝 Note de synthèse</a>
+      </p>
+      <div class="grid">
+        <figure class="chart">
+          <img src="visualisations/axe3/axe3_rd_esperance_vie.png" alt="R&D pharma vs espérance de vie (par zone)" loading="lazy">
+          <figcaption>R&D pharma vs espérance de vie (par zone)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe3/axe3_rd_esperance_vie.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe3/axe3_rd_esperance_vie.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe3/axe3_rd_esperance_vie.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe3/axe3_origine_molecules.png" alt="Origine des nouvelles molécules (2024)" loading="lazy">
+          <figcaption>Origine des nouvelles molécules (2024)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe3/axe3_origine_molecules.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe3/axe3_origine_molecules.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe3/axe3_origine_molecules.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe3/axe3_pm25_air.png" alt="Qualité de l'air — PM2.5 (1990-2020)" loading="lazy">
+          <figcaption>Qualité de l'air — PM2.5 (1990-2020)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe3/axe3_pm25_air.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe3/axe3_pm25_air.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe3/axe3_pm25_air.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure></div>
+    </section>
+    <section class="axe">
+      <h2>Axe 4 — Tensions bonheur individuel / prospérité collective</h2>
+      <p class="meta">
+        <a href="data/axe4/axe4_arbitrages.xlsx">📊 Données (Excel)</a> ·
+        <a href="notes/axe4_note_synthese.md">📝 Note de synthèse</a>
+      </p>
+      <div class="grid">
+        <figure class="chart">
+          <img src="visualisations/axe4/axe4_small_multiples.png" alt="Fécondité, investissement, défense (small multiples)" loading="lazy">
+          <figcaption>Fécondité, investissement, défense (small multiples)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe4/axe4_small_multiples.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe4/axe4_small_multiples.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe4/axe4_small_multiples.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe4/axe4_soutenabilite_dette.png" alt="Dette publique & solde primaire" loading="lazy">
+          <figcaption>Dette publique & solde primaire</figcaption>
+          <div class="links">
+            <a href="visualisations/axe4/axe4_soutenabilite_dette.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe4/axe4_soutenabilite_dette.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe4/axe4_soutenabilite_dette.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure></div>
+    </section>
+</main>
+<footer>
+  Sources primaires : Banque mondiale (WDI) · FMI (WEO) · OCDE (Better Life Index, ANBERD, heures travaillées) ·
+  World Happiness Report / Gallup · General Social Survey (NORC) · EFPIA · OMS / SIPRI.<br>
+  Tous les graphiques sont régénérables via la chaîne de production scriptée (dossier <code>scripts/</code>).
+</footer>
+</body></html>

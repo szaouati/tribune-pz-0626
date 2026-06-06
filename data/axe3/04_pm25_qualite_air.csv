@@ -1,0 +1,249 @@
+﻿iso3,pays,annee,pm25_ug_m3
+CHN,Chine,1990,49.3
+CHN,Chine,1991,49.07
+CHN,Chine,1992,48.89
+CHN,Chine,1993,48.79
+CHN,Chine,1994,48.78
+CHN,Chine,1995,48.88
+CHN,Chine,1996,49.08
+CHN,Chine,1997,49.35
+CHN,Chine,1998,49.66
+CHN,Chine,1999,49.98
+CHN,Chine,2000,50.3
+CHN,Chine,2001,50.63
+CHN,Chine,2002,50.97
+CHN,Chine,2003,51.26
+CHN,Chine,2004,51.45
+CHN,Chine,2005,51.48
+CHN,Chine,2006,50.97
+CHN,Chine,2007,49.89
+CHN,Chine,2008,48.66
+CHN,Chine,2009,47.71
+CHN,Chine,2010,47.48
+CHN,Chine,2011,51.35
+CHN,Chine,2012,48.12
+CHN,Chine,2013,58.47
+CHN,Chine,2014,54.57
+CHN,Chine,2015,50.83
+CHN,Chine,2016,46.83
+CHN,Chine,2017,45.84
+CHN,Chine,2018,40.27
+CHN,Chine,2019,37.55
+CHN,Chine,2020,34.81
+DEU,Allemagne,1990,22.53
+DEU,Allemagne,1991,22.21
+DEU,Allemagne,1992,21.86
+DEU,Allemagne,1993,21.48
+DEU,Allemagne,1994,21.08
+DEU,Allemagne,1995,20.66
+DEU,Allemagne,1996,20.17
+DEU,Allemagne,1997,19.61
+DEU,Allemagne,1998,19.04
+DEU,Allemagne,1999,18.53
+DEU,Allemagne,2000,18.15
+DEU,Allemagne,2001,17.81
+DEU,Allemagne,2002,17.43
+DEU,Allemagne,2003,17.05
+DEU,Allemagne,2004,16.75
+DEU,Allemagne,2005,16.55
+DEU,Allemagne,2006,16.47
+DEU,Allemagne,2007,16.42
+DEU,Allemagne,2008,16.38
+DEU,Allemagne,2009,16.31
+DEU,Allemagne,2010,16.2
+DEU,Allemagne,2011,15.72
+DEU,Allemagne,2012,13.91
+DEU,Allemagne,2013,13.66
+DEU,Allemagne,2014,12.28
+DEU,Allemagne,2015,12.83
+DEU,Allemagne,2016,11.78
+DEU,Allemagne,2017,11.9
+DEU,Allemagne,2018,11.65
+DEU,Allemagne,2019,10.64
+DEU,Allemagne,2020,10.29
+ESP,Espagne,1990,16.43
+ESP,Espagne,1991,16.1
+ESP,Espagne,1992,15.81
+ESP,Espagne,1993,15.56
+ESP,Espagne,1994,15.37
+ESP,Espagne,1995,15.22
+ESP,Espagne,1996,15.25
+ESP,Espagne,1997,15.47
+ESP,Espagne,1998,15.76
+ESP,Espagne,1999,15.99
+ESP,Espagne,2000,16.02
+ESP,Espagne,2001,15.85
+ESP,Espagne,2002,15.56
+ESP,Espagne,2003,15.21
+ESP,Espagne,2004,14.83
+ESP,Espagne,2005,14.46
+ESP,Espagne,2006,14.02
+ESP,Espagne,2007,13.49
+ESP,Espagne,2008,12.97
+ESP,Espagne,2009,12.58
+ESP,Espagne,2010,12.43
+ESP,Espagne,2011,13.42
+ESP,Espagne,2012,12.04
+ESP,Espagne,2013,11.25
+ESP,Espagne,2014,10.58
+ESP,Espagne,2015,11.26
+ESP,Espagne,2016,10.34
+ESP,Espagne,2017,10.44
+ESP,Espagne,2018,10.18
+ESP,Espagne,2019,9.35
+ESP,Espagne,2020,9.58
+FRA,France,1990,18.31
+FRA,France,1991,18.12
+FRA,France,1992,17.92
+FRA,France,1993,17.72
+FRA,France,1994,17.51
+FRA,France,1995,17.28
+FRA,France,1996,17.04
+FRA,France,1997,16.79
+FRA,France,1998,16.54
+FRA,France,1999,16.3
+FRA,France,2000,16.09
+FRA,France,2001,15.88
+FRA,France,2002,15.64
+FRA,France,2003,15.39
+FRA,France,2004,15.13
+FRA,France,2005,14.89
+FRA,France,2006,14.63
+FRA,France,2007,14.33
+FRA,France,2008,14.06
+FRA,France,2009,13.86
+FRA,France,2010,13.78
+FRA,France,2011,13.8
+FRA,France,2012,12.56
+FRA,France,2013,12.46
+FRA,France,2014,10.69
+FRA,France,2015,11.34
+FRA,France,2016,10.51
+FRA,France,2017,10.46
+FRA,France,2018,10.46
+FRA,France,2019,9.83
+FRA,France,2020,9.6
+ITA,Italie,1990,29.06
+ITA,Italie,1991,28.78
+ITA,Italie,1992,28.5
+ITA,Italie,1993,28.22
+ITA,Italie,1994,27.93
+ITA,Italie,1995,27.63
+ITA,Italie,1996,27.35
+ITA,Italie,1997,27.1
+ITA,Italie,1998,26.85
+ITA,Italie,1999,26.57
+ITA,Italie,2000,26.25
+ITA,Italie,2001,25.81
+ITA,Italie,2002,25.26
+ITA,Italie,2003,24.63
+ITA,Italie,2004,23.97
+ITA,Italie,2005,23.34
+ITA,Italie,2006,22.62
+ITA,Italie,2007,21.79
+ITA,Italie,2008,21.0
+ITA,Italie,2009,20.4
+ITA,Italie,2010,20.17
+ITA,Italie,2011,21.34
+ITA,Italie,2012,18.77
+ITA,Italie,2013,18.05
+ITA,Italie,2014,16.89
+ITA,Italie,2015,17.76
+ITA,Italie,2016,15.7
+ITA,Italie,2017,15.97
+ITA,Italie,2018,16.34
+ITA,Italie,2019,14.89
+ITA,Italie,2020,14.66
+JPN,Japon,1990,13.37
+JPN,Japon,1991,13.29
+JPN,Japon,1992,13.23
+JPN,Japon,1993,13.17
+JPN,Japon,1994,13.13
+JPN,Japon,1995,13.1
+JPN,Japon,1996,13.1
+JPN,Japon,1997,13.13
+JPN,Japon,1998,13.16
+JPN,Japon,1999,13.18
+JPN,Japon,2000,13.16
+JPN,Japon,2001,13.08
+JPN,Japon,2002,12.94
+JPN,Japon,2003,12.75
+JPN,Japon,2004,12.53
+JPN,Japon,2005,12.32
+JPN,Japon,2006,12.02
+JPN,Japon,2007,11.62
+JPN,Japon,2008,11.23
+JPN,Japon,2009,10.94
+JPN,Japon,2010,10.85
+JPN,Japon,2011,12.27
+JPN,Japon,2012,12.81
+JPN,Japon,2013,13.25
+JPN,Japon,2014,13.74
+JPN,Japon,2015,12.87
+JPN,Japon,2016,12.8
+JPN,Japon,2017,13.12
+JPN,Japon,2018,13.08
+JPN,Japon,2019,12.94
+JPN,Japon,2020,12.84
+KOR,Corée du Sud,1990,25.98
+KOR,Corée du Sud,1991,25.83
+KOR,Corée du Sud,1992,25.7
+KOR,Corée du Sud,1993,25.59
+KOR,Corée du Sud,1994,25.5
+KOR,Corée du Sud,1995,25.45
+KOR,Corée du Sud,1996,25.43
+KOR,Corée du Sud,1997,25.44
+KOR,Corée du Sud,1998,25.47
+KOR,Corée du Sud,1999,25.47
+KOR,Corée du Sud,2000,25.44
+KOR,Corée du Sud,2001,25.34
+KOR,Corée du Sud,2002,25.2
+KOR,Corée du Sud,2003,25.0
+KOR,Corée du Sud,2004,24.76
+KOR,Corée du Sud,2005,24.47
+KOR,Corée du Sud,2006,23.98
+KOR,Corée du Sud,2007,23.26
+KOR,Corée du Sud,2008,22.5
+KOR,Corée du Sud,2009,21.94
+KOR,Corée du Sud,2010,21.79
+KOR,Corée du Sud,2011,24.88
+KOR,Corée du Sud,2012,25.58
+KOR,Corée du Sud,2013,27.49
+KOR,Corée du Sud,2014,28.38
+KOR,Corée du Sud,2015,26.29
+KOR,Corée du Sud,2016,26.67
+KOR,Corée du Sud,2017,26.0
+KOR,Corée du Sud,2018,25.93
+KOR,Corée du Sud,2019,26.02
+KOR,Corée du Sud,2020,25.94
+USA,États-Unis,1990,14.1
+USA,États-Unis,1991,14.05
+USA,États-Unis,1992,13.98
+USA,États-Unis,1993,13.89
+USA,États-Unis,1994,13.78
+USA,États-Unis,1995,13.67
+USA,États-Unis,1996,13.52
+USA,États-Unis,1997,13.34
+USA,États-Unis,1998,13.13
+USA,États-Unis,1999,12.93
+USA,États-Unis,2000,12.76
+USA,États-Unis,2001,12.6
+USA,États-Unis,2002,12.44
+USA,États-Unis,2003,12.24
+USA,États-Unis,2004,12.01
+USA,États-Unis,2005,11.75
+USA,États-Unis,2006,11.31
+USA,États-Unis,2007,10.67
+USA,États-Unis,2008,10.01
+USA,États-Unis,2009,9.49
+USA,États-Unis,2010,9.28
+USA,États-Unis,2011,9.36
+USA,États-Unis,2012,9.01
+USA,États-Unis,2013,8.75
+USA,États-Unis,2014,8.51
+USA,États-Unis,2015,8.19
+USA,États-Unis,2016,7.41
+USA,États-Unis,2017,7.79
+USA,États-Unis,2018,7.82
+USA,États-Unis,2019,7.18
+USA,États-Unis,2020,7.81

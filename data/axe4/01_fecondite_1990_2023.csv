@@ -1,0 +1,273 @@
+﻿iso3,pays,annee,fecondite
+CHN,Chine,1990,2.514
+CHN,Chine,1991,1.934
+CHN,Chine,1992,1.776
+CHN,Chine,1993,1.691
+CHN,Chine,1994,1.628
+CHN,Chine,1995,1.588
+CHN,Chine,1996,1.554
+CHN,Chine,1997,1.527
+CHN,Chine,1998,1.522
+CHN,Chine,1999,1.53
+CHN,Chine,2000,1.628
+CHN,Chine,2001,1.563
+CHN,Chine,2002,1.566
+CHN,Chine,2003,1.57
+CHN,Chine,2004,1.605
+CHN,Chine,2005,1.624
+CHN,Chine,2006,1.644
+CHN,Chine,2007,1.666
+CHN,Chine,2008,1.701
+CHN,Chine,2009,1.714
+CHN,Chine,2010,1.687
+CHN,Chine,2011,1.668
+CHN,Chine,2012,1.798
+CHN,Chine,2013,1.714
+CHN,Chine,2014,1.769
+CHN,Chine,2015,1.67
+CHN,Chine,2016,1.772
+CHN,Chine,2017,1.795
+CHN,Chine,2018,1.539
+CHN,Chine,2019,1.496
+CHN,Chine,2020,1.236
+CHN,Chine,2021,1.117
+CHN,Chine,2022,1.034
+CHN,Chine,2023,0.999
+DEU,Allemagne,1990,1.45
+DEU,Allemagne,1991,1.33
+DEU,Allemagne,1992,1.29
+DEU,Allemagne,1993,1.28
+DEU,Allemagne,1994,1.24
+DEU,Allemagne,1995,1.25
+DEU,Allemagne,1996,1.3
+DEU,Allemagne,1997,1.35
+DEU,Allemagne,1998,1.36
+DEU,Allemagne,1999,1.36
+DEU,Allemagne,2000,1.38
+DEU,Allemagne,2001,1.35
+DEU,Allemagne,2002,1.34
+DEU,Allemagne,2003,1.34
+DEU,Allemagne,2004,1.36
+DEU,Allemagne,2005,1.34
+DEU,Allemagne,2006,1.33
+DEU,Allemagne,2007,1.37
+DEU,Allemagne,2008,1.38
+DEU,Allemagne,2009,1.36
+DEU,Allemagne,2010,1.39
+DEU,Allemagne,2011,1.39
+DEU,Allemagne,2012,1.41
+DEU,Allemagne,2013,1.42
+DEU,Allemagne,2014,1.47
+DEU,Allemagne,2015,1.5
+DEU,Allemagne,2016,1.6
+DEU,Allemagne,2017,1.57
+DEU,Allemagne,2018,1.57
+DEU,Allemagne,2019,1.54
+DEU,Allemagne,2020,1.53
+DEU,Allemagne,2021,1.58
+DEU,Allemagne,2022,1.455
+DEU,Allemagne,2023,1.39
+ESP,Espagne,1990,1.36
+ESP,Espagne,1991,1.33
+ESP,Espagne,1992,1.31
+ESP,Espagne,1993,1.26
+ESP,Espagne,1994,1.19
+ESP,Espagne,1995,1.16
+ESP,Espagne,1996,1.14
+ESP,Espagne,1997,1.15
+ESP,Espagne,1998,1.13
+ESP,Espagne,1999,1.17
+ESP,Espagne,2000,1.22
+ESP,Espagne,2001,1.23
+ESP,Espagne,2002,1.25
+ESP,Espagne,2003,1.3
+ESP,Espagne,2004,1.31
+ESP,Espagne,2005,1.33
+ESP,Espagne,2006,1.36
+ESP,Espagne,2007,1.38
+ESP,Espagne,2008,1.45
+ESP,Espagne,2009,1.38
+ESP,Espagne,2010,1.37
+ESP,Espagne,2011,1.34
+ESP,Espagne,2012,1.32
+ESP,Espagne,2013,1.27
+ESP,Espagne,2014,1.32
+ESP,Espagne,2015,1.33
+ESP,Espagne,2016,1.33
+ESP,Espagne,2017,1.31
+ESP,Espagne,2018,1.26
+ESP,Espagne,2019,1.23
+ESP,Espagne,2020,1.18
+ESP,Espagne,2021,1.18
+ESP,Espagne,2022,1.16
+ESP,Espagne,2023,1.12
+FRA,France,1990,1.77
+FRA,France,1991,1.75
+FRA,France,1992,1.74
+FRA,France,1993,1.73
+FRA,France,1994,1.73
+FRA,France,1995,1.74
+FRA,France,1996,1.75
+FRA,France,1997,1.77
+FRA,France,1998,1.78
+FRA,France,1999,1.81
+FRA,France,2000,1.89
+FRA,France,2001,1.9
+FRA,France,2002,1.88
+FRA,France,2003,1.89
+FRA,France,2004,1.92
+FRA,France,2005,1.94
+FRA,France,2006,2.0
+FRA,France,2007,1.98
+FRA,France,2008,2.01
+FRA,France,2009,2.0
+FRA,France,2010,2.03
+FRA,France,2011,2.01
+FRA,France,2012,2.01
+FRA,France,2013,1.99
+FRA,France,2014,2.0
+FRA,France,2015,1.96
+FRA,France,2016,1.92
+FRA,France,2017,1.89
+FRA,France,2018,1.87
+FRA,France,2019,1.86
+FRA,France,2020,1.82
+FRA,France,2021,1.83
+FRA,France,2022,1.78
+FRA,France,2023,1.66
+ITA,Italie,1990,1.33
+ITA,Italie,1991,1.3
+ITA,Italie,1992,1.3
+ITA,Italie,1993,1.25
+ITA,Italie,1994,1.21
+ITA,Italie,1995,1.19
+ITA,Italie,1996,1.2
+ITA,Italie,1997,1.22
+ITA,Italie,1998,1.22
+ITA,Italie,1999,1.23
+ITA,Italie,2000,1.26
+ITA,Italie,2001,1.25
+ITA,Italie,2002,1.27
+ITA,Italie,2003,1.29
+ITA,Italie,2004,1.34
+ITA,Italie,2005,1.33
+ITA,Italie,2006,1.37
+ITA,Italie,2007,1.39
+ITA,Italie,2008,1.44
+ITA,Italie,2009,1.44
+ITA,Italie,2010,1.44
+ITA,Italie,2011,1.42
+ITA,Italie,2012,1.42
+ITA,Italie,2013,1.39
+ITA,Italie,2014,1.38
+ITA,Italie,2015,1.36
+ITA,Italie,2016,1.36
+ITA,Italie,2017,1.34
+ITA,Italie,2018,1.31
+ITA,Italie,2019,1.27
+ITA,Italie,2020,1.24
+ITA,Italie,2021,1.25
+ITA,Italie,2022,1.24
+ITA,Italie,2023,1.21
+JPN,Japon,1990,1.54
+JPN,Japon,1991,1.53
+JPN,Japon,1992,1.5
+JPN,Japon,1993,1.46
+JPN,Japon,1994,1.5
+JPN,Japon,1995,1.42
+JPN,Japon,1996,1.43
+JPN,Japon,1997,1.39
+JPN,Japon,1998,1.38
+JPN,Japon,1999,1.34
+JPN,Japon,2000,1.36
+JPN,Japon,2001,1.33
+JPN,Japon,2002,1.32
+JPN,Japon,2003,1.29
+JPN,Japon,2004,1.29
+JPN,Japon,2005,1.26
+JPN,Japon,2006,1.32
+JPN,Japon,2007,1.34
+JPN,Japon,2008,1.37
+JPN,Japon,2009,1.37
+JPN,Japon,2010,1.39
+JPN,Japon,2011,1.39
+JPN,Japon,2012,1.41
+JPN,Japon,2013,1.43
+JPN,Japon,2014,1.42
+JPN,Japon,2015,1.45
+JPN,Japon,2016,1.44
+JPN,Japon,2017,1.43
+JPN,Japon,2018,1.42
+JPN,Japon,2019,1.36
+JPN,Japon,2020,1.33
+JPN,Japon,2021,1.3
+JPN,Japon,2022,1.26
+JPN,Japon,2023,1.2
+KOR,Corée du Sud,1990,1.57
+KOR,Corée du Sud,1991,1.71
+KOR,Corée du Sud,1992,1.76
+KOR,Corée du Sud,1993,1.654
+KOR,Corée du Sud,1994,1.656
+KOR,Corée du Sud,1995,1.634
+KOR,Corée du Sud,1996,1.574
+KOR,Corée du Sud,1997,1.537
+KOR,Corée du Sud,1998,1.464
+KOR,Corée du Sud,1999,1.425
+KOR,Corée du Sud,2000,1.48
+KOR,Corée du Sud,2001,1.309
+KOR,Corée du Sud,2002,1.178
+KOR,Corée du Sud,2003,1.191
+KOR,Corée du Sud,2004,1.164
+KOR,Corée du Sud,2005,1.085
+KOR,Corée du Sud,2006,1.132
+KOR,Corée du Sud,2007,1.259
+KOR,Corée du Sud,2008,1.192
+KOR,Corée du Sud,2009,1.149
+KOR,Corée du Sud,2010,1.226
+KOR,Corée du Sud,2011,1.244
+KOR,Corée du Sud,2012,1.297
+KOR,Corée du Sud,2013,1.187
+KOR,Corée du Sud,2014,1.205
+KOR,Corée du Sud,2015,1.239
+KOR,Corée du Sud,2016,1.172
+KOR,Corée du Sud,2017,1.052
+KOR,Corée du Sud,2018,0.977
+KOR,Corée du Sud,2019,0.918
+KOR,Corée du Sud,2020,0.837
+KOR,Corée du Sud,2021,0.808
+KOR,Corée du Sud,2022,0.778
+KOR,Corée du Sud,2023,0.721
+USA,États-Unis,1990,2.081
+USA,États-Unis,1991,2.062
+USA,États-Unis,1992,2.046
+USA,États-Unis,1993,2.019
+USA,États-Unis,1994,2.002
+USA,États-Unis,1995,1.978
+USA,États-Unis,1996,1.976
+USA,États-Unis,1997,1.971
+USA,États-Unis,1998,1.999
+USA,États-Unis,1999,2.007
+USA,États-Unis,2000,2.056
+USA,États-Unis,2001,2.03
+USA,États-Unis,2002,2.021
+USA,États-Unis,2003,2.047
+USA,États-Unis,2004,2.052
+USA,États-Unis,2005,2.057
+USA,États-Unis,2006,2.108
+USA,États-Unis,2007,2.12
+USA,États-Unis,2008,2.072
+USA,États-Unis,2009,2.002
+USA,États-Unis,2010,1.931
+USA,États-Unis,2011,1.894
+USA,États-Unis,2012,1.88
+USA,États-Unis,2013,1.858
+USA,États-Unis,2014,1.862
+USA,États-Unis,2015,1.844
+USA,États-Unis,2016,1.82
+USA,États-Unis,2017,1.766
+USA,États-Unis,2018,1.73
+USA,États-Unis,2019,1.706
+USA,États-Unis,2020,1.642
+USA,États-Unis,2021,1.664
+USA,États-Unis,2022,1.656
+USA,États-Unis,2023,1.616
