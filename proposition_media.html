@@ -31,6 +31,12 @@
   · Contraintes : fichier unique, vanilla JS, SVG seulement, Google
     Fonts en seule dépendance, mobile-first, ARIA + contraste AA,
     fonctionne en file://.
+  · Mobile (≤700 px) : chaque visuel large a un équivalent compact
+    sans défilement horizontal (timeline verticale, entonnoir en
+    barres, comparables en pistes, constellation en puces, piliers
+    HTML) ; blocs secondaires repliés par défaut (boutons ▾), longs
+    paragraphes en « lire la suite », clés de lecture déployables
+    sous chaque visuel, curseurs limités à 3 repères lisibles.
   ════════════════════════════════════════════════════════════════════
 -->
 <html lang="fr" data-charte="A">
@@ -409,7 +415,99 @@ html[data-charte="C"] .budgetbar .b2{background:var(--accent);color:#111}
 footer{margin-top:64px;border-top:var(--filet);padding:28px 0 86px;font-size:12.5px;color:var(--gris)}
 footer p{max-width:none}
 footer h3{font-size:15px;margin-top:0}
+/* ════════ 11bis. COMPOSANTS MOBILE ════════ */
+.only-mobile{display:none}
+.mfold-btn{display:none;width:100%;text-align:left;border:1px solid var(--grille);background:var(--carte);border-radius:10px;padding:11px 13px;font-size:13.5px;font-weight:700;color:var(--encre);font-family:var(--sans);margin:10px 0 4px;align-items:center;gap:8px;cursor:pointer}
+.mfold-btn .car{transition:transform .2s;color:var(--accent-ink)}
+.mfold-btn[aria-expanded="true"] .car{transform:rotate(180deg)}
+.mread-btn{border:none;background:none;color:var(--accent-ink);font-weight:700;font-size:13px;padding:2px 0 0;font-family:var(--sans);display:none;cursor:pointer}
+.cle-btn{display:none;align-items:center;gap:6px;border:1px dashed var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:8px;padding:7px 11px;font-size:12.5px;font-weight:700;font-family:var(--sans);margin:0 0 12px;cursor:pointer}
+.cle-pop{display:none;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:10px 12px;font-size:13px;color:var(--encre);margin:-4px 0 14px;line-height:1.5}
+.cle-pop .k{display:block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:4px}
+.cle-pop b{color:var(--encre)}
+.m-constel .chips{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 10px}
+.m-constel .chip{font-size:11.5px;border:1px solid var(--grille);background:var(--carte);border-radius:999px;padding:5px 10px;color:var(--encre);line-height:1.3}
+.m-constel .chip.acc{border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.m-constel .down{text-align:center;color:var(--accent-ink);font-size:18px;line-height:1;margin:2px 0 6px}
+.m-constel .dest{background:var(--cta-bg);color:var(--cta-fg);border-radius:12px;padding:12px 14px;text-align:center}
+.m-constel .dest b{font-family:var(--font-titre);font-size:19px;display:block;margin-bottom:2px}
+.m-constel .dest span{font-size:11.5px;opacity:.88}
+.m-formats{display:none;gap:7px;flex-wrap:wrap;margin:4px 0 10px}
+.fnode-m{border:1.5px solid var(--accent);background:var(--carte);border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:700;color:var(--encre);font-family:var(--sans);cursor:pointer}
+.fnode-m[aria-pressed="true"]{background:var(--cta-bg);color:var(--cta-fg);border-color:var(--cta-bg)}
+.fnode-m small{display:block;font-weight:400;font-size:10px;opacity:.75}
+.m-funnel{margin:12px 0}
+.m-funnel .mf{margin-bottom:10px}
+.m-funnel .row{display:flex;align-items:center;gap:8px}
+.m-funnel .row i{display:block;height:26px;border-radius:5px;background:var(--encre);flex:0 0 auto}
+.m-funnel .row.acc i{background:var(--accent)}
+.m-funnel .row b{font-size:13px;white-space:nowrap}
+.m-funnel .lab{font-size:11.5px;color:var(--gris);margin-top:2px}
+.m-comp{margin:12px 0}
+.m-comp .mc{margin-bottom:11px;font-size:12.5px}
+.m-comp .mc .top{display:flex;justify-content:space-between;gap:8px;color:var(--encre)}
+.m-comp .mc .top em{font-style:normal;color:var(--gris);font-size:11px;white-space:nowrap}
+.m-comp .trk{position:relative;height:10px;background:var(--soft);border-radius:5px;margin-top:4px}
+.m-comp .trk i{position:absolute;top:-2px;width:14px;height:14px;border-radius:50%;background:var(--accent);transform:translateX(-50%)}
+.m-comp .trk .band{position:absolute;top:0;bottom:0;border-radius:5px;background:var(--accent-soft);border:1.5px dashed var(--accent)}
+.m-comp .axis{position:relative;height:16px;font-size:9.5px;color:var(--gris);margin-top:2px}
+.m-comp .axis span{position:absolute;transform:translateX(-50%)}
+.m-pil .lig{margin-bottom:12px}
+.m-pil .lig .t{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:700;margin-bottom:3px}
+.m-pil .lig .t small{font-weight:400;color:var(--gris)}
+.m-pil .stk{display:flex;height:26px;border-radius:5px;overflow:hidden}
+.m-pil .s1{background:var(--cta-bg)}
+.m-pil .s2{background:var(--accent2)}
+html[data-charte="B"] .m-pil .s2{background:#B0512C}
+html[data-charte="C"] .m-pil .s2{background:var(--accent)}
+.m-pil .leg{display:flex;gap:14px;font-size:11px;color:var(--gris);margin:8px 0 2px}
+.m-pil .leg i{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:-1px;margin-right:5px}
+.m-tl{list-style:none;margin:14px 0 6px;position:relative;padding-left:24px}
+.m-tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--grille)}
+.m-tl li{position:relative;margin-bottom:13px;font-size:13px;color:var(--gris);line-height:1.45}
+.m-tl li::before{content:"";position:absolute;left:-21px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--cta-bg);border:2px solid var(--carte)}
+.m-tl li.ph{background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:9px 11px;color:var(--encre)}
+.m-tl li.ph::before{background:var(--accent);top:13px}
+.m-tl li b{color:var(--encre)}
+.m-tl .mlbl{font-weight:800;color:var(--accent-ink);margin-right:5px}
 /* ════════ 12. RESPONSIVE & PRINT ════════ */
+@media (max-width:700px){
+  body{font-size:17px}
+  section{padding:38px 0 10px}
+  .hero{padding:40px 0 26px}
+  .hero .lede{font-size:16px}
+  .chapo{font-size:15.5px;margin-bottom:18px}
+  .note{font-size:14px}
+  .cap{font-size:13.5px}
+  h3{font-size:19px;margin:24px 0 8px}
+  .grid2,.grid3,.grid4{gap:10px;margin:12px 0}
+  .card{padding:14px 15px}
+  .viz{margin:14px 0}
+  .only-mobile{display:block}
+  .m-formats.only-mobile,.charte-inline{display:flex}
+  #viz-constel>svg,#viz-funnel>svg,#viz-comp>svg,#viz-piliers>svg,.fwheel>svg{display:none}
+  .tl-scroll{display:none}
+  .mfold-btn{display:flex}
+  .mfolded{display:none!important}
+  .mread{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .mread.open{display:block;-webkit-line-clamp:unset;overflow:visible}
+  .mread-btn{display:inline-block}
+  .cle-btn{display:inline-flex}
+  .ticks{height:36px}
+  .ticks .tick{display:none}
+  .ticks .tick.maj,.ticks .tick.edge{display:block;width:60px;font-size:9px}
+  .sim{padding:16px 14px}
+  .sgrid{gap:22px}
+  .presets{gap:8px}
+  .gal{display:block;overflow:visible}
+  .gal .planche{width:auto!important;max-width:560px;margin:0 auto 20px}
+  .gauges{grid-template-columns:repeat(2,1fr);gap:8px}
+  .gjauge .gref{font-size:10px}
+  .variantes{gap:12px}
+  .decide{padding:16px 14px}
+  .budgetbar{height:42px}
+  footer{padding-bottom:96px}
+}
 @media (max-width:640px){
   .mq .hp2col{grid-template-columns:1fr}
   .gmark span{width:64px;left:-31px;font-size:9px}
@@ -451,7 +549,7 @@ footer h3{font-size:15px;margin-top:0}
     <h1>Vous écrivez déjà ce média.<br>Il ne lui manque qu'une <em>rédaction</em>.</h1>
     <svg class="plume" width="200" height="12" viewBox="0 0 200 12" aria-hidden="true"><path d="M2 8 C 30 2, 60 11, 100 6 S 170 2, 198 7" fill="none" stroke="#6B2D5E" stroke-width="1.6" stroke-linecap="round" opacity=".75"/></svg>
     <svg class="aqua-dash" width="160" height="14" viewBox="0 0 160 14" aria-hidden="true"><ellipse cx="40" cy="7" rx="40" ry="5" fill="#C4603A" opacity=".35"/><ellipse cx="95" cy="8" rx="34" ry="4" fill="#C4603A" opacity=".22"/><ellipse cx="138" cy="6" rx="20" ry="3.4" fill="#1C3F6E" opacity=".22"/></svg>
-    <p class="lede">Depuis quinze ans — livres, tribunes, et désormais votre newsletter du dimanche —,
+    <p class="lede mread">Depuis quinze ans — livres, tribunes, et désormais votre newsletter du dimanche —,
     vous défendez une même conviction&nbsp;: ce que l'économie mesure mal, elle finit par le maltraiter.
     La tribune a démontré la méthode&nbsp;: la preuve par les données. Ce document propose de l'installer
     derrière votre voix — un média qui s'insère dans ce que vous faites déjà, et l'amplifie.</p>
@@ -563,6 +661,19 @@ footer h3{font-size:15px;margin-top:0}
             <text x="724" y="334" class="sv-gris" font-size="10.5">la tribune apporte la méthode,</text>
             <text x="724" y="348" class="sv-gris" font-size="10.5">le média ajoute la preuve — et le canal.</text>
           </svg>
+          <div class="m-constel only-mobile">
+            <div class="chips">
+              <span class="chip">9 livres · 1994→2026</span>
+              <span class="chip">Éditeur — coll. «&nbsp;Identités&nbsp;»</span>
+              <span class="chip">Tribunes &amp; entretiens</span>
+              <span class="chip">Conférences &amp; cours</span>
+              <span class="chip">Rapports publics</span>
+              <span class="chip">LinkedIn 49,7&nbsp;k · My&nbsp;Views 7,5&nbsp;k</span>
+              <span class="chip acc">★ La tribune — le prototype de méthode</span>
+            </div>
+            <div class="down" aria-hidden="true">↓</div>
+            <div class="dest"><b>La Mesure</b><span>la rédaction qui manquait — la preuve + le canal en propre</span></div>
+          </div>
         </div>
 
         <div class="grid3" id="stats-tribune" data-mn="stats-tribune">
@@ -571,7 +682,7 @@ footer h3{font-size:15px;margin-top:0}
           <div class="card"><div class="bignum">35</div><div class="cap">chiffres clés vérifiés par contrôle croisé — 0 erreur confirmée</div></div>
         </div>
 
-        <p>Derrière la <a href="https://szaouati.github.io/tribune-pz-0626/" target="_blank" rel="noopener">tribune publiée</a>,
+        <p class="mread">Derrière la <a href="https://szaouati.github.io/tribune-pz-0626/" target="_blank" rel="noopener">tribune publiée</a>,
         une <b>chaîne de production scriptée</b> — 9 sources institutionnelles interrogées par API, données
         documentées, rapport de vérification — régénérable en quelques minutes. L'outillage d'une rédaction,
         sans la rédaction. Et le moment s'y prête&nbsp;: votre rendez-vous du dimanche existe déjà — mais il
@@ -668,6 +779,11 @@ footer h3{font-size:15px;margin-top:0}
               <text class="t2 sv-gris" x="118" y="328" text-anchor="middle" font-size="9.5">newsletter · dimanche 16&nbsp;h</text>
             </g>
           </svg>
+          <div class="m-formats only-mobile" role="group" aria-label="Choisir un format à détailler">
+            <button type="button" class="fnode-m" data-f="gm" aria-pressed="true">La Grande Mesure<small>mensuel</small></button>
+            <button type="button" class="fnode-m" data-f="rep" aria-pressed="false">Les Répliques<small>LinkedIn · continu</small></button>
+            <button type="button" class="fnode-m" data-f="chi" aria-pressed="false">Le Chiffre<small>dimanche 16&nbsp;h</small></button>
+          </div>
           <div class="fdetail" id="fdetail" aria-live="polite">
             <div class="ft">La Grande Mesure <span class="pill r">Mensuel</span></div>
             <div class="fp">Une enquête data du calibre d'un axe de la tribune&nbsp;: 5-8 graphiques, données
@@ -676,7 +792,7 @@ footer h3{font-size:15px;margin-top:0}
         </div>
 
         <h3>Le nom</h3>
-        <div class="grid3" id="noms" data-mn="noms">
+        <div class="grid3" id="noms" data-mn="noms" data-mfold="Les trois pistes de nom">
           <div class="card" style="border:2px solid var(--accent)">
             <span class="pill r">Recommandé</span>
             <div class="bignum" style="font-size:26px">La Mesure</div>
@@ -754,6 +870,13 @@ footer h3{font-size:15px;margin-top:0}
               <text x="606" y="268" class="sv-gris" font-size="11">dont ~11&nbsp;% de payeurs potentiels</text>
             </g>
           </svg>
+          <div class="m-funnel only-mobile">
+            <div class="mf"><div class="row"><i style="width:78%;opacity:.82"></i><b>37&nbsp;M</b></div><div class="lab">Comptes LinkedIn en France — déclaratif 2025-26</div></div>
+            <div class="mf"><div class="row"><i style="width:48%;opacity:.62"></i><b>16,5&nbsp;M</b></div><div class="lab">Visiteurs uniques mensuels réels — Arcom 2025</div></div>
+            <div class="mf"><div class="row"><i style="width:31%;opacity:.42"></i><b>6,5&nbsp;M</b></div><div class="lab">Cadres &amp; prof. intellectuelles sup. — INSEE 2022</div></div>
+            <div class="mf"><div class="row"><i style="width:14%;opacity:.25"></i><b>~0,7&nbsp;M</b></div><div class="lab">Lecteurs d'analyse économique approfondie — ACPM/OneNext</div></div>
+            <div class="mf"><div class="row acc"><i style="width:6%"></i><b>5-30&nbsp;k</b></div><div class="lab"><b>Cible à 24 mois</b> (inscrits) — dont ~11&nbsp;% de payeurs potentiels</div></div>
+          </div>
           <p class="vsrc"><b>Point de départ mesuré&nbsp;:</b> 49&nbsp;663 abonnés LinkedIn · 7&nbsp;489 abonnés de votre
           newsletter hebdomadaire après six numéros (relevés au 07/06/2026).</p>
           <p class="vsrc">Sources&nbsp;: LinkedIn &amp; Arcom<sup class="sn" id="snref-2" data-sn="sn2"><a href="#src2">2</a></sup> ·
@@ -761,11 +884,11 @@ footer h3{font-size:15px;margin-top:0}
           ACPM / OneNext 2026<sup class="sn" id="snref-4" data-sn="sn4"><a href="#src4">4</a></sup> — liens complets en pied de page.</p>
         </div>
 
-        <div class="grid2" id="personas" data-mn="personas">
+        <div class="grid2" id="personas" data-mn="personas" data-mfold="Le lecteur type (personas)">
           <div class="card">
             <span class="pill r">Persona cœur — ~70&nbsp;% de la cible</span>
             <h4>Claire, 41 ans, directrice de la stratégie d'une ETI</h4>
-            <p class="note">Consulte LinkedIn chaque matin, paie déjà pour l'info (2&nbsp;abonnements en
+            <p class="note mread">Consulte LinkedIn chaque matin, paie déjà pour l'info (2&nbsp;abonnements en
             moyenne chez les payeurs<sup class="sn" id="snref-1b" data-sn="sn1"><a href="#src1">1</a></sup>).
             Cherche des chiffres <b>sourcés, réutilisables</b> en comité. Fuit le flux et l'opinion sans
             preuve. 10-15&nbsp;minutes, le matin, sur mobile.</p>
@@ -820,6 +943,18 @@ footer h3{font-size:15px;margin-top:0}
             <text x="70" y="262" class="sv-gris" font-size="11">Gratuits à grande audience, pour mémoire&nbsp;: The Conversation FR (140&nbsp;000 inscrits newsletter) · Our World in Data («&nbsp;dizaines de millions de lecteurs/an&nbsp;», fondations).</text>
             <text x="70" y="278" class="sv-gris" font-size="11">Chiffres ACPM/OneNext 2026 quand ils existent, déclaratifs sinon (signalés) — détail dans le tableau ci-dessous et liens en pied de page.</text>
           </svg>
+          <div class="m-comp only-mobile">
+            <div class="mc"><div class="top"><b style="color:var(--accent-ink)">La Mesure — cible M24</b><em>60&nbsp;€/an</em></div>
+              <div class="trk"><span class="band" style="left:4%;width:26%"></span></div>
+              <div class="top"><em>400 à 2&nbsp;400 abonnés payants</em></div></div>
+            <div class="mc"><div class="top"><b>Snowball</b><em>80&nbsp;€/an · ~7&nbsp;k</em></div><div class="trk"><i style="left:46%"></i></div></div>
+            <div class="mc"><div class="top"><b>Les Jours</b><em>9&nbsp;€/mois · ~10&nbsp;k</em></div><div class="trk"><i style="left:50%"></i></div></div>
+            <div class="mc"><div class="top"><b>Brief.me</b><em>9,90&nbsp;€/mois · 12&nbsp;k</em></div><div class="trk"><i style="left:53%"></i></div></div>
+            <div class="mc"><div class="top"><b>Arrêt sur images</b><em>50&nbsp;€/an · &lt;20&nbsp;k</em></div><div class="trk"><i style="left:61%"></i></div></div>
+            <div class="mc"><div class="top"><b>Alternatives Économiques</b><em>6,90&nbsp;€/n° · 46&nbsp;k</em></div><div class="trk"><i style="left:73%"></i></div></div>
+            <div class="axis"><span style="left:17%">1&nbsp;000</span><span style="left:51%">10&nbsp;000</span><span style="left:84%">100&nbsp;000</span></div>
+            <p class="lab note" style="font-size:11px;margin-top:10px">Abonnés payants, échelle logarithmique. Gratuits pour mémoire&nbsp;: The Conversation FR (140&nbsp;k inscrits), Our World in Data (fondations).</p>
+          </div>
         </div>
 
         <details>
@@ -844,7 +979,7 @@ footer h3{font-size:15px;margin-top:0}
         </details>
 
         <h3>Ce que les comparables enseignent</h3>
-        <div class="grid3" id="enseignements" data-mn="enseignements">
+        <div class="grid3" id="enseignements" data-mn="enseignements" data-mfold="Les trois enseignements">
           <div class="card">
             <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône équilibre"><path d="M15 4 v22 M6 26 h18" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M15 7 L5 11 M15 7 l10 4" stroke="var(--accent)" stroke-width="1.6"/><path d="M2 17 a3.5 3.5 0 0 0 6 0 l-3-7zM22 17 a3.5 3.5 0 0 0 6 0 l-3-7z" fill="var(--accent2)" opacity=".9"/></svg>
             <h4>La niche payante vit à petite échelle</h4>
@@ -924,9 +1059,21 @@ footer h3{font-size:15px;margin-top:0}
             <text x="680" y="138" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700" class="lab-aut">80</text>
             <text x="150" y="178" class="sv-gris" font-size="10.5">Montants en k€/an. Hypothèses encadrées par le marché — ajustables dans le simulateur ci-dessous.</text>
           </svg>
+          <div class="m-pil only-mobile">
+            <div class="leg"><span><i style="background:var(--cta-bg)"></i>Abonnements (60&nbsp;€/an)</span><span><i class="s2" style="display:inline-block"></i>Aides + dons + sponsoring</span></div>
+            <div class="lig">
+              <div class="t"><span>Prudent — année 2</span><small>≈ 61&nbsp;k€/an</small></div>
+              <div class="stk" style="width:27%"><span class="s1" style="width:39%"></span><span class="s2" style="width:61%"></span></div>
+            </div>
+            <div class="lig">
+              <div class="t"><span>Volontariste — année 2</span><small>≈ 224&nbsp;k€/an</small></div>
+              <div class="stk"><span class="s1" style="width:64%"></span><span class="s2" style="width:36%"></span></div>
+            </div>
+            <p class="note" style="font-size:11px">Barres à la même échelle (max 224&nbsp;k€). Prudent&nbsp;: 24 + 37&nbsp;k€ · Volontariste&nbsp;: 144 (2&nbsp;400 abonnés × 60&nbsp;€) + 80&nbsp;k€.</p>
+          </div>
         </div>
 
-        <div class="grid4" id="piliers-cards">
+        <div class="grid4" id="piliers-cards" data-mfold="Les quatre piliers en détail">
           <div class="card pilcard">
             <svg class="pico" width="34" height="34" viewBox="0 0 34 34" role="img" aria-label="Icône abonnement"><circle cx="17" cy="17" r="14" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="17" y="22" text-anchor="middle" font-size="14" font-weight="800" fill="var(--accent-ink)" font-family="Georgia,serif">€</text></svg>
             <div><h4 style="margin-top:0">1 · Abonnement de soutien</h4><p class="note">60&nbsp;€/an — tout ouvert en année&nbsp;1, paywall différé (7&nbsp;jours) en année&nbsp;2.</p></div>
@@ -971,43 +1118,43 @@ footer h3{font-size:15px;margin-top:0}
               <label for="r_ins">Inscrits newsletter <output id="o_ins">8&nbsp;000</output></label>
               <input type="range" id="r_ins" min="1000" max="40000" step="500" value="8000">
               <div class="ticks" aria-hidden="true">
-                <span class="tick" style="left:0;transform:none;text-align:left;width:46px">1&nbsp;000</span>
+                <span class="tick edge" style="left:0;transform:none;text-align:left;width:46px">1&nbsp;000</span>
                 <span class="tick row2" style="left:7.7%">démarrage prudent</span>
                 <span class="tick maj" style="left:17.9%">8&nbsp;000 scén. prudent</span>
                 <span class="tick maj row2" style="left:48.7%">20&nbsp;000+ scén. volontariste</span>
-                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:52px">40&nbsp;000</span>
+                <span class="tick edge" style="left:100%;transform:translateX(-100%);text-align:right;width:52px">40&nbsp;000</span>
               </div>
             </div>
             <div class="sctl">
               <label for="r_cnv">Conversion vers le payant <output id="o_cnv">5,0&nbsp;%</output></label>
               <input type="range" id="r_cnv" min="1" max="12" step="0.5" value="5">
               <div class="ticks" aria-hidden="true">
-                <span class="tick" style="left:0;transform:none;text-align:left;width:36px">1&nbsp;%</span>
+                <span class="tick edge" style="left:0;transform:none;text-align:left;width:36px">1&nbsp;%</span>
                 <span class="tick row2" style="left:27.3%">norme basse 3-5&nbsp;%</span>
                 <span class="tick maj" style="left:45.5%">médiane 6&nbsp;%</span>
                 <span class="tick row2" style="left:81.8%">Snowball 10&nbsp;%+</span>
-                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:40px">12&nbsp;%</span>
+                <span class="tick edge" style="left:100%;transform:translateX(-100%);text-align:right;width:40px">12&nbsp;%</span>
               </div>
             </div>
             <div class="sctl">
               <label for="r_prx">Prix de l'abonnement (an) <output id="o_prx">60&nbsp;€</output></label>
               <input type="range" id="r_prx" min="40" max="120" step="5" value="60">
               <div class="ticks" aria-hidden="true">
-                <span class="tick" style="left:0;transform:none;text-align:left;width:36px">40&nbsp;€</span>
+                <span class="tick edge" style="left:0;transform:none;text-align:left;width:36px">40&nbsp;€</span>
                 <span class="tick row2" style="left:12.5%">Arrêt/images 50&nbsp;€</span>
                 <span class="tick maj" style="left:25%">recommandé 60&nbsp;€</span>
                 <span class="tick row2" style="left:62.5%">Grand Continent 90&nbsp;€</span>
-                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:42px">120&nbsp;€</span>
+                <span class="tick edge" style="left:100%;transform:translateX(-100%);text-align:right;width:42px">120&nbsp;€</span>
               </div>
             </div>
             <div class="sctl">
               <label for="r_aut">Aides + dons + sponsoring (an) <output id="o_aut">37&nbsp;k€</output></label>
               <input type="range" id="r_aut" min="0" max="120" step="1" value="37">
               <div class="ticks" aria-hidden="true">
-                <span class="tick" style="left:0;transform:none;text-align:left;width:52px">0 · sans aides</span>
+                <span class="tick edge" style="left:0;transform:none;text-align:left;width:52px">0 · sans aides</span>
                 <span class="tick row2" style="left:12.5%">FPL 15&nbsp;k€</span>
                 <span class="tick maj" style="left:58.3%">avec FSDP 70&nbsp;k€</span>
-                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:46px">120&nbsp;k€</span>
+                <span class="tick edge" style="left:100%;transform:translateX(-100%);text-align:right;width:46px">120&nbsp;k€</span>
               </div>
             </div>
           </div>
@@ -1025,7 +1172,7 @@ footer h3{font-size:15px;margin-top:0}
           <p id="verdict" aria-live="polite">…</p>
         </div>
 
-        <div class="grid3" id="paliers" data-mn="paliers">
+        <div class="grid3" id="paliers" data-mn="paliers" data-mfold="Les trois paliers de coûts">
           <div class="card"><div class="bignum">65&nbsp;k€<small>/an</small></div>
           <div class="cap"><b>Palier artisanal.</b> Rédaction données (chaîne existante), pigistes ponctuels,
           outils, comptabilité. Le palier de l'année&nbsp;1.</div></div>
@@ -1038,7 +1185,7 @@ footer h3{font-size:15px;margin-top:0}
         </div>
 
         <h3>Le point de décision M12&nbsp;: six seuils mesurables</h3>
-        <p class="note" style="max-width:700px">Le «&nbsp;oui&nbsp;» n'engage que l'année&nbsp;1. À M12, bilan formel&nbsp;:
+        <p class="note mread" style="max-width:700px">Le «&nbsp;oui&nbsp;» n'engage que l'année&nbsp;1. À M12, bilan formel&nbsp;:
         seuils atteints, on accélère&nbsp;; manqués, on arrête proprement — les actifs (marque, données, liste,
         chaîne) restent à vous.</p>
         <div class="gauges" id="viz-jauges" data-mn="viz-jauges">
@@ -1204,6 +1351,16 @@ footer h3{font-size:15px;margin-top:0}
             </svg>
           </div>
         </div>
+        <ol class="m-tl only-mobile" id="m-tl" aria-label="Frise des douze premiers mois, version compacte">
+          <li class="ph"><b>M0 → M2 · Fondation</b><br>Structure juridique, nom et marque, logo, site, charte éditoriale.</li>
+          <li><span class="mlbl">M2</span><b>Dossier CPPAP déposé</b> — TVA 2,1&nbsp;% + accès aux aides.</li>
+          <li class="ph"><b>M3 · Lancement — premier numéro</b><br>Le Chiffre n°1 + Grande Mesure n°1&nbsp;: la tribune devient le premier numéro. Campagne de Répliques.</li>
+          <li class="ph"><b>M4 → M11 · Régime de croisière</b><br>1 enquête/mois, newsletter bimensuelle.</li>
+          <li><span class="mlbl">M5</span><b>Dépôt bourse émergente + FPL</b> — chaque aide réduit votre appel de fonds.</li>
+          <li><span class="mlbl">M7</span><b>Premier partenaire institutionnel</b> — «&nbsp;présenté par&nbsp;», zéro conflit d'intérêts.</li>
+          <li><span class="mlbl">M9</span><b>Enquête inédite «&nbsp;Les Flux&nbsp;»</b> — au-delà du stock de la tribune.</li>
+          <li class="ph"><b>M12 · Bilan — 6 indicateurs</b><br>Accélérer, poursuivre, ou arrêter proprement.</li>
+        </ol>
       </div>
       <aside class="margin">
         <div class="mn cle" data-for="viz-tl"><span class="k">Clé de lecture</span>
@@ -1288,7 +1445,7 @@ footer h3{font-size:15px;margin-top:0}
     <div class="swatches" id="sw-data" aria-label="Palette des données par pays"></div>
 
     <h3>Le média tel qu'il paraîtrait — trois planches (elles suivent votre choix de charte)</h3>
-    <div class="gal" aria-label="Galerie des maquettes : page d'accueil, article mobile, newsletter">
+    <div class="gal" data-mfold="Les trois planches maquettes (accueil, article, newsletter)" aria-label="Galerie des maquettes : page d'accueil, article mobile, newsletter">
       <!-- Planche 1 : homepage -->
       <div class="planche">
         <div class="ptit">Planche 1 — la page d'accueil (web)</div>
@@ -1404,7 +1561,7 @@ footer h3{font-size:15px;margin-top:0}
         </div>
       </div>
     </div>
-    <p class="note" style="max-width:760px">Maquettes d'intention&nbsp;: les graphiques reprennent les chiffres réels
+    <p class="note mread" style="max-width:760px">Maquettes d'intention&nbsp;: les graphiques reprennent les chiffres réels
     de la tribune (mention «&nbsp;maquette&nbsp;» portée sur chacun)&nbsp;; logo et police de titrage définitifs seront
     créés en phase de fondation, dans la charte que vous aurez choisie.</p>
   </div>
@@ -1426,7 +1583,7 @@ footer h3{font-size:15px;margin-top:0}
             <div class="b1" style="width:76.5%">65&nbsp;k€<small>fonctionnement — palier artisanal</small></div>
             <div class="b2" style="width:23.5%">20&nbsp;k€<small>lancement (une fois)</small></div>
           </div>
-          <p class="note">Fonctionnement&nbsp;: rédaction données, pigistes, outils, hébergement, comptabilité.
+          <p class="note mread">Fonctionnement&nbsp;: rédaction données, pigistes, outils, hébergement, comptabilité.
           Lancement&nbsp;: logo et police de titrage, structure juridique, marque et domaine, site, dossier CPPAP,
           soirée de lancement.</p>
           <details>
@@ -1477,7 +1634,7 @@ footer h3{font-size:15px;margin-top:0}
         </div>
 
         <h3>Les risques, sans fard</h3>
-        <div class="risq" id="risques" data-mn="risques">
+        <div class="risq" id="risques" data-mn="risques" data-mfold="Les trois risques et leurs réponses">
           <div class="card">
             <div class="rtit"><svg width="26" height="26" viewBox="0 0 26 26" role="img" aria-label="Icône marché plat"><path d="M3 19 h20 M3 19 C8 19 9 13 13 13 s5 6 10 6" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg>Le marché payant stagne</div>
             <p class="note">11&nbsp;% de payeurs en France, stable depuis 2022<sup class="sn" id="snref-1c" data-sn="sn1"><a href="#src1">1</a></sup>.</p>
@@ -1716,15 +1873,15 @@ var FDET={
   rep:{t:'Les Répliques',p:'Continu',d:'La déclinaison LinkedIn de chaque enquête — un graphique, une clé de lecture — portée par votre compte puis par celui du média. Le moteur d’acquisition, à coût marginal nul : il prolonge ce que vous faites déjà chaque semaine.'},
   chi:{t:'Le Chiffre',p:'Bimensuel',d:'La newsletter : un chiffre vérifié qui contredit une idée reçue, un graphique, trois brèves chiffrées — et votre édito en ouverture. Le créneau est déjà le vôtre — dimanche 16 h : bimensuel au lancement, hebdomadaire quand la rédaction tournera.'}
 };
-function selFormat(node){
-  $$('.fwheel .fnode').forEach(function(n){n.classList.toggle('sel',n===node)});
-  var k=node.getAttribute('data-f'),d=FDET[k];
-  var det=$('#fdetail');
+function selFormat(k){
+  $$('.fwheel .fnode').forEach(function(n){n.classList.toggle('sel',n.getAttribute('data-f')===k)});
+  $$('.m-formats .fnode-m').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-f')===k))});
+  var d=FDET[k],det=$('#fdetail');
   if(det&&d){det.innerHTML='<div class="ft">'+d.t+' <span class="pill r">'+d.p+'</span></div><div class="fp">'+d.d+'</div>'}
 }
-$$('.fwheel .fnode').forEach(function(n){
-  n.addEventListener('click',function(){selFormat(n)});
-  n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();selFormat(n)}});
+$$('.fwheel .fnode, .m-formats .fnode-m').forEach(function(n){
+  n.addEventListener('click',function(){selFormat(n.getAttribute('data-f'))});
+  n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();selFormat(n.getAttribute('data-f'))}});
 });
 
 /* ════════ simulateur ════════ */
@@ -1801,6 +1958,83 @@ calc();
   });
 })();
 
+/* ════════ confort mobile : plis, lire-la-suite, clés de lecture ════════ */
+var MOBQ=(window.matchMedia?window.matchMedia('(max-width:700px)'):null);
+function isMob(){return MOBQ?MOBQ.matches:false}
+function setupMfold(){
+  $$('[data-mfold]').forEach(function(el){
+    if(el._mf)return;el._mf=true;
+    var b=doc.createElement('button');
+    b.type='button';b.className='mfold-btn';
+    b.innerHTML='<span class="car" aria-hidden="true">▾</span><span>'+el.getAttribute('data-mfold')+'</span>';
+    b.setAttribute('aria-expanded','false');
+    b.addEventListener('click',function(){
+      var folded=el.classList.toggle('mfolded');
+      b.setAttribute('aria-expanded',String(!folded));
+      layoutNotes();
+    });
+    el.parentNode.insertBefore(b,el);
+    el._btnFold=b;
+  });
+}
+function refreshMfold(){
+  $$('[data-mfold]').forEach(function(el){
+    var b=el._btnFold;
+    if(isMob()){el.classList.add('mfolded');if(b)b.setAttribute('aria-expanded','false');}
+    else{el.classList.remove('mfolded');if(b)b.setAttribute('aria-expanded','true');}
+  });
+  layoutNotes();
+}
+function setupMread(){
+  $$('.mread').forEach(function(p){
+    if(p._mr)return;p._mr=true;
+    var b=doc.createElement('button');
+    b.type='button';b.className='mread-btn';b.textContent='Lire la suite ▾';
+    b.addEventListener('click',function(){
+      var o=p.classList.toggle('open');
+      b.textContent=o?'Replier ▴':'Lire la suite ▾';
+    });
+    p.insertAdjacentElement('afterend',b);
+    p._btn=b;
+  });
+}
+function refreshMread(){
+  $$('.mread').forEach(function(p){
+    if(!p._btn)return;
+    if(!isMob()){p._btn.style.display='none';p.classList.remove('open');return}
+    p.classList.remove('open');p._btn.textContent='Lire la suite ▾';
+    p._btn.style.display=(p.scrollHeight>p.clientHeight+4)?'inline-block':'none';
+  });
+}
+function setupCle(){
+  $$('.mn.cle[data-for]').forEach(function(n){
+    if(n._cl)return;
+    var t=doc.getElementById(n.getAttribute('data-for'));
+    if(!t||t.tagName==='SECTION'||t.tagName==='SUP')return;
+    n._cl=true;
+    var b=doc.createElement('button');
+    b.type='button';b.className='cle-btn only-mobile';b.textContent='Clé de lecture ▾';
+    var d=doc.createElement('div');d.className='cle-pop';d.innerHTML=n.innerHTML;
+    b.addEventListener('click',function(){
+      var show=d.style.display!=='block';
+      d.style.display=show?'block':'none';
+      b.textContent=show?'Clé de lecture ▴':'Clé de lecture ▾';
+    });
+    t.insertAdjacentElement('afterend',d);
+    t.insertAdjacentElement('afterend',b);
+  });
+}
+function closeCles(){
+  $$('.cle-pop').forEach(function(d){d.style.display='none'});
+  $$('.cle-btn').forEach(function(b){b.textContent='Clé de lecture ▾'});
+}
+if(MOBQ){
+  var onMq=function(){refreshMfold();refreshMread();closeCles();};
+  if(MOBQ.addEventListener)MOBQ.addEventListener('change',onMq);
+  else if(MOBQ.addListener)MOBQ.addListener(onMq);
+}
+window.addEventListener('load',function(){refreshMread()});
+
 /* ════════ nav active ════════ */
 var navLinks=$$('#topnav a');
 var secIds=['depart','concept','audience','modele','calendrier','identite','decision'];
@@ -1816,6 +2050,11 @@ window.addEventListener('scroll',spy,{passive:true});
 var stored=null;
 try{stored=localStorage.getItem('pz_charte')}catch(e){}
 applyCharte(stored||'A');
+setupMfold();
+setupMread();
+setupCle();
+refreshMfold();
+refreshMread();
 spy();
 layoutNotes();
 })();
