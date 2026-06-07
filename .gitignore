@@ -9,6 +9,8 @@ tribune-pz-0626-livrables.zip
 data/raw/GSS_stata.zip
 data/raw/efpia_figures_2020.pdf
 data/raw/efpia_figures_2025.pdf
+# cache ~2 Mo, régénérable (geo.api.gouv.fr) ; livrable agrégé = data/axe5/06_*.csv
+data/raw/geoapi_communes.csv
 
 # Système
 .DS_Store

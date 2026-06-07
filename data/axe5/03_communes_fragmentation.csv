@@ -1,0 +1,4 @@
+﻿iso3,pays,nb_communes,communes_pour_100k_hab,hab_moyen_par_commune,km2_moyen_par_commune,source
+FRA,France,34935,51.2,1954,18.2,INSEE / vie-publique.fr — 34 935 communes au 1er janvier 2024
+DEU,Allemagne,10753,12.9,7730,32.8,Statistisches Bundesamt (Destatis) — 10 753 Gemeinden au 1er janvier 2024
+NLD,Pays-Bas,342,1.9,52080,100.6,CBS — 342 gemeenten en 2024 (hors 3 communes spéciales caribéennes)

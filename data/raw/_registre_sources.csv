@@ -23,3 +23,64 @@ FBCF,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;
 defense,Banque mondiale (WDI),https://api.worldbank.org/v2/country/USA;FRA;DEU;ITA;ESP;JPN;KOR;CHN/indicator/MS.MIL.XPND.GD.ZS?format=json&date=2000%3A2023,2026-06-06,192
 dette_publique,FMI (World Economic Outlook / DataMapper),https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP,2026-06-06,351
 solde_primaire,FMI (World Economic Outlook / DataMapper),https://www.imf.org/external/datamapper/api/v1/pb,2026-06-06,929
+test,Banque mondiale (WDI),https://api.worldbank.org/v2/country/FRA;USA/indicator/NY.GDP.PCAP.PP.CD?format=json&date=2020%3A2023,2026-06-06,8
+test_eurostat,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?format=JSON&sector=S13&na_item=TE&cofog99=TOTAL&unit=PC_GDP&geo=FR&geo=DE&geo=NL&time=2022,2026-06-06,3
+densite_nationale,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&geo=FR&geo=DE&geo=NL&time=2022,2026-06-06,3
+population,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?format=JSON&sex=T&age=TOTAL&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+densite_nuts3,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&time=2022,2026-06-06,1704
+cofog,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?format=JSON&sector=S13&na_item=TE&cofog99=TOTAL&cofog99=GF09&cofog99=GF03&unit=PC_GDP&unit=MIO_EUR&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,18
+police,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/crim_just_job?format=JSON&isco08=OC5412&sex=T&unit=P_HTHAB&geo=FR&geo=DE&geo=NL&time=2021,2026-06-06,3
+densite_nationale,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&geo=FR&geo=DE&geo=NL&time=2022,2026-06-06,3
+population,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?format=JSON&sex=T&age=TOTAL&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+densite_nuts3,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&time=2022,2026-06-06,1704
+cofog,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?format=JSON&sector=S13&na_item=TE&cofog99=TOTAL&cofog99=GF09&cofog99=GF03&unit=PC_GDP&unit=MIO_EUR&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,18
+police,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/crim_just_job?format=JSON&isco08=OC5412&sex=T&unit=P_HTHAB&geo=FR&geo=DE&geo=NL&time=2021,2026-06-06,3
+geoapi_communes_superficie,"Découpage administratif (geo.api.gouv.fr, données IGN/INSEE)",https://geo.api.gouv.fr/communes,2026-06-06,34963
+BPE_C107,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C107&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C108,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C108&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C109,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C109&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C201,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C201&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C301,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C301&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C302,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C302&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C303,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C303&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,100
+BPE_A101,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=A101&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_A104,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=A104&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,97
+OFGL_communes_depenses_dep,OpenDataSoft (data.ofgl.fr),https://data.ofgl.fr/api/explore/v2.1/catalog/datasets/ofgl-base-communes/records?limit=100&offset=100&where=year%28exer%29%3D2023+AND+agregat%3D%22D%C3%A9penses+totales%22+AND+type_de_budget%3D%22Budget+principal%22&select=sum%28montant%29+as+montant%2C+sum%28ptot_n%29+as+pop_ofgl&group_by=dep_code,2026-06-06,101
+densite_nationale,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&geo=FR&geo=DE&geo=NL&time=2022,2026-06-06,3
+population,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?format=JSON&sex=T&age=TOTAL&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+densite_nuts3,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&time=2022,2026-06-06,1704
+population_nuts3,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_pjanaggr3?format=JSON&sex=T&age=TOTAL&unit=NR&time=2022,2026-06-06,1832
+cofog,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?format=JSON&sector=S13&na_item=TE&cofog99=TOTAL&cofog99=GF09&cofog99=GF03&unit=PC_GDP&unit=MIO_EUR&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,18
+ppp_pib,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_ppp_ind?format=JSON&na_item=PPP_EU27_2020&ppp_cat=GDP&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+police,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/crim_just_job?format=JSON&isco08=OC5412&sex=T&unit=P_HTHAB&geo=FR&geo=DE&geo=NL&time=2022,2026-06-06,3
+eleves_cite1,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/educ_uoe_enra01?format=JSON&isced11=ED1&sex=T&unit=NR&worktime=TOTAL&sector=TOT_SEC&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+geoapi_communes_superficie,"Découpage administratif (geo.api.gouv.fr, données IGN/INSEE)",https://geo.api.gouv.fr/communes,2026-06-06,34963
+BPE_C107,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C107&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C108,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C108&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C109,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C109&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C201,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C201&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C301,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C301&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C302,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C302&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C303,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C303&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,100
+BPE_A101,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=A101&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_A104,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=A104&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,97
+OFGL_communes_depenses_dep,OpenDataSoft (data.ofgl.fr),https://data.ofgl.fr/api/explore/v2.1/catalog/datasets/ofgl-base-communes/records?limit=100&offset=100&where=year%28exer%29%3D2023+AND+agregat%3D%22D%C3%A9penses+totales%22+AND+type_de_budget%3D%22Budget+principal%22&select=sum%28montant%29+as+montant%2C+sum%28ptot_n%29+as+pop_ofgl&group_by=dep_code,2026-06-06,101
+densite_nationale,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&geo=FR&geo=DE&geo=NL&time=2022,2026-06-06,3
+population,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?format=JSON&sex=T&age=TOTAL&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+densite_nuts3,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_d3dens?format=JSON&time=2022,2026-06-06,1704
+population_nuts3,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_r_pjanaggr3?format=JSON&sex=T&age=TOTAL&unit=NR&time=2022,2026-06-06,1832
+cofog,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?format=JSON&sector=S13&na_item=TE&cofog99=TOTAL&cofog99=GF09&cofog99=GF03&unit=PC_GDP&unit=MIO_EUR&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,18
+ppp_pib,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_ppp_ind?format=JSON&na_item=PPP_EU27_2020&ppp_cat=GDP&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+police,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/crim_just_job?format=JSON&isco08=OC5412&sex=T&unit=P_HTHAB&geo=FR&geo=DE&geo=NL&time=2022,2026-06-06,3
+eleves_cite1,Eurostat,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/educ_uoe_enra01?format=JSON&isced11=ED1&sex=T&unit=NR&worktime=TOTAL&sector=TOT_SEC&geo=FR&geo=DE&geo=NL&time=2023,2026-06-06,3
+geoapi_communes_superficie,"Découpage administratif (geo.api.gouv.fr, données IGN/INSEE)",https://geo.api.gouv.fr/communes,2026-06-06,34963
+BPE_C107,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C107&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C108,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C108&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C109,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C109&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C201,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C201&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C301,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C301&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C302,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C302&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_C303,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=C303&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,100
+BPE_A101,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=A101&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,101
+BPE_A104,INSEE (API Mélodi),https://api.insee.fr/melodi/V2/data/DS_BPE?maxResult=20000&FACILITY_TYPE=A104&BPE_MEASURE=FACILITIES&GEO=DEP,2026-06-06,97
+OFGL_communes_depenses_dep,OpenDataSoft (data.ofgl.fr),https://data.ofgl.fr/api/explore/v2.1/catalog/datasets/ofgl-base-communes/records?limit=100&offset=100&where=year%28exer%29%3D2023+AND+agregat%3D%22D%C3%A9penses+totales%22+AND+type_de_budget%3D%22Budget+principal%22&select=sum%28montant%29+as+montant%2C+sum%28ptot_n%29+as+pop_ofgl&group_by=dep_code,2026-06-06,101

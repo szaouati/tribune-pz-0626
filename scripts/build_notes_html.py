@@ -31,6 +31,12 @@ PAGES = {
     "axe4_note_synthese.md": ("axe4", "Axe 4 — Arbitrages présent/futur", [
         chart("axe4", "axe4_small_multiples", "Fécondité, investissement, défense"),
         chart("axe4", "axe4_soutenabilite_dette", "Dette publique & solde primaire")]),
+    "axe5_note_synthese.md": ("axe5", "Axe 5 — Territoire & dépense publique", [
+        chart("axe5", "axe5_densite_superficie", "Densité & superficie (FR/DE/NL)"),
+        chart("axe5", "axe5_maillage_proximite", "Maillage : communes, écoles, police par habitant"),
+        chart("axe5", "axe5_depense_publique", "Dépense publique : % PIB, par habitant (€/SPA), par fonction"),
+        chart("axe5", "axe5_dispersion_regionale", "Dispersion des densités régionales (NUTS3)"),
+        chart("axe5", "axe5_gradient_departements", "Test causal : densité × maillage, 96 départements")]),
     "note_synthese_globale.md": ("synthese-globale", "Synthèse globale", [
         chart("axe1", "axe1_easterlin_pib_bonheur", "Axe 1 — paradoxe d'Easterlin"),
         chart("axe2", "axe2_part_pib_mondial", "Axe 2 — part du PIB mondial"),

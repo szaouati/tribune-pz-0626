@@ -1,0 +1,538 @@
+﻿iso3,pays,nuts3,region,densite_hab_km2
+DEU,Allemagne,DEE04,Altmarkkreis Salzwedel,35.7
+DEU,Allemagne,DE40F,Prignitz,35.8
+DEU,Allemagne,DE934,Lüchow-Dannenberg,39.2
+DEU,Allemagne,DE40I,Uckermark,39.4
+DEU,Allemagne,DE40D,Ostprignitz-Ruppin,40.0
+DEU,Allemagne,DE80O,Ludwigslust-Parchim,45.2
+DEU,Allemagne,DEE0D,Stendal,45.4
+DEU,Allemagne,DE80J,Mecklenburgische Seenplatte,49.4
+DEU,Allemagne,DE407,Elbe-Elster,53.1
+DEU,Allemagne,DEE06,Jerichower Land,57.0
+DEU,Allemagne,DE80N,Vorpommern-Greifswald,59.2
+DEU,Allemagne,DEB23,Eifelkreis Bitburg-Prüm,61.8
+DEU,Allemagne,DE93A,Uelzen,62.9
+DEU,Allemagne,DE80K,Landkreis Rostock,64.6
+DEU,Allemagne,DEE0E,Wittenberg,64.7
+DEU,Allemagne,DEG0E,Hildburghausen,65.9
+DEU,Allemagne,DEB24,Vulkaneifel,66.0
+DEU,Allemagne,DE23A,Tirschenreuth,66.8
+DEU,Allemagne,DE237,Neustadt a. d. Waldnaab,67.0
+DEU,Allemagne,DE40G,Spree-Neiße,68.4
+DEU,Allemagne,DEG0K,Saale-Orla-Kreis,69.4
+DEU,Allemagne,DE80L,Vorpommern-Rügen,69.5
+DEU,Allemagne,DEG0A,Kyffhäuserkreis,70.4
+DEU,Allemagne,DE725,Vogelsbergkreis,71.1
+DEU,Allemagne,DEE07,Börde,71.8
+DEU,Allemagne,DE938,Heidekreis,76.2
+DEU,Allemagne,DE80M,Nordwestmecklenburg,76.5
+DEU,Allemagne,DE266,Rhön-Grabfeld,77.6
+DEU,Allemagne,DE229,Regen,79.5
+DEU,Allemagne,DE937,Rotenburg (Wümme),79.6
+DEU,Allemagne,DE225,Freyung-Grafenau,79.7
+DEU,Allemagne,DE406,Dahme-Spreewald,79.8
+DEU,Allemagne,DE25A,Neustadt a. d. Aisch-Bad Windsheim,79.9
+DEU,Allemagne,DE246,"Bayreuth, Landkreis",81.1
+DEU,Allemagne,DE40C,Oder-Spree,81.4
+DEU,Allemagne,DEF07,Nordfriesland,81.9
+DEU,Allemagne,DE234,Amberg-Sulzbach,82.4
+DEU,Allemagne,DE40H,Teltow-Fläming,83.3
+DEU,Allemagne,DE235,Cham,84.3
+DEU,Allemagne,DE736,Waldeck-Frankenberg,84.9
+DEU,Allemagne,DEG0D,Sömmerda,85.4
+DEU,Allemagne,DE40E,Potsdam-Mittelmark,86.1
+DEU,Allemagne,DE22B,Straubing-Bogen,86.4
+DEU,Allemagne,DE94H,Wittmund,86.6
+DEU,Allemagne,DEB1C,Cochem-Zell,86.8
+DEU,Allemagne,DE927,Nienburg (Weser),87.5
+DEU,Allemagne,DE267,Haßberge,88.1
+DEU,Allemagne,DE21D,Garmisch-Partenkirchen,88.7
+DEU,Allemagne,DEG0P,Wartburgkreis (NUTS 2021),89.7
+DEU,Allemagne,DE265,Bad Kissingen,90.8
+DEU,Allemagne,DEE0A,Mansfeld-Südharz,91.5
+DEU,Allemagne,DE409,Märkisch-Oderland,92.8
+DEU,Allemagne,DE40B,Oberspreewald-Lausitz,93.0
+DEU,Allemagne,DE256,"Ansbach, Landkreis",94.5
+DEU,Allemagne,DE22A,Rottal-Inn,94.9
+DEU,Allemagne,DEF05,Dithmarschen,95.5
+DEU,Allemagne,DE26A,Main-Spessart,95.7
+DEU,Allemagne,DE737,Werra-Meißner-Kreis,96.8
+DEU,Allemagne,DEB3K,Südwestpfalz,96.9
+DEU,Allemagne,DE932,Cuxhaven,97.8
+DEU,Allemagne,DEB22,Bernkastel-Wittlich,97.8
+DEU,Allemagne,DE408,Havelland,98.0
+DEU,Allemagne,DE926,Holzminden,98.2
+DEU,Allemagne,DEG0I,Saalfeld-Rudolstadt (NUTS 2021),98.4
+DEU,Allemagne,DEF0C,Schleswig-Flensburg,99.1
+DEU,Allemagne,DE25C,Weißenburg-Gunzenhausen,99.4
+DEU,Allemagne,DEE09,Harz,99.6
+DEU,Allemagne,DED53,Nordsachsen,99.7
+DEU,Allemagne,DE24A,Kronach,100.8
+DEU,Allemagne,DE236,Neumarkt i. d. OPf.,101.5
+DEU,Allemagne,DEG0J,Saale-Holzland-Kreis,101.9
+DEU,Allemagne,DE11B,Main-Tauber-Kreis,102.0
+DEU,Allemagne,DE27E,Oberallgäu,102.0
+DEU,Allemagne,DE918,Northeim,102.0
+DEU,Allemagne,DEG0B,Schmalkalden-Meiningen (NUTS 2021),102.2
+DEU,Allemagne,DE239,Schwandorf,102.7
+DEU,Allemagne,DEG0G,Weimarer Land,102.8
+DEU,Allemagne,DEG09,Unstrut-Hainich-Kreis,103.1
+DEU,Allemagne,DE27B,Ostallgäu,103.4
+DEU,Allemagne,DE249,"Hof, Landkreis",104.8
+DEU,Allemagne,DEB15,Birkenfeld,105.2
+DEU,Allemagne,DEG06,Eichsfeld,105.3
+DEU,Allemagne,DE27D,Donau-Ries,106.0
+DEU,Allemagne,DE24B,Kulmbach,108.5
+DEU,Allemagne,DE733,Hersfeld-Rotenburg,108.6
+DEU,Allemagne,DEB1D,Rhein-Hunsrück-Kreis,109.1
+DEU,Allemagne,DEE05,Anhalt-Bitterfeld,109.4
+DEU,Allemagne,DE149,Sigmaringen,110.1
+DEU,Allemagne,DE94G,Wesermarsch,110.1
+DEU,Allemagne,DE219,Eichstätt,110.6
+DEU,Allemagne,DE922,Diepholz,111.0
+DEU,Allemagne,DE914,Gifhorn,112.8
+DEU,Allemagne,DE22C,Dingolfing-Landau,113.3
+DEU,Allemagne,DEG0L,Greiz,113.6
+DEU,Allemagne,DE931,Celle,113.9
+DEU,Allemagne,DE21F,Miesbach,115.1
+DEU,Allemagne,DEG07,Nordhausen,115.3
+DEU,Allemagne,DE949,Emsland,115.4
+DEU,Allemagne,DEA44,Höxter,116.2
+DEU,Allemagne,DEB3D,Donnersbergkreis,116.6
+DEU,Allemagne,DE735,Schwalm-Eder-Kreis,117.1
+DEU,Allemagne,DE226,Kelheim,117.4
+DEU,Allemagne,DE24D,Wunsiedel i. Fichtelgebirge,117.5
+DEU,Allemagne,DE216,Bad Tölz-Wolfratshausen,118.4
+DEU,Allemagne,DE27C,Unterallgäu,118.6
+DEU,Allemagne,DE227,"Landshut, Landkreis",120.1
+DEU,Allemagne,DED2D,Görlitz,120.3
+DEU,Allemagne,DE21M,Traunstein,120.7
+DEU,Allemagne,DEB3G,Kusel,122.0
+DEU,Allemagne,DE40A,Oberhavel,122.1
+DEU,Allemagne,DE948,Cloppenburg,123.5
+DEU,Allemagne,DE94D,"Oldenburg, Landkreis",123.9
+DEU,Allemagne,DEE08,Burgenlandkreis,124.6
+DEU,Allemagne,DE277,Dillingen a.d. Donau,125.3
+DEU,Allemagne,DEG0F,Ilm-Kreis (NUTS 2021),125.8
+DEU,Allemagne,DE215,Berchtesgadener Land,126.7
+DEU,Allemagne,DE245,"Bamberg, Landkreis",127.0
+DEU,Allemagne,DE228,"Passau, Landkreis",127.7
+DEU,Allemagne,DED2C,Bautzen,128.5
+DEU,Allemagne,DE127,Neckar-Odenwald-Kreis,128.7
+DEU,Allemagne,DEF0B,Rendsburg-Eckernförde,129.2
+DEU,Allemagne,DEF0E,Steinburg,129.2
+DEU,Allemagne,DE24C,Lichtenfels,129.8
+DEU,Allemagne,DEE0B,Saalekreis,130.2
+DEU,Allemagne,DEE0C,Salzlandkreis,131.2
+DEU,Allemagne,DEG0H,Sonneberg (NUTS 2021),131.3
+DEU,Allemagne,DEF0A,Plön,131.5
+DEU,Allemagne,DE405,Barnim,132.6
+DEU,Allemagne,DEA57,Hochsauerlandkreis,132.9
+DEU,Allemagne,DE268,Kitzingen,134.0
+DEU,Allemagne,DE11A,Schwäbisch Hall,134.1
+DEU,Allemagne,DE21I,Neuburg-Schrobenhausen,134.1
+DEU,Allemagne,DE917,Helmstedt,135.3
+DEU,Allemagne,DE916,Goslar,136.6
+DEU,Allemagne,DEB25,Trier-Saarburg,137.3
+DEU,Allemagne,DE26B,"Schweinfurt, Landkreis",137.8
+DEU,Allemagne,DE935,"Lüneburg, Landkreis",138.2
+DEU,Allemagne,DE12C,Freudenstadt,138.5
+DEU,Allemagne,DE238,"Regensburg, Landkreis",140.2
+DEU,Allemagne,DED43,Mittelsachsen,141.3
+DEU,Allemagne,DE224,Deggendorf,141.5
+DEU,Allemagne,DE21N,Weilheim-Schongau,143.0
+DEU,Allemagne,DE25B,Roth,143.1
+DEU,Allemagne,DE94B,Grafschaft Bentheim,143.8
+DEU,Allemagne,DE247,"Coburg, Landkreis",144.8
+DEU,Allemagne,DE146,Biberach,145.2
+DEU,Allemagne,DEG0C,Gotha,145.5
+DEU,Allemagne,DE119,Hohenlohekreis,146.6
+DEU,Allemagne,DE145,Alb-Donau-Kreis,147.5
+DEU,Allemagne,DE947,Aurich,148.1
+DEU,Allemagne,DEF08,Ostholstein,148.1
+DEU,Allemagne,DE21G,Mühldorf a. Inn,148.5
+DEU,Allemagne,DED2F,Sächsische Schweiz-Osterzgebirge,148.7
+DEU,Allemagne,DE13A,Waldshut,152.1
+DEU,Allemagne,DE71B,Odenwaldkreis,153.5
+DEU,Allemagne,DEG0M,Altenburger Land,155.1
+DEU,Allemagne,DED44,Vogtlandkreis,157.7
+DEU,Allemagne,DEA28,Euskirchen,158.3
+DEU,Allemagne,DEB1A,Rhein-Lahn-Kreis,159.7
+DEU,Allemagne,DE21A,Erding,159.9
+DEU,Allemagne,DE94C,Leer,160.2
+DEU,Allemagne,DE21E,Landsberg am Lech,161.0
+DEU,Allemagne,DED52,Leipzig,161.1
+DEU,Allemagne,DE732,Fulda,161.2
+DEU,Allemagne,DEB12,Ahrweiler,164.1
+DEU,Allemagne,DE94A,Friesland (DE),164.2
+DEU,Allemagne,DE91B,Wolfenbüttel,164.3
+DEU,Allemagne,DEF06,Herzogtum Lauenburg,165.5
+DEU,Allemagne,DEB3F,"Kaiserslautern, Landkreis",166.1
+DEU,Allemagne,DED2E,Meißen,167.0
+DEU,Allemagne,DE26C,"Würzburg, Landkreis",167.4
+DEU,Allemagne,DE94E,"Osnabrück, Landkreis",169.4
+DEU,Allemagne,DE278,Günzburg,169.6
+DEU,Allemagne,DE21J,Pfaffenhofen a. d. Ilm,171.3
+DEU,Allemagne,DE939,Stade,173.8
+DEU,Allemagne,DE275,Aichach-Friedberg,174.0
+DEU,Allemagne,DE946,Ammerland,174.6
+DEU,Allemagne,DEB3H,Südliche Weinstraße,175.1
+DEU,Allemagne,DE93B,Verden,176.2
+DEU,Allemagne,DE148,Ravensburg,176.4
+DEU,Allemagne,DE936,Osterholz,177.1
+DEU,Allemagne,DE94F,Vechta,178.4
+DEU,Allemagne,DED42,Erzgebirgskreis,179.2
+DEU,Allemagne,DE269,Miltenberg,180.4
+DEU,Allemagne,DE248,Forchheim,180.8
+DEU,Allemagne,DE734,"Kassel, Landkreis",180.8
+DEU,Allemagne,DE135,Rottweil,182.3
+DEU,Allemagne,DE21K,"Rosenheim, Landkreis",183.1
+DEU,Allemagne,DEC06,St. Wendel,183.7
+DEU,Allemagne,DE91C,Göttingen,186.2
+DEU,Allemagne,DEB14,Bad Kreuznach,187.1
+DEU,Allemagne,DE923,Hameln-Pyrmont,188.5
+DEU,Allemagne,DEA59,Olpe,188.7
+DEU,Allemagne,DEC02,Merzig-Wadern,192.1
+DEU,Allemagne,DE724,Marburg-Biedenkopf,193.5
+DEU,Allemagne,DE137,Tuttlingen,194.9
+DEU,Allemagne,DE132,Breisgau-Hochschwarzwald,196.0
+DEU,Allemagne,DE214,Altötting,199.3
+DEU,Allemagne,DEA35,Coesfeld,200.8
+DEU,Allemagne,DE12A,Calw,201.3
+DEU,Allemagne,DEB13,Altenkirchen (Westerwald),203.2
+DEU,Allemagne,DE136,Schwarzwald-Baar-Kreis,207.9
+DEU,Allemagne,DEB1B,Westerwaldkreis,208.4
+DEU,Allemagne,DE143,Zollernalbkreis,208.8
+DEU,Allemagne,DE11D,Ostalbkreis,209.1
+DEU,Allemagne,DE933,Harburg,210.0
+DEU,Allemagne,DEF0D,Segeberg,210.5
+DEU,Allemagne,DEA38,Warendorf,212.2
+DEU,Allemagne,DE259,Nürnberger Land,212.9
+DEU,Allemagne,DE11C,Heidenheim,213.5
+DEU,Allemagne,DEB3B,Alzey-Worms,223.6
+DEU,Allemagne,DEB3C,Bad Dürkheim,224.6
+DEU,Allemagne,DE925,Hildesheim,225.4
+DEU,Allemagne,DE21B,Freising,227.5
+DEU,Allemagne,DEA5B,Soest,228.6
+DEU,Allemagne,DE71D,Rheingau-Taunus-Kreis,233.1
+DEU,Allemagne,DE928,Schaumburg,233.9
+DEU,Allemagne,DE723,Limburg-Weilburg,234.6
+DEU,Allemagne,DE134,Ortenaukreis,237.5
+DEU,Allemagne,DE722,Lahn-Dill-Kreis,237.8
+DEU,Allemagne,DE276,"Augsburg, Landkreis",241.6
+DEU,Allemagne,DEA5A,Siegen-Wittgenstein,242.7
+DEU,Allemagne,DE133,Emmendingen,248.1
+DEU,Allemagne,DE257,Erlangen-Höchstadt,248.5
+DEU,Allemagne,DE264,"Aschaffenburg, Landkreis",248.6
+DEU,Allemagne,DEA37,Steinfurt,250.0
+DEU,Allemagne,DEA47,Paderborn,251.5
+DEU,Allemagne,DE91A,Peine,257.2
+DEU,Allemagne,DE218,Ebersberg,262.1
+DEU,Allemagne,DEA1B,Kleve,262.3
+DEU,Allemagne,DEA34,Borken,264.5
+DEU,Allemagne,DE217,Dachau,265.1
+DEU,Allemagne,DE141,Reutlingen,265.3
+DEU,Allemagne,DEB17,Mayen-Koblenz,267.3
+DEU,Allemagne,DEA46,Minden-Lübbecke,277.4
+DEU,Allemagne,DEA45,Lippe,279.1
+DEU,Allemagne,DE71E,Wetteraukreis,282.3
+DEU,Allemagne,DE27A,Lindau (Bodensee),289.1
+DEU,Allemagne,DEB3E,Germersheim,289.2
+DEU,Allemagne,DE139,Lörrach,289.7
+DEU,Allemagne,DEA26,Düren,290.9
+DEU,Allemagne,DEA2A,Oberbergischer Kreis,299.6
+DEU,Allemagne,DEB18,Neuwied,300.7
+DEU,Allemagne,DE719,Main-Kinzig-Kreis,301.0
+DEU,Allemagne,DE721,"Gießen, Landkreis",316.1
+DEU,Allemagne,DE118,"Heilbronn, Landkreis",318.4
+DEU,Allemagne,DE124,Rastatt,320.2
+DEU,Allemagne,DEF0F,Stormarn,321.5
+DEU,Allemagne,DEE01,"Dessau-Roßlau, Kreisfreie Stadt",322.4
+DEU,Allemagne,DE21L,Starnberg,323.8
+DEU,Allemagne,DED45,Zwickau,326.7
+DEU,Allemagne,DEC05,Saarpfalz-Kreis,341.4
+DEU,Allemagne,DE12B,Enzkreis,347.7
+DEU,Allemagne,DE279,Neu-Ulm,349.3
+DEU,Allemagne,DEB3J,Mainz-Bingen,353.8
+DEU,Allemagne,DEG04,"Suhl, Kreisfreie Stadt (NUTS 2021)",354.7
+DEU,Allemagne,DE401,"Brandenburg an der Havel, Kreisfreie Stadt",372.6
+DEU,Allemagne,DE138,Konstanz,375.1
+DEU,Allemagne,DEA42,Gütersloh,376.1
+DEU,Allemagne,DE715,Bergstraße,382.9
+DEU,Allemagne,DE258,"Fürth, Landkreis",386.0
+DEU,Allemagne,DEA58,Märkischer Kreis,386.7
+DEU,Allemagne,DE403,"Frankfurt (Oder), Kreisfreie Stadt",392.8
+DEU,Allemagne,DE121,"Baden-Baden, Stadtkreis",401.5
+DEU,Allemagne,DE114,Göppingen,402.1
+DEU,Allemagne,DEG0N,"Eisenach, Kreisfreie Stadt (NUTS 2021)",404.9
+DEU,Allemagne,DE251,"Ansbach, Kreisfreie Stadt",406.3
+DEU,Allemagne,DEA29,Heinsberg,415.0
+DEU,Allemagne,DE123,"Karlsruhe, Landkreis",422.6
+DEU,Allemagne,DEC04,Saarlouis,436.1
+DEU,Allemagne,DE142,"Tübingen, Landkreis",444.8
+DEU,Allemagne,DEB36,"Neustadt an der Weinstraße, Kreisfreie Stadt",454.1
+DEU,Allemagne,DE716,Darmstadt-Dieburg,454.3
+DEU,Allemagne,DE942,"Emden, Kreisfreie Stadt",454.5
+DEU,Allemagne,DEA1F,Wesel,455.9
+DEU,Allemagne,DE912,"Salzgitter, Kreisfreie Stadt",471.2
+DEU,Allemagne,DEB3A,"Zweibrücken, Kreisfreie Stadt",474.3
+DEU,Allemagne,DE147,Bodenseekreis,491.6
+DEU,Allemagne,DE718,Hochtaunuskreis,493.3
+DEU,Allemagne,DE21C,Fürstenfeldbruck,499.0
+DEU,Allemagne,DEF09,Pinneberg,500.1
+DEU,Allemagne,DE116,Rems-Murr-Kreis,504.3
+DEU,Allemagne,DE929,Region Hannover,506.6
+DEU,Allemagne,DE128,Rhein-Neckar-Kreis,524.4
+DEU,Allemagne,DEA2C,Rhein-Sieg-Kreis,526.1
+DEU,Allemagne,DEB3I,Rhein-Pfalz-Kreis,527.4
+DEU,Allemagne,DEC03,Neunkirchen,528.8
+DEU,Allemagne,DEA1E,Viersen,531.4
+DEU,Allemagne,DE21H,"München, Landkreis",531.8
+DEU,Allemagne,DEA43,Herford,561.8
+DEU,Allemagne,DEB33,"Landau in der Pfalz, Kreisfreie Stadt",568.5
+DEU,Allemagne,DE402,"Cottbus, Kreisfreie Stadt",583.7
+DEU,Allemagne,DE233,"Weiden i. d. Opf, Kreisfreie Stadt",596.6
+DEU,Allemagne,DEG02,"Gera, Kreisfreie Stadt",611.3
+DEU,Allemagne,DE717,Groß-Gerau,613.8
+DEU,Allemagne,DE913,"Wolfsburg, Kreisfreie Stadt",617.5
+DEU,Allemagne,DE274,"Memmingen, Kreisfreie Stadt",631.6
+DEU,Allemagne,DE112,Böblingen,634.8
+DEU,Allemagne,DEB37,"Pirmasens, Kreisfreie Stadt",650.6
+DEU,Allemagne,DEA2B,Rheinisch-Bergischer Kreis,654.1
+DEU,Allemagne,DEA27,Rhein-Erft-Kreis,675.4
+DEU,Allemagne,DEB32,"Kaiserslautern, Kreisfreie Stadt",712.9
+DEU,Allemagne,DE945,"Wilhelmshaven, Kreisfreie Stadt",725.4
+DEU,Allemagne,DEA5C,Unna,726.2
+DEU,Allemagne,DE223,"Straubing, Kreisfreie Stadt",729.3
+DEU,Allemagne,DEG05,"Weimar, Kreisfreie Stadt",777.6
+DEU,Allemagne,DEA56,Ennepe-Ruhr-Kreis,783.1
+DEU,Allemagne,DE115,Ludwigsburg,786.0
+DEU,Allemagne,DEA54,"Hamm, Kreisfreie Stadt",793.6
+DEU,Allemagne,DEC01,Regionalverband Saarbrücken,800.4
+DEU,Allemagne,DE244,"Hof, Kreisfreie Stadt",800.7
+DEU,Allemagne,DEA1D,Rhein-Kreis Neuss,802.4
+DEU,Allemagne,DEB39,"Worms, Kreisfreie Stadt",805.8
+DEU,Allemagne,DEG01,"Erfurt, Kreisfreie Stadt",809.0
+DEU,Allemagne,DEA2D,Städteregion Aachen,809.9
+DEU,Allemagne,DE222,"Passau, Kreisfreie Stadt",811.2
+DEU,Allemagne,DEA36,Recklinghausen,819.9
+DEU,Allemagne,DE113,Esslingen,832.2
+DEU,Allemagne,DE231,"Amberg, Kreisfreie Stadt",840.7
+DEU,Allemagne,DE243,"Coburg, Kreisfreie Stadt",849.7
+DEU,Allemagne,DEB21,"Trier, Kreisfreie Stadt",938.1
+DEU,Allemagne,DEG03,"Jena, Kreisfreie Stadt",960.7
+DEU,Allemagne,DE255,"Schwabach, Kreisfreie Stadt",999.5
+DEU,Allemagne,DE71C,"Offenbach, Landkreis",1007.7
+DEU,Allemagne,DE804,"Schwerin, Kreisfreie Stadt",1017.7
+DEU,Allemagne,DEA33,"Münster, Kreisfreie Stadt",1031.3
+DEU,Allemagne,DE211,"Ingolstadt, Kreisfreie Stadt",1062.6
+DEU,Allemagne,DE273,"Kempten (Allgäu), Kreisfreie Stadt",1065.7
+DEU,Allemagne,DE404,"Potsdam, Kreisfreie Stadt",1070.6
+DEU,Allemagne,DE144,"Ulm, Stadtkreis",1070.9
+DEU,Allemagne,DE221,"Landshut, Kreisfreie Stadt",1074.9
+DEU,Allemagne,DE71A,Main-Taunus-Kreis,1079.1
+DEU,Allemagne,DE242,"Bayreuth, Kreisfreie Stadt",1093.8
+DEU,Allemagne,DED41,"Chemnitz, Kreisfreie Stadt",1099.5
+DEU,Allemagne,DEB31,"Frankenthal (Pfalz), Kreisfreie Stadt",1125.3
+DEU,Allemagne,DEF04,"Neumünster, Kreisfreie Stadt",1131.1
+DEU,Allemagne,DE272,"Kaufbeuren, Kreisfreie Stadt",1132.2
+DEU,Allemagne,DEB11,"Koblenz, Kreisfreie Stadt",1134.7
+DEU,Allemagne,DEF03,"Lübeck, Kreisfreie Stadt",1137.8
+DEU,Allemagne,DE803,"Rostock, Kreisfreie Stadt",1145.3
+DEU,Allemagne,DE261,"Aschaffenburg, Kreisfreie Stadt",1175.7
+DEU,Allemagne,DEA31,"Bottrop, Kreisfreie Stadt",1178.2
+DEU,Allemagne,DEA53,"Hagen, Kreisfreie Stadt",1190.8
+DEU,Allemagne,DEA1C,Mettmann,1208.0
+DEU,Allemagne,DEE03,"Magdeburg, Kreisfreie Stadt",1244.6
+DEU,Allemagne,DE117,"Heilbronn, Stadtkreis",1277.7
+DEU,Allemagne,DE941,"Delmenhorst, Kreisfreie Stadt",1279.6
+DEU,Allemagne,DEA41,"Bielefeld, Kreisfreie Stadt",1284.5
+DEU,Allemagne,DE911,"Braunschweig, Kreisfreie Stadt",1307.3
+DEU,Allemagne,DE711,"Darmstadt, Kreisfreie Stadt",1319.5
+DEU,Allemagne,DEB38,"Speyer, Kreisfreie Stadt",1321.7
+DEU,Allemagne,DE129,"Pforzheim, Stadtkreis",1323.6
+DEU,Allemagne,DE944,"Osnabrück, Kreisfreie Stadt",1378.2
+DEU,Allemagne,DE241,"Bamberg, Kreisfreie Stadt",1383.2
+DEU,Allemagne,DE714,"Wiesbaden, Kreisfreie Stadt",1416.4
+DEU,Allemagne,DE502,"Bremerhaven, Kreisfreie Stadt",1432.0
+DEU,Allemagne,DE125,"Heidelberg, Stadtkreis",1466.4
+DEU,Allemagne,DE263,"Würzburg, Kreisfreie Stadt",1483.9
+DEU,Allemagne,DE252,"Erlangen, Kreisfreie Stadt",1494.8
+DEU,Allemagne,DEA18,"Remscheid, Kreisfreie Stadt",1523.7
+DEU,Allemagne,DE131,"Freiburg im Breisgau, Stadtkreis",1525.7
+DEU,Allemagne,DE262,"Schweinfurt, Kreisfreie Stadt",1530.3
+DEU,Allemagne,DEA15,"Mönchengladbach, Kreisfreie Stadt",1553.9
+DEU,Allemagne,DEF01,"Flensburg, Kreisfreie Stadt",1643.2
+DEU,Allemagne,DE943,"Oldenburg (Oldenburg), Kreisfreie Stadt",1690.4
+DEU,Allemagne,DEA14,"Krefeld, Kreisfreie Stadt",1694.2
+DEU,Allemagne,DE213,"Rosenheim, Kreisfreie Stadt",1718.2
+DEU,Allemagne,DED21,"Dresden, Kreisfreie Stadt",1721.2
+DEU,Allemagne,DEE02,"Halle (Saale), Kreisfreie Stadt",1736.9
+DEU,Allemagne,DEA19,"Solingen, Kreisfreie Stadt",1801.0
+DEU,Allemagne,DE122,"Karlsruhe, Stadtkreis",1814.0
+DEU,Allemagne,DE501,"Bremen, Kreisfreie Stadt",1839.1
+DEU,Allemagne,DE731,"Kassel, Kreisfreie Stadt",1872.6
+DEU,Allemagne,DEA16,"Mülheim an der Ruhr, Kreisfreie Stadt",1883.5
+DEU,Allemagne,DE232,"Regensburg, Kreisfreie Stadt",1905.4
+DEU,Allemagne,DE271,"Augsburg, Kreisfreie Stadt",2017.6
+DEU,Allemagne,DED51,"Leipzig, Kreisfreie Stadt",2057.1
+DEU,Allemagne,DE253,"Fürth, Kreisfreie Stadt",2064.9
+DEU,Allemagne,DEA52,"Dortmund, Kreisfreie Stadt",2118.3
+DEU,Allemagne,DEF02,"Kiel, Kreisfreie Stadt",2121.0
+DEU,Allemagne,DEA1A,"Wuppertal, Kreisfreie Stadt",2122.4
+DEU,Allemagne,DEA24,"Leverkusen, Kreisfreie Stadt",2177.8
+DEU,Allemagne,DE126,"Mannheim, Stadtkreis",2238.5
+DEU,Allemagne,DEB34,"Ludwigshafen am Rhein, Kreisfreie Stadt",2306.8
+DEU,Allemagne,DEB35,"Mainz, Kreisfreie Stadt",2310.9
+DEU,Allemagne,DEA12,"Duisburg, Kreisfreie Stadt",2329.0
+DEU,Allemagne,DEA22,"Bonn, Kreisfreie Stadt",2404.8
+DEU,Allemagne,DEA51,"Bochum, Kreisfreie Stadt",2481.6
+DEU,Allemagne,DEA32,"Gelsenkirchen, Kreisfreie Stadt",2498.9
+DEU,Allemagne,DE600,Hamburg,2596.2
+DEU,Allemagne,DEA23,"Köln, Kreisfreie Stadt",2698.9
+DEU,Allemagne,DEA17,"Oberhausen, Kreisfreie Stadt",2740.3
+DEU,Allemagne,DEA13,"Essen, Kreisfreie Stadt",2781.8
+DEU,Allemagne,DE254,"Nürnberg, Kreisfreie Stadt",2795.6
+DEU,Allemagne,DE713,"Offenbach am Main, Kreisfreie Stadt",2975.4
+DEU,Allemagne,DEA11,"Düsseldorf, Kreisfreie Stadt",2994.8
+DEU,Allemagne,DE111,"Stuttgart, Stadtkreis",3005.6
+DEU,Allemagne,DEA55,"Herne, Kreisfreie Stadt",3061.0
+DEU,Allemagne,DE712,"Frankfurt am Main, Kreisfreie Stadt",3074.7
+DEU,Allemagne,DE300,Berlin,4320.5
+DEU,Allemagne,DE212,"München, Kreisfreie Stadt",4803.6
+FRA,France,FRY30,Guyane,3.5
+FRA,France,FRJ14,Lozère,14.8
+FRA,France,FRI22,Creuse,20.7
+FRA,France,FRL01,Alpes-de-Haute-Provence,24.1
+FRA,France,FRL02,Hautes-Alpes,25.0
+FRA,France,FRK12,Cantal,25.1
+FRA,France,FRF24,Haute-Marne,27.2
+FRA,France,FRF32,Meuse,29.0
+FRA,France,FRC12,Nièvre,29.6
+FRA,France,FRJ24,Gers,30.6
+FRA,France,FRB03,Indre,31.7
+FRA,France,FRJ21,Ariège,31.8
+FRA,France,FRJ22,Aveyron,32.0
+FRA,France,FRJ25,Lot,33.8
+FRA,France,FRM02,Haute-Corse,39.8
+FRA,France,FRI21,Corrèze,41.0
+FRA,France,FRB01,Cher,41.1
+FRA,France,FRM01,Corse-du-Sud,41.7
+FRA,France,FRC23,Haute-Saône,43.5
+FRA,France,FRD13,Orne,44.8
+FRA,France,FRC14,Yonne,44.9
+FRA,France,FRI11,Dordogne,45.3
+FRA,France,FRK11,Allier,45.6
+FRA,France,FRK13,Haute-Loire,45.6
+FRA,France,FRI13,Landes,46.6
+FRA,France,FRF21,Ardennes,51.1
+FRA,France,FRJ26,Hautes-Pyrénées,51.4
+FRA,France,FRB05,Loir-et-Cher,51.6
+FRA,France,FRC22,Jura,51.6
+FRA,France,FRF22,Aube,52.2
+FRA,France,FRG03,Mayenne,58.6
+FRA,France,FRI31,Charente,58.9
+FRA,France,FRK22,Ardèche,60.3
+FRA,France,FRJ11,Aude,60.5
+FRA,France,FRF34,Vosges,60.7
+FRA,France,FRC11,Côte-d’Or,61.4
+FRA,France,FRI14,Lot-et-Garonne,62.1
+FRA,France,FRI33,Deux-Sèvres,62.2
+FRA,France,FRI34,Vienne,62.5
+FRA,France,FRC13,Saône-et-Loire,64.1
+FRA,France,FRI23,Haute-Vienne,67.3
+FRA,France,FRJ27,Tarn,68.9
+FRA,France,FRF23,Marne,69.3
+FRA,France,FRE21,Aisne,71.0
+FRA,France,FRJ28,Tarn-et-Garonne,71.7
+FRA,France,FRK27,Savoie,72.2
+FRA,France,FRB02,Eure-et-Loir,73.1
+FRA,France,FRK23,Drôme,80.0
+FRA,France,FRD12,Manche,82.7
+FRA,France,FRK14,Puy-de-Dôme,83.1
+FRA,France,FRH01,Côtes-d’Armor,87.6
+FRA,France,FRG04,Sarthe,90.8
+FRA,France,FRI15,Pyrénées-Atlantiques,91.6
+FRA,France,FRE23,Somme,91.9
+FRA,France,FRI32,Charente-Maritime,97.2
+FRA,France,FRD21,Eure,100.5
+FRA,France,FRB04,Indre-et-Loire,101.1
+FRA,France,FRB06,Loiret,101.8
+FRA,France,FRC21,Doubs,104.9
+FRA,France,FRG05,Vendée,105.0
+FRA,France,FRH04,Morbihan,113.6
+FRA,France,FRG02,Maine-et-Loire,115.6
+FRA,France,FRK21,Ain,119.9
+FRA,France,FRJ15,Pyrénées-Orientales,121.1
+FRA,France,FRD11,Calvados,126.0
+FRA,France,FRJ12,Gard,132.3
+FRA,France,FRH02,Finistère,137.7
+FRA,France,FRF31,Meurthe-et-Moselle,139.7
+FRA,France,FRE22,Oise,141.7
+FRA,France,FRL06,Vaucluse,160.2
+FRA,France,FRK25,Loire,162.5
+FRA,France,FRH03,Ille-et-Vilaine,163.5
+FRA,France,FRK24,Isère,165.7
+FRA,France,FRF33,Moselle,170.1
+FRA,France,FRI12,Gironde,170.1
+FRA,France,FRL05,Var,185.3
+FRA,France,FRK28,Haute-Savoie,186.6
+FRA,France,FRD22,Seine-Maritime,201.3
+FRA,France,FRJ13,Hérault,201.5
+FRA,France,FRG01,Loire-Atlantique,216.7
+FRA,France,FRE12,Pas-de-Calais,218.2
+FRA,France,FRF12,Haut-Rhin,218.6
+FRA,France,FRJ23,Haute-Garonne,231.6
+FRA,France,FRC24,Territoire de Belfort,232.6
+FRA,France,FRF11,Bas-Rhin,243.8
+FRA,France,FRY10,Guadeloupe,246.7
+FRA,France,FR102,Seine-et-Marne,248.1
+FRA,France,FRL03,Alpes-Maritimes,260.4
+FRA,France,FRY20,Martinique,326.8
+FRA,France,FRY40,La Réunion,356.7
+FRA,France,FRL04,Bouches-du-Rhône,436.3
+FRA,France,FRE11,Nord,456.7
+FRA,France,FRK26,Rhône,592.4
+FRA,France,FR103,Yvelines,648.5
+FRA,France,FR104,Essonne,733.6
+FRA,France,FRY50,Mayotte,835.4
+FRA,France,FR108,Val-d'Oise,1024.9
+FRA,France,FR107,Val-de-Marne,5871.3
+FRA,France,FR106,Seine-Saint-Denis,7148.0
+FRA,France,FR105,Hauts-de-Seine,9594.9
+FRA,France,FR101,Paris,20420.0
+NLD,Pays-Bas,NL341,Zeeuwsch-Vlaanderen,142.4
+NLD,Pays-Bas,NL111,Oost-Groningen (NUTS 2021),163.1
+NLD,Pays-Bas,NL112,Delfzijl en omgeving,167.5
+NLD,Pays-Bas,NL132,Zuidoost-Drenthe,184.3
+NLD,Pays-Bas,NL131,Noord-Drenthe,184.4
+NLD,Pays-Bas,NL126,Zuidoost-Friesland,189.6
+NLD,Pays-Bas,NL133,Zuidwest-Drenthe,195.2
+NLD,Pays-Bas,NL225,Achterhoek,260.5
+NLD,Pays-Bas,NL211,Noord-Overijssel,265.8
+NLD,Pays-Bas,NL342,Overig Zeeland,266.9
+NLD,Pays-Bas,NL230,Flevoland,306.4
+NLD,Pays-Bas,NL113,Overig Groningen (NUTS 2021),329.0
+NLD,Pays-Bas,NL421,Noord-Limburg,342.7
+NLD,Pays-Bas,NL321,Kop van Noord-Holland,347.6
+NLD,Pays-Bas,NL224,Zuidwest-Gelderland,359.6
+NLD,Pays-Bas,NL422,Midden-Limburg,359.7
+NLD,Pays-Bas,NL212,Zuidwest-Overijssel,378.6
+NLD,Pays-Bas,NL221,Veluwe,387.9
+NLD,Pays-Bas,NL213,Twente,423.7
+NLD,Pays-Bas,NL413,Noordoost-Noord-Brabant (NUTS 2021),490.1
+NLD,Pays-Bas,NL411,West-Noord-Brabant,521.0
+NLD,Pays-Bas,NL414,Zuidoost-Noord-Brabant,548.6
+NLD,Pays-Bas,NL412,Midden-Noord-Brabant (NUTS 2021),550.6
+NLD,Pays-Bas,NL33A,Zuidoost-Zuid-Holland (NUTS 2021),791.1
+NLD,Pays-Bas,NL226,Arnhem/Nijmegen,828.5
+NLD,Pays-Bas,NL328,Alkmaar en omgeving,846.5
+NLD,Pays-Bas,NL423,Zuid-Limburg,915.3
+NLD,Pays-Bas,NL310,Utrecht (NUTS 2021),981.3
+NLD,Pays-Bas,NL323,IJmond,1228.0
+NLD,Pays-Bas,NL327,Het Gooi en Vechtstreek,1254.9
+NLD,Pays-Bas,NL325,Zaanstreek,1433.5
+NLD,Pays-Bas,NL337,Agglomeratie Leiden en Bollenstreek (NUTS 2021),1534.8
+NLD,Pays-Bas,NL333,Delft en Westland (NUTS 2021),1548.5
+NLD,Pays-Bas,NL324,Agglomeratie Haarlem (NUTS 2021),1738.6
+NLD,Pays-Bas,NL332,Agglomeratie 's-Gravenhage (NUTS 2021),3488.1

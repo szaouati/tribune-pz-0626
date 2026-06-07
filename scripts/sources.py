@@ -6,6 +6,7 @@ Sources couvertes :
   - Our World in Data (OWID) — export CSV des "graphers"
   - FMI (IMF DataMapper / WEO) — API v1
   - OCDE — SDMX-JSON REST
+  - Eurostat — API dissemination (JSON-stat 2.0)
 
 Chaque appel est mis en cache dans data/raw/ pour la reproductibilité et
 journalise (source, URL, date d'extraction) dans un registre central.
@@ -173,7 +174,121 @@ def parse_sdmx_json(payload: dict) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+# ---------------------------------------------------------------------------
+# Eurostat — API dissemination (JSON-stat 2.0)
+# ---------------------------------------------------------------------------
+_EUROSTAT_BASE = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/"
+
+
+def parse_jsonstat(j: dict) -> pd.DataFrame:
+    """Aplatit une réponse JSON-stat 2.0 d'Eurostat en DataFrame long.
+
+    L'index plat des observations (`value`) se décompose en row-major (ordre C)
+    sur les tailles `size` des dimensions `id`. Pour chaque dimension on ajoute
+    la colonne `<dim>` (code) et `<dim>_label` (libellé).
+    """
+    dims, sizes = j["id"], j["size"]
+    cats = []
+    for d in dims:
+        c = j["dimension"][d]["category"]
+        inv = {pos: code for code, pos in c["index"].items()}
+        labels = c.get("label", {})
+        cats.append([(inv[i], labels.get(inv[i], inv[i])) for i in range(len(inv))])
+    rows = []
+    for flat, val in j["value"].items():
+        n = int(flat); coords = []
+        for s in reversed(sizes):
+            coords.append(n % s); n //= s
+        coords = coords[::-1]
+        rec = {}
+        for di, d in enumerate(dims):
+            code, lab = cats[di][coords[di]]
+            rec[d] = code
+            rec[d + "_label"] = lab
+        rec["valeur"] = val
+        rows.append(rec)
+    return pd.DataFrame(rows)
+
+
+def eurostat(dataset: str, serie: str = "", **filters) -> pd.DataFrame:
+    """Récupère un dataset Eurostat via l'API dissemination (JSON-stat).
+
+    Les filtres sont passés en kwargs : valeur unique (`unit="PC_GDP"`) ou liste
+    (`geo=["FR", "DE", "NL"]`, encodée en clés répétées que l'API accepte).
+    -> DataFrame long (une ligne par observation), cf. parse_jsonstat().
+    """
+    params = {"format": "JSON"}
+    params.update({k: v for k, v in filters.items() if v is not None})
+    r = _get(_EUROSTAT_BASE + dataset, params=params, timeout=90)
+    payload = r.json()
+    (RAW / f"eurostat_{serie or dataset}.json").write_bytes(r.content)
+    df = parse_jsonstat(payload)
+    _journaliser(serie or dataset, "Eurostat", r.url.split("&format")[0], len(df))
+    return df
+
+
+# ---------------------------------------------------------------------------
+# OpenDataSoft — Explore API v2.1 (portails OFGL, data.economie.gouv.fr…)
+# ---------------------------------------------------------------------------
+def opendatasoft(portail: str, dataset: str, serie: str = "",
+                 where: str = "", select: str = "", group_by: str = "",
+                 order_by: str = "", page: int = 100, max_rows: int = 100000) -> pd.DataFrame:
+    """Récupère des enregistrements d'un portail OpenDataSoft (Explore API v2.1).
+
+    portail ex: 'data.ofgl.fr' ; dataset ex: 'ofgl-base-communes'.
+    Pagination automatique par `offset` (limite 100/req côté ODS). -> DataFrame.
+    """
+    base = f"https://{portail}/api/explore/v2.1/catalog/datasets/{dataset}/records"
+    rows, offset = [], 0
+    last_url = base
+    while offset < max_rows:
+        params = {"limit": page, "offset": offset}
+        for k, v in (("where", where), ("select", select),
+                     ("group_by", group_by), ("order_by", order_by)):
+            if v:
+                params[k] = v
+        r = _get(base, params=params)
+        last_url = r.url
+        results = r.json().get("results", [])
+        rows.extend(results)
+        if len(results) < page:
+            break
+        offset += page
+    df = pd.DataFrame(rows)
+    _journaliser(serie or dataset, f"OpenDataSoft ({portail})", last_url, len(df))
+    return df
+
+
+# ---------------------------------------------------------------------------
+# INSEE — API Mélodi (données SDMX, ex. Base Permanente des Équipements)
+# ---------------------------------------------------------------------------
+def insee_melodi(dataset: str, serie: str = "", max_result: int = 20000, **filters) -> pd.DataFrame:
+    """Récupère un jeu de l'API Mélodi de l'INSEE. -> DataFrame (1 ligne/observation).
+
+    dataset ex: 'DS_BPE'. filters ex: FACILITY_TYPE='C107', BPE_MEASURE='FACILITIES', GEO='DEP'.
+    Aplatit les dimensions + la mesure OBS_VALUE_NIVEAU en colonnes.
+    """
+    url = f"https://api.insee.fr/melodi/V2/data/{dataset}"
+    params = {"maxResult": max_result}
+    params.update({k: v for k, v in filters.items() if v is not None})
+    r = _get(url, params=params)
+    payload = r.json()
+    rows = []
+    for o in payload.get("observations", []):
+        rec = dict(o.get("dimensions", {}))
+        mes = o.get("measures", {}).get("OBS_VALUE_NIVEAU", {})
+        rec["valeur"] = mes.get("value")
+        rows.append(rec)
+    df = pd.DataFrame(rows)
+    _journaliser(serie or dataset, "INSEE (API Mélodi)", r.url, len(df))
+    return df
+
+
 if __name__ == "__main__":
     print("Test WB :")
     df = wb("NY.GDP.PCAP.PP.CD", ["FRA", "USA"], 2020, 2023, serie="test")
     print(df.head())
+    print("\nTest Eurostat (dépense publique % PIB) :")
+    e = eurostat("gov_10a_exp", serie="test_eurostat", sector="S13", na_item="TE",
+                 cofog99="TOTAL", unit="PC_GDP", geo=["FR", "DE", "NL"], time="2022")
+    print(e[["geo", "valeur"]].to_string(index=False))

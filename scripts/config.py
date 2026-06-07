@@ -36,6 +36,7 @@ PAYS = {
     "USA": "États-Unis",
     "FRA": "France",
     "DEU": "Allemagne",
+    "NLD": "Pays-Bas",
     "ITA": "Italie",
     "ESP": "Espagne",
     "JPN": "Japon",
@@ -76,6 +77,7 @@ COULEURS = {
     "USA":          "#9C2B2E",   # rouge brique  — fil rouge "modèle de marché"
     "FRA":          "#2E5E8C",   # bleu France
     "DEU":          "#C28F2C",   # ocre/or
+    "NLD":          "#2E7D5B",   # vert (contraste net avec le bleu FR et l'or DE — axe 5)
     "ITA":          "#4E7A5A",   # vert sobre
     "ESP":          "#B8633A",   # terracotta
     "JPN":          "#6E5A8C",   # prune
@@ -101,7 +103,7 @@ def couleur(code: str, defaut: str = "#8C8C8C") -> str:
     return COULEURS.get(code, defaut)
 
 # Ordre de tri lisible pour les légendes
-ORDRE_PAYS = ["USA", "DEU", "FRA", "ITA", "ESP", "JPN", "KOR", "CHN",
+ORDRE_PAYS = ["USA", "DEU", "FRA", "NLD", "ITA", "ESP", "JPN", "KOR", "CHN",
               "FIN", "DNK", "NOR", "SWE", "ISL", "BTN"]
 
 # ---------------------------------------------------------------------------

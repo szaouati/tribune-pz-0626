@@ -1,7 +1,7 @@
 # Tribune « La mesure du bonheur et ses implications économiques » — Livrables
 ### Commande PZ-0626 · livré le 06/06/2026
 
-Base de données structurée **et** visualisations prêtes à publier, sur **4 axes**, accompagnées de
+Base de données structurée **et** visualisations prêtes à publier, sur **5 axes**, accompagnées de
 notes de synthèse et d'une documentation complète des sources.
 
 ## 👉 Par où commencer
@@ -17,12 +17,12 @@ tribune-pz-0626/
 │   ├── charte/charte_graphique.md     ← charte graphique (à valider)
 │   └── proposition/…commerciale.md    ← délai + tarification
 ├── data/
-│   ├── axe1/ … axe4/                  ← 1 Excel + CSV unitaires par axe (avec métadonnées)
+│   ├── axe1/ … axe5/                  ← 1 Excel + CSV unitaires par axe (avec métadonnées)
 │   └── raw/                           ← fichiers sources bruts + registre des sources
 ├── visualisations/
-│   └── axe1/ … axe4/                  ← chaque graphique en .html / .svg / .png / _print.png
+│   └── axe1/ … axe5/                  ← chaque graphique en .html / .svg / .png / _print.png
 ├── notes/
-│   ├── axe1…axe4_note_synthese.md     ← 1 note d'une page par axe
+│   ├── axe1…axe5_note_synthese.md     ← 1 note d'une page par axe
 │   ├── note_synthese_globale.md       ← synthèse transversale
 │   └── rapport_verification_donnees.md← contrôle qualité indépendant
 ├── scripts/                           ← chaîne de production (collecte + graphiques)
@@ -30,7 +30,7 @@ tribune-pz-0626/
 └── README.md
 ```
 
-## Les 4 axes & 10 graphiques
+## Les 5 axes & 15 graphiques
 
 | Axe | Données (Excel) | Graphiques |
 |---|---|---|
@@ -38,6 +38,7 @@ tribune-pz-0626/
 | **2 — Europe & déclin** | `axe2_europe_declin.xlsx` | part PIB mondial ; écart PIB+BLI ; heures travaillées |
 | **3 — Composants du bonheur** | `axe3_composants_bonheur.xlsx` | R&D pharma vs espérance de vie ; origine molécules ; PM2.5 |
 | **4 — Arbitrages présent/futur** | `axe4_arbitrages.xlsx` | small multiples (fécondité/investissement/défense) ; dette & solde primaire |
+| **5 — Coût du territoire** (FR/DE/NL) | `axe5_territoire_depense.xlsx` | densité & superficie ; maillage (communes/écoles/police) ; dépense (%PIB / €-SPA / fonction) ; dispersion NUTS3 ; **test causal par département (96)** |
 
 ## Formats de graphiques
 Chaque graphique est fourni en **4 fichiers** :
@@ -65,4 +66,4 @@ Après ajustement de la **charte** (couleurs, police), tous les graphiques sont 
 2. Priorisation confirmée : axes 1 & 2 d'abord (déjà livrés intégralement).
 3. Périmètre pays / variantes de visualisation éventuelles.
 
-*Sources : Banque mondiale, FMI, OCDE, World Happiness Report/Gallup, GSS/NORC, EFPIA, OMS/SIPRI. Voir `SOURCES.md`.*
+*Sources : Banque mondiale, FMI, OCDE, Eurostat, INSEE/Destatis/CBS, DEPP, World Happiness Report/Gallup, GSS/NORC, EFPIA, OMS/SIPRI. Voir `SOURCES.md`.*

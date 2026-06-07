@@ -1,0 +1,10 @@
+﻿iso3,pays,fonction,cofog,pct_pib,eur_par_hab,spa_par_hab
+FRA,France,Dépense publique totale,TOTAL,56.9,23542,21548
+FRA,France,Éducation,GF09,5.0,2073,1898
+FRA,France,Ordre et sécurité publics,GF03,1.7,713,653
+DEU,Allemagne,Dépense publique totale,TOTAL,48.1,24440,21832
+DEU,Allemagne,Éducation,GF09,4.5,2261,2020
+DEU,Allemagne,Ordre et sécurité publics,GF03,1.6,815,728
+NLD,Pays-Bas,Dépense publique totale,TOTAL,44.0,25942,22067
+NLD,Pays-Bas,Éducation,GF09,5.1,2990,2543
+NLD,Pays-Bas,Ordre et sécurité publics,GF03,1.9,1096,932

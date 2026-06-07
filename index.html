@@ -29,8 +29,8 @@
 </style></head><body>
 <header>
   <h1>La mesure du bonheur — et ses implications économiques</h1>
-  <p class="sub">Base de données structurée &amp; visualisations prêtes à publier · 4 axes ·
-     10 graphiques (HTML interactif + SVG + PNG 300 dpi) · Commande PZ-0626 · données extraites le 06/06/2026.</p>
+  <p class="sub">Base de données structurée &amp; visualisations prêtes à publier · 5 axes ·
+     15 graphiques (HTML interactif + SVG + PNG 300 dpi) · Commande PZ-0626 · données extraites le 06/06/2026.</p>
 </header>
 <main>
   <div class="docs">
@@ -165,9 +165,63 @@
           </div>
         </figure></div>
     </section>
+    <section class="axe">
+      <h2>Axe 5 — Le coût du territoire : densité, fragmentation, dépense publique</h2>
+      <p class="meta">
+        <a href="data/axe5/axe5_territoire_depense.xlsx">📊 Données (Excel)</a> ·
+        <a href="notes/axe5.html">📝 Note de synthèse</a>
+      </p>
+      <div class="grid">
+        <figure class="chart">
+          <img src="visualisations/axe5/axe5_densite_superficie.png" alt="Densité & superficie (France / Allemagne / Pays-Bas)" loading="lazy">
+          <figcaption>Densité & superficie (France / Allemagne / Pays-Bas)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe5/axe5_densite_superficie.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe5/axe5_densite_superficie.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe5/axe5_densite_superficie.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe5/axe5_maillage_proximite.png" alt="Maillage : communes, écoles, police par habitant" loading="lazy">
+          <figcaption>Maillage : communes, écoles, police par habitant</figcaption>
+          <div class="links">
+            <a href="visualisations/axe5/axe5_maillage_proximite.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe5/axe5_maillage_proximite.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe5/axe5_maillage_proximite.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe5/axe5_depense_publique.png" alt="Dépense publique : % PIB, par habitant (€/SPA), par fonction" loading="lazy">
+          <figcaption>Dépense publique : % PIB, par habitant (€/SPA), par fonction</figcaption>
+          <div class="links">
+            <a href="visualisations/axe5/axe5_depense_publique.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe5/axe5_depense_publique.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe5/axe5_depense_publique.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe5/axe5_dispersion_regionale.png" alt="Dispersion des densités régionales (NUTS3)" loading="lazy">
+          <figcaption>Dispersion des densités régionales (NUTS3)</figcaption>
+          <div class="links">
+            <a href="visualisations/axe5/axe5_dispersion_regionale.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe5/axe5_dispersion_regionale.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe5/axe5_dispersion_regionale.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure>
+        <figure class="chart">
+          <img src="visualisations/axe5/axe5_gradient_departements.png" alt="Test causal : densité × maillage, 96 départements français" loading="lazy">
+          <figcaption>Test causal : densité × maillage, 96 départements français</figcaption>
+          <div class="links">
+            <a href="visualisations/axe5/axe5_gradient_departements.html" target="_blank">↗ interactif (HTML)</a>
+            <a href="visualisations/axe5/axe5_gradient_departements.svg" target="_blank">SVG</a>
+            <a href="visualisations/axe5/axe5_gradient_departements.png" target="_blank">PNG 300dpi</a>
+          </div>
+        </figure></div>
+    </section>
 </main>
 <footer>
   Sources primaires : Banque mondiale (WDI) · FMI (WEO) · OCDE (Better Life Index, ANBERD, heures travaillées) ·
+  Eurostat (COFOG, densité, PPA, écoles CITE 1, police) · INSEE (BPE, geo.api) · OFGL · Destatis / CBS · DEPP ·
   World Happiness Report / Gallup · General Social Survey (NORC) · EFPIA · OMS / SIPRI.<br>
   Tous les graphiques sont régénérables via la chaîne de production scriptée (dossier <code>scripts/</code>).
 </footer>

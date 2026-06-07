@@ -11,7 +11,7 @@ ROOT = C.ROOT
 
 # --- 1) Registre propre -----------------------------------------------------
 reg = pd.read_csv(C.RAW / "_registre_sources.csv")
-reg = reg[reg.serie != "test"].drop_duplicates(subset=["serie", "source"], keep="last")
+reg = reg[~reg.serie.astype(str).str.startswith("test")].drop_duplicates(subset=["serie", "source"], keep="last")
 reg.to_csv(C.RAW / "registre_sources_propre.csv", index=False, encoding="utf-8-sig")
 print(f"Registre propre : {len(reg)} séries.")
 
@@ -53,6 +53,18 @@ AXES = {
         "charts": [
             ("axe4_small_multiples", "Fécondité, investissement, défense (small multiples)"),
             ("axe4_soutenabilite_dette", "Dette publique & solde primaire"),
+        ],
+    },
+    "Axe 5 — Le coût du territoire : densité, fragmentation, dépense publique": {
+        "dir": "axe5",
+        "data": "data/axe5/axe5_territoire_depense.xlsx",
+        "note": "notes/axe5.html",
+        "charts": [
+            ("axe5_densite_superficie", "Densité & superficie (France / Allemagne / Pays-Bas)"),
+            ("axe5_maillage_proximite", "Maillage : communes, écoles, police par habitant"),
+            ("axe5_depense_publique", "Dépense publique : % PIB, par habitant (€/SPA), par fonction"),
+            ("axe5_dispersion_regionale", "Dispersion des densités régionales (NUTS3)"),
+            ("axe5_gradient_departements", "Test causal : densité × maillage, 96 départements français"),
         ],
     },
 }
@@ -113,8 +125,8 @@ html = f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
 </style></head><body>
 <header>
   <h1>La mesure du bonheur — et ses implications économiques</h1>
-  <p class="sub">Base de données structurée &amp; visualisations prêtes à publier · 4 axes ·
-     10 graphiques (HTML interactif + SVG + PNG 300 dpi) · Commande PZ-0626 · données extraites le 06/06/2026.</p>
+  <p class="sub">Base de données structurée &amp; visualisations prêtes à publier · 5 axes ·
+     15 graphiques (HTML interactif + SVG + PNG 300 dpi) · Commande PZ-0626 · données extraites le 06/06/2026.</p>
 </header>
 <main>
   <div class="docs">
@@ -130,6 +142,7 @@ html = f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
 </main>
 <footer>
   Sources primaires : Banque mondiale (WDI) · FMI (WEO) · OCDE (Better Life Index, ANBERD, heures travaillées) ·
+  Eurostat (COFOG, densité, PPA, écoles CITE 1, police) · INSEE (BPE, geo.api) · OFGL · Destatis / CBS · DEPP ·
   World Happiness Report / Gallup · General Social Survey (NORC) · EFPIA · OMS / SIPRI.<br>
   Tous les graphiques sont régénérables via la chaîne de production scriptée (dossier <code>scripts/</code>).
 </footer>

@@ -40,6 +40,27 @@ Le détail figure aussi dans la feuille « Métadonnées » de chaque classeur E
 
 → `https://data-explorer.oecd.org` · `https://sdmx.oecd.org`
 
+## Eurostat — API dissemination (JSON-stat) · axe 5 (France / Allemagne / Pays-Bas)
+| Série | Dataset / clé | Axe |
+|---|---|---|
+| Dépense publique par fonction (COFOG) : total, éducation (`GF09`), ordre & sécurité (`GF03`) | `gov_10a_exp` (S13, na_item `TE`, unités `PC_GDP` + `MIO_EUR`) | 5 |
+| Densité de population par région NUTS3 | `demo_r_d3dens` | 5 |
+| Population au 1ᵉʳ janvier (nationale / NUTS3) | `demo_pjan` / `demo_r_pjanaggr3` | 5 |
+| Effectifs de police (pour 100 000 hab) | `crim_just_job` (CITP-08 `OC5412`, unité `P_HTHAB`) | 5 |
+| Parités de pouvoir d'achat du PIB (→ SPA/hab) | `prc_ppp_ind` (`na_item=PPP_EU27_2020`, `ppp_cat=GDP`) | 5 |
+| Élèves inscrits en primaire (CITE 1, harmonisé) | `educ_uoe_enra01` (`isced11=ED1`) | 5 |
+
+→ `https://ec.europa.eu/eurostat/databrowser/product/page/<DATASET>`
+
+## Open data France — test de causalité interne (axe 5, par département)
+| Série | Source / accès | Axe |
+|---|---|---|
+| Équipements publics par département (écoles `C107/C108/C109`, collège `C201`, lycées `C301/C302/C303`, police `A101`, gendarmerie `A104`) | **INSEE — Base permanente des équipements (BPE) 2024**, API Mélodi `DS_BPE` | 5 |
+| Dépense communale par habitant, par département | **OFGL** (`data.ofgl.fr`, Opendatasoft v2.1, `ofgl-base-communes`, 2023) | 5 |
+| Superficie des départements (densité) | **geo.api.gouv.fr** (communes, champ `surface`, agrégé) | 5 |
+
+→ INSEE Mélodi : `https://api.insee.fr/melodi` · OFGL : `https://data.ofgl.fr` · `https://geo.api.gouv.fr`
+
 ## Our World in Data (relais de séries primaires)
 | Série | Grapher | Source amont | Axe |
 |---|---|---|---|
@@ -53,8 +74,10 @@ Le détail figure aussi dans la feuille « Métadonnées » de chaque classeur E
 |---|---|---|---|
 | Bonheur déclaré US « very happy » (1972-2024) | **General Social Survey**, NORC (Univ. Chicago) | Microdonnées GSS7224 R3, var. `HAPPY`, pondération `WTSSPS` — % calculé par nos soins | 1 |
 | Origine des nouvelles substances actives (2024) | **EFPIA**, *The Pharmaceutical Industry in Figures 2025* | Comptage par nationalité de la société mère | 3 |
+| Nombre de communes (unités administratives locales) | **INSEE** (FR, 34 935 / 2024), **Destatis** (DE, 10 753), **CBS** (NL, 342) | Compilation — pas d'API unique comparable | 5 |
+| Nombre d'écoles du 1ᵉʳ degré | **DEPP** (FR), **Destatis** (DE, Grundschulen), **CBS/DUO** (NL, basisscholen) | Périmètres non strictement comparables (maternelle FR incluse) | 5 |
 
-→ GSS : `https://gss.norc.org` · EFPIA : `https://www.efpia.eu`
+→ GSS : `https://gss.norc.org` · EFPIA : `https://www.efpia.eu` · INSEE/Destatis/CBS/DEPP : instituts nationaux de statistique
 
 ## Notes de traçabilité
 - Les fichiers bruts (réponses API, PDF EFPIA, microdonnées GSS) sont conservés dans `data/raw/`.
