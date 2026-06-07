@@ -1,0 +1,1824 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  PROPOSITION « LA MESURE » — refonte v2 · juin 2026 · Sacha Zaouati
+  ════════════════════════════════════════════════════════════════════
+  CHOIX DE DESIGN (résumé)
+  · Angle inversé : la proposition ne décrit plus un média construit
+    autour du sujet de la tribune — elle montre comment une rédaction
+    de données s'intègre dans le média que le commanditaire incarne
+    déjà (9 livres, tribunes, ~50 k abonnés LinkedIn, newsletter hebdo
+    « My Views » 7,5 k lecteurs, collection d'édition « Identités » ;
+    combats : finance au service du vivant, limites planétaires,
+    souveraineté & Europe). La tribune devient le n°1.
+  · Corps quasi-visuel : chaque liste/tableau a été converti en SVG
+    inline (constellation, roue des formats, entonnoir, nuage de
+    comparables, barres empilées, jauges-seuils, timeline animée).
+    Les clés de lecture et les sources vivent dans la marge droite
+    (sidenotes façon Tufte, révélées par IntersectionObserver ;
+    tooltip au tap sous 1100 px).
+  · Densité : scénarios + simulateur fusionnés (presets cliquables,
+    curseurs à étiquettes de scénarios), secondaire en <details>,
+    lecture ramenée de ~12 à ~7 minutes.
+  · 3 chartes commutables par CSS custom properties sur <html> :
+    A Lavis & encre (ivoire/aubergine/Playfair Display, filets plume)
+    B Aquarelle éditoriale (crème/bleu prussien+terracotta/DM Serif,
+      taches aquarelle SVG) — esthétique de référence : Blast, lavis
+    C Gravure moderne (blanc cassé/encre+ocre seul accent/Cormorant,
+      filets épais XIXe). Sélecteur flottant + aperçus scopés, choix
+      mémorisé (localStorage). La palette-données par pays (charte de
+      la tribune) reste invariante : c'est une convention de lecture.
+  · Contraintes : fichier unique, vanilla JS, SVG seulement, Google
+    Fonts en seule dépendance, mobile-first, ARIA + contraste AA,
+    fonctionne en file://.
+  ════════════════════════════════════════════════════════════════════
+-->
+<html lang="fr" data-charte="A">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>La Mesure — proposition de média · document de travail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+/* ════════ 1. JETONS — trois chartes ════════ */
+:root{
+  --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --serif-base:Georgia,'Times New Roman',serif;
+  /* palette-données par entité (invariante, héritée de la tribune) */
+  --d-usa:#9C2B2E; --d-fr:#2E5E8C; --d-de:#C28F2C; --d-nl:#2E7D5B; --d-jp:#6E5A8C; --d-it:#4E7A5A; --d-gris:#595959;
+}
+html[data-charte="A"]{
+  --fond:#F7F3EB; --carte:#FFFEFA; --encre:#26211B; --gris:#6A5F52;
+  --grille:#E4DBC8; --soft:#EFE8DA;
+  --accent:#6B2D5E; --accent-ink:#6B2D5E; --accent-soft:#F0E3EC;
+  --accent2:#8C6A3F; --cta-bg:#6B2D5E; --cta-fg:#FFFFFF;
+  --font-titre:'Playfair Display',Georgia,serif;
+  --rayon:10px; --filet:1px solid var(--grille);
+}
+html[data-charte="B"]{
+  --fond:#FBF5E6; --carte:#FFFDF4; --encre:#1F2733; --gris:#5D6573;
+  --grille:#E8DFC8; --soft:#F2EAD6;
+  --accent:#1C3F6E; --accent-ink:#1C3F6E; --accent-soft:#E2E9F2;
+  --accent2:#C4603A; --cta-bg:#1C3F6E; --cta-fg:#FFFFFF;
+  --font-titre:'DM Serif Display',Georgia,serif;
+  --rayon:12px; --filet:1px solid var(--grille);
+}
+html[data-charte="C"]{
+  --fond:#F9F6F0; --carte:#FFFFFF; --encre:#111111; --gris:#4A4742;
+  --grille:#D9D2C4; --soft:#EFEAE0;
+  --accent:#D4892A; --accent-ink:#8A5410; --accent-soft:#F4E3C8;
+  --accent2:#8A5410; --cta-bg:#111111; --cta-fg:#FFFFFF;
+  --font-titre:'Cormorant Garamond',Georgia,serif;
+  --rayon:4px; --filet:2px solid var(--encre);
+}
+/* ════════ 2. BASE ════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--encre);background:var(--fond);line-height:1.55;font-size:16px;transition:background .45s ease}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+a{color:var(--accent-ink)}
+img,svg{max-width:100%}
+nav,section,footer,.hero{position:relative;z-index:1}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px;border-radius:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--cta-bg);color:var(--cta-fg);padding:8px 14px;z-index:200}
+.skip:focus{left:10px;top:10px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* décor de fond par charte */
+html[data-charte="A"] body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .36 0 0 0 0 .27 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23p)'/%3E%3C/svg%3E")}
+.blob{position:fixed;z-index:0;pointer-events:none;opacity:0;transition:opacity .8s ease;filter:blur(2px)}
+.blob.b1{top:-140px;right:-160px;width:560px}
+.blob.b2{bottom:-180px;left:-200px;width:620px}
+html[data-charte="B"] .blob{opacity:1}
+/* ════════ 3. HÉRO ════════ */
+.hero{padding:58px 0 40px;border-bottom:var(--filet)}
+html[data-charte="A"] .hero{border-top:5px solid var(--accent)}
+html[data-charte="B"] .hero{border-top:5px solid var(--accent2)}
+html[data-charte="C"] .hero{border-top:8px solid var(--encre)}
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);font-weight:700;margin-bottom:16px}
+html[data-charte="C"] .kicker::before{content:"";display:inline-block;width:22px;height:10px;background:var(--accent);margin-right:9px;vertical-align:baseline}
+.hero h1{font-family:var(--font-titre);font-size:clamp(34px,5.6vw,58px);line-height:1.06;font-weight:800;max-width:840px;margin-bottom:18px}
+html[data-charte="C"] .hero h1{letter-spacing:-.015em;font-weight:700}
+.hero h1 em{font-style:italic;color:var(--accent-ink)}
+.hero .lede{font-family:var(--serif-base);font-size:clamp(16px,2.3vw,19px);color:var(--gris);max-width:700px;margin-bottom:22px}
+.hero .meta{font-size:13px;color:var(--gris)}
+.hero .meta b{color:var(--encre)}
+.confid{display:inline-block;margin-top:14px;font-size:12px;color:var(--gris);border:1px solid var(--grille);border-radius:4px;padding:4px 10px;background:var(--carte)}
+.plume{display:block;margin:14px 0 0}
+html[data-charte="C"] .plume,html[data-charte="B"] .plume{display:none}
+.aqua-dash{display:none;margin:14px 0 0}
+html[data-charte="B"] .aqua-dash{display:block}
+/* sélecteur de charte dans le héro */
+.charte-inline{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;color:var(--gris)}
+.charte-inline .lbl{font-weight:700;color:var(--encre);text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+.cbtn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--grille);background:var(--carte);border-radius:999px;padding:7px 14px 7px 9px;font-size:13px;font-family:var(--sans);cursor:pointer;color:var(--encre);transition:border-color .2s,box-shadow .2s}
+.cbtn .pastille{width:18px;height:18px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.12)}
+.cbtn[data-v="A"] .pastille{background:linear-gradient(135deg,#6B2D5E 55%,#F7F3EB 55%)}
+.cbtn[data-v="B"] .pastille{background:linear-gradient(135deg,#1C3F6E 50%,#C4603A 50%)}
+.cbtn[data-v="C"] .pastille{background:linear-gradient(135deg,#111 55%,#D4892A 55%)}
+.cbtn[aria-pressed="true"]{border-color:var(--accent-ink);box-shadow:0 0 0 2px var(--accent-soft);font-weight:700}
+/* sélecteur flottant */
+.fab{position:fixed;bottom:16px;right:16px;z-index:95;display:flex;align-items:center;gap:7px;background:var(--carte);border:1px solid var(--grille);border-radius:999px;padding:7px 11px;box-shadow:0 6px 22px rgba(20,16,10,.16)}
+.fab .flbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);font-weight:700;margin-right:2px}
+.fab button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;font-weight:800;font-size:12px;font-family:var(--sans);color:#fff;display:flex;align-items:center;justify-content:center}
+.fab button[data-v="A"]{background:#6B2D5E}
+.fab button[data-v="B"]{background:#1C3F6E}
+.fab button[data-v="C"]{background:#111}
+.fab button[aria-pressed="true"]{border-color:var(--encre);transform:scale(1.12)}
+/* ════════ 4. NAV ════════ */
+nav.top{position:sticky;top:0;z-index:60;background:var(--fond);background:color-mix(in srgb,var(--fond) 90%,transparent);backdrop-filter:blur(7px);border-bottom:var(--filet)}
+nav.top .wrap{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.top a{flex:0 0 auto;font-size:13px;color:var(--gris);text-decoration:none;padding:12px 11px;border-bottom:3px solid transparent;white-space:nowrap}
+nav.top a.on{color:var(--encre);border-bottom-color:var(--accent);font-weight:700}
+nav.top a:hover{color:var(--encre)}
+/* ════════ 5. SECTIONS + COLONNE DE MARGE ════════ */
+section{padding:54px 0 16px}
+.numchip{display:inline-flex;align-items:center;gap:10px;margin-bottom:10px}
+.numchip .n{font-family:var(--font-titre);font-size:15px;font-weight:700;color:var(--cta-fg);background:var(--cta-bg);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+html[data-charte="C"] .numchip .n{border-radius:2px}
+.numchip .l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
+h2{font-family:var(--font-titre);font-size:clamp(27px,4.4vw,38px);line-height:1.12;margin-bottom:12px;max-width:760px}
+html[data-charte="C"] h2{border-bottom:3px solid var(--encre);padding-bottom:10px;letter-spacing:-.01em}
+html[data-charte="A"] h2::after{content:"";display:block;width:128px;height:9px;margin-top:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='9'%3E%3Cpath d='M2 6 C 22 1, 40 8, 64 5 S 108 2, 126 5' fill='none' stroke='%236B2D5E' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat}
+html[data-charte="B"] h2::after{content:"";display:block;width:96px;height:10px;margin-top:10px;border-radius:6px;background:linear-gradient(90deg,rgba(196,96,58,.55),rgba(196,96,58,.18));filter:blur(.4px)}
+.chapo{font-family:var(--serif-base);font-size:17px;color:var(--gris);max-width:700px;margin-bottom:26px}
+h3{font-family:var(--font-titre);font-size:21px;margin:30px 0 10px;font-weight:700}
+h4{font-size:15px;margin:16px 0 8px}
+p{margin-bottom:12px;max-width:700px}
+.note{font-size:13px;color:var(--gris)}
+.src{font-size:12px;color:var(--gris);margin-top:8px;max-width:700px}
+.src a{color:var(--gris)}
+sup.sn{color:var(--accent-ink);font-weight:700;cursor:pointer}
+sup.sn a{text-decoration:none;color:inherit}
+blockquote{border-left:4px solid var(--accent);padding:6px 0 6px 16px;font-family:var(--font-titre);font-size:19px;font-style:italic;margin:20px 0;max-width:660px}
+html[data-charte="C"] blockquote{border-left:6px solid var(--encre)}
+/* grille texte + marge */
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 272px;gap:48px;align-items:start}
+.cols>.main{min-width:0}
+.margin{position:relative;min-height:120px}
+.mn{position:absolute;top:0;left:0;right:0;font-size:12.5px;line-height:1.45;color:var(--gris);padding:10px 0 10px 14px;border-left:2px solid var(--grille);opacity:0;transform:translateY(0) translateX(8px);transition:opacity .5s ease,transform .5s ease}
+.mn.on{opacity:1;transform:translateX(0)}
+.mn b{color:var(--encre)}
+.mn .mn-n{display:inline-flex;font-weight:800;color:var(--accent-ink);margin-right:4px}
+.mn.cle{border-left-color:var(--accent);background:linear-gradient(90deg,var(--accent-soft),transparent 80%);border-radius:0 8px 8px 0;padding:10px 10px 10px 14px;color:var(--encre)}
+.mn.cle .k{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);display:block;margin-bottom:4px}
+.mn a{color:var(--accent-ink)}
+@media (max-width:1099px){
+  .cols{display:block}
+  .margin{display:none}
+}
+/* popover mobile pour notes */
+#snpop{position:absolute;z-index:120;max-width:300px;background:var(--encre);color:var(--fond);font-size:12.5px;line-height:1.5;padding:12px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.3);display:none}
+#snpop a{color:inherit;font-weight:700}
+#snpop::after{content:"";position:absolute;top:-7px;left:24px;border:7px solid transparent;border-bottom-color:var(--encre);border-top:none}
+/* ════════ 6. CARTES, ACCORDÉONS, DIVERS ════════ */
+.card{background:var(--carte);border:1px solid var(--grille);border-radius:var(--rayon);padding:18px 20px;box-shadow:0 1px 3px rgba(26,20,10,.05)}
+html[data-charte="C"] .card{border:1.5px solid var(--encre);box-shadow:3px 3px 0 rgba(17,17,17,.9)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin:16px 0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px;margin:16px 0}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.bignum{font-family:var(--font-titre);font-size:33px;font-weight:800;line-height:1.05}
+.bignum small{font-size:14px;font-weight:400;color:var(--gris);font-family:var(--sans)}
+.cap{font-size:13px;color:var(--gris);margin-top:4px}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;padding:2px 8px;margin-right:6px;margin-bottom:6px}
+.pill.r{background:var(--accent-soft);color:var(--accent-ink)}
+.pill.n{background:var(--soft);color:var(--gris)}
+details{border:1px solid var(--grille);border-radius:var(--rayon);background:var(--carte);margin:14px 0;max-width:760px}
+details>summary{cursor:pointer;list-style:none;padding:13px 16px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;color:var(--encre)}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"+";font-family:var(--font-titre);font-size:18px;line-height:1;color:var(--accent-ink);width:18px;text-align:center;flex:0 0 auto}
+details[open]>summary::before{content:"–"}
+details .dbody{padding:2px 16px 16px;font-size:14px;color:var(--gris)}
+details .dbody p{max-width:none}
+.hr{border:none;border-top:var(--filet);margin:34px 0}
+/* tableaux conservés (repli accordéon) */
+.tw{overflow-x:auto;margin:8px 0;border:1px solid var(--grille);border-radius:8px;background:var(--carte)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:13.5px}
+th{background:var(--soft);text-align:left;padding:9px 11px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--gris);border-bottom:1px solid var(--grille)}
+td{padding:9px 11px;border-bottom:1px solid var(--soft);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+/* ════════ 7. SVG GÉNÉRIQUE ════════ */
+.viz{margin:20px 0;max-width:840px}
+.viz svg{display:block;width:100%;height:auto}
+.viz .vsrc{font-size:11.5px;color:var(--gris);margin-top:8px;max-width:700px}
+svg text{font-family:var(--sans)}
+.sv-encre{fill:var(--encre)} .sv-gris{fill:var(--gris)} .sv-accent{fill:var(--accent)}
+.sv-acc-ink{fill:var(--accent-ink)} .sv-carte{fill:var(--carte)} .sv-soft{fill:var(--accent-soft)}
+.sv-cta{fill:var(--cta-bg)} .sv-ctafg{fill:var(--cta-fg)}
+.st-grille{stroke:var(--grille)} .st-gris{stroke:var(--gris)} .st-accent{stroke:var(--accent)} .st-encre{stroke:var(--encre)}
+.sv-titre{font-family:var(--font-titre)}
+/* constellation */
+.constel .sat{transition:transform .25s ease;transform-origin:center;cursor:default}
+.constel .sat:hover{transform:scale(1.04)}
+.constel .lien{stroke:var(--gris);stroke-width:1;opacity:.45;stroke-dasharray:3 4}
+.constel .lien.fort{stroke:var(--accent);opacity:.8;stroke-width:1.6;stroke-dasharray:none}
+/* roue des formats */
+.fwheel .fnode{cursor:pointer}
+.fwheel .fnode circle.bg{fill:var(--carte);stroke:var(--accent);stroke-width:1.6;transition:fill .2s}
+.fwheel .fnode.sel circle.bg{fill:var(--cta-bg)}
+.fwheel .fnode.sel text.t1{fill:var(--cta-fg)}
+.fwheel .fnode.sel text.t2{fill:var(--cta-fg);opacity:.85}
+.fwheel .farrow{fill:none;stroke:var(--gris);stroke-width:1.6;marker-end:url(#fa-arr)}
+.fdetail{border-left:3px solid var(--accent);background:var(--carte);border-radius:0 10px 10px 0;padding:14px 16px;margin:12px 0;max-width:640px;min-height:86px}
+.fdetail .ft{font-weight:800;font-size:14px;margin-bottom:4px}
+.fdetail .fp{font-size:13.5px;color:var(--gris)}
+/* entonnoir */
+.funnel .ftxt{font-size:13px}
+.funnel .flevel{transition:opacity .2s}
+.funnel .flevel:hover{opacity:.85}
+/* nuage comparables */
+.comp .dot{fill:var(--accent)}
+.comp .dot.except{fill:var(--gris)}
+.comp .band{fill:var(--accent-soft);stroke:var(--accent);stroke-dasharray:5 4;stroke-width:1.2}
+.comp .glab{font-size:11px;fill:var(--encre)}
+.comp .gprix{font-size:10px;fill:var(--gris)}
+/* piliers */
+.pilbars .seg-abo{fill:var(--cta-bg)}
+.pilbars .seg-aut{fill:var(--accent2)}
+html[data-charte="B"] .pilbars .seg-aut{fill:#B0512C}
+html[data-charte="B"] .budgetbar .b2{background:#B0512C}
+html[data-charte="C"] .pilbars .seg-aut{fill:var(--accent)}
+html[data-charte="C"] .pilbars .lab-aut{fill:#111111}
+.pilcard{display:flex;gap:12px;align-items:flex-start}
+.pilcard .pico{flex:0 0 38px}
+/* jauges */
+.gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0;max-width:840px}
+.gjauge{background:var(--carte);border:1px solid var(--grille);border-radius:var(--rayon);padding:12px 10px 10px;text-align:center;position:relative}
+html[data-charte="C"] .gjauge{border:1.5px solid var(--encre)}
+.gjauge .arc-fond{stroke:var(--soft)}
+.gjauge .arc-val{stroke:var(--accent)}
+.gjauge .gseuil{font-family:var(--font-titre);font-size:21px;font-weight:800;fill:var(--encre)}
+.gjauge .glbl{font-size:12px;font-weight:700;margin-top:2px}
+.gjauge .gref{font-size:11px;color:var(--gris);margin-top:3px;line-height:1.35}
+/* timeline */
+.tl-scroll{overflow-x:auto;margin:18px 0;padding-bottom:6px}
+.tl-inner{min-width:760px;max-width:980px}
+.tl .ph rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.2;rx:8}
+.tl .ph text{fill:var(--encre)}
+.tl .axe{stroke:var(--gris);stroke-width:1.4}
+.tl .mtick{stroke:var(--grille);stroke-width:1}
+.tl .mlab{font-size:10px;fill:var(--gris)}
+.tl .jalon circle{fill:var(--cta-bg);stroke:var(--carte);stroke-width:2;cursor:pointer}
+.tl .jalon .jlab{font-size:10.5px;fill:var(--gris)}
+.tl .jalon .tip{opacity:0;pointer-events:none;transition:opacity .2s}
+.tl .jalon:hover .tip,.tl .jalon:focus .tip{opacity:1}
+.tl .tip rect{fill:var(--encre)}
+.tl .tip text{fill:var(--fond);font-size:11px}
+.tl .ph,.tl .jalon{opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease}
+.tl.anim .ph,.tl.anim .jalon{opacity:1;transform:none}
+.tl.anim .j1{transition-delay:.15s}.tl.anim .j2{transition-delay:.3s}.tl.anim .j3{transition-delay:.45s}
+.tl.anim .j4{transition-delay:.6s}.tl.anim .j5{transition-delay:.75s}.tl.anim .j6{transition-delay:.9s}
+.tl.anim .p2{transition-delay:.2s}.tl.anim .p3{transition-delay:.4s}.tl.anim .p4{transition-delay:.6s}
+/* ════════ 8. SIMULATEUR ════════ */
+.sim{background:var(--carte);border:1.5px solid var(--grille);border-radius:14px;padding:24px;margin:20px 0;box-shadow:0 2px 10px rgba(26,20,10,.06);max-width:840px}
+html[data-charte="C"] .sim{border:2px solid var(--encre);box-shadow:5px 5px 0 rgba(17,17,17,.9)}
+.sim h3{margin-top:0}
+.presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:14px 0 20px}
+.preset{border:1.5px solid var(--grille);border-radius:10px;background:var(--fond);padding:12px 14px;cursor:pointer;text-align:left;font-family:var(--sans);transition:border-color .2s,box-shadow .2s}
+.preset:hover{border-color:var(--accent)}
+.preset[aria-pressed="true"]{border-color:var(--accent-ink);box-shadow:0 0 0 2px var(--accent-soft)}
+.preset .pt{font-weight:800;font-size:13.5px;display:flex;justify-content:space-between;align-items:baseline}
+.preset .pt .tot{font-family:var(--font-titre);font-size:17px;color:var(--accent-ink)}
+.preset .pm{font-size:11.5px;color:var(--gris);margin-top:4px;line-height:1.4}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px 26px;margin:14px 0 4px}
+.sctl label{display:flex;justify-content:space-between;font-size:13.5px;font-weight:700;margin-bottom:4px}
+.sctl output{color:var(--accent-ink);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);height:24px;margin:0}
+.ticks{position:relative;height:52px;font-size:9.8px;color:var(--gris);margin-top:1px}
+.tick{position:absolute;transform:translateX(-50%);text-align:center;width:78px;line-height:1.2}
+.tick::before{content:"";display:block;width:2px;height:6px;background:var(--grille);margin:0 auto 2px}
+.tick.maj::before{background:var(--accent);height:8px}
+.tick.maj{font-weight:700;color:var(--encre)}
+.tick.row2{padding-top:18px}
+.tick.row2::before{height:24px;background:linear-gradient(var(--grille),transparent)}
+.tick.row2.maj::before{background:linear-gradient(var(--accent),transparent)}
+.sout{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0 6px}
+.sbox{background:var(--fond);border:1px solid var(--grille);border-radius:8px;padding:11px 13px}
+.sbox .v{font-family:var(--font-titre);font-size:25px;font-weight:800;font-variant-numeric:tabular-nums}
+.sbox .t{font-size:11.5px;color:var(--gris)}
+.gauge{position:relative;height:30px;background:var(--fond);border:1px solid var(--grille);border-radius:6px;margin:12px 0 34px;overflow:visible}
+.gfill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 55%,var(--fond)),var(--accent));border-radius:5px 0 0 5px;transition:width .25s}
+.gmark{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--encre)}
+.gmark span{position:absolute;top:34px;left:-44px;width:96px;text-align:center;font-size:10px;color:var(--gris);line-height:1.25}
+#verdict{font-size:14px;margin-top:24px;padding:11px 14px;border-radius:8px;background:var(--accent-soft);border-left:3px solid var(--accent)}
+/* ════════ 9. CHARTE / VARIANTES ════════ */
+.variantes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
+.variante{border:1.5px solid var(--grille);border-radius:14px;overflow:hidden;background:var(--carte);display:flex;flex-direction:column;transition:border-color .2s,box-shadow .2s}
+.variante.active{border-color:var(--accent-ink);box-shadow:0 0 0 3px var(--accent-soft)}
+.variante .vhero{padding:22px 20px 18px;border-bottom:1px solid rgba(0,0,0,.08);position:relative;overflow:hidden}
+.variante[data-v="A"] .vhero{background:#F7F3EB;color:#26211B}
+.variante[data-v="B"] .vhero{background:#FBF5E6;color:#1F2733}
+.variante[data-v="C"] .vhero{background:#F9F6F0;color:#111;border-top:6px solid #111}
+.variante .vkick{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:8px}
+.variante[data-v="A"] .vkick{color:#6B2D5E}
+.variante[data-v="B"] .vkick{color:#A04826}
+.variante[data-v="C"] .vkick{color:#8A5410}
+.variante .vtitre{font-size:24px;line-height:1.12;font-weight:800;margin-bottom:7px}
+.variante[data-v="A"] .vtitre{font-family:'Playfair Display',serif}
+.variante[data-v="B"] .vtitre{font-family:'DM Serif Display',serif}
+.variante[data-v="C"] .vtitre{font-family:'Cormorant Garamond',serif;border-bottom:2.5px solid #111;padding-bottom:6px;font-weight:700}
+.variante .vsub{font-size:12px;opacity:.75;font-family:Georgia,serif}
+.variante[data-v="A"] .vtitre em{color:#6B2D5E;font-style:italic}
+.variante[data-v="B"] .vtitre em{color:#1C3F6E;font-style:italic}
+.variante[data-v="C"] .vtitre em{color:#8A5410;font-style:italic}
+.variante .vmeta{padding:14px 18px;font-size:12.5px;color:var(--gris);flex:1}
+.variante .vmeta b{color:var(--encre)}
+.variante .vsw{display:flex;gap:5px;margin:10px 0 4px}
+.variante .vsw i{width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.variante .vapply{margin:0 18px 16px;border:none;border-radius:8px;background:var(--cta-bg);color:var(--cta-fg);font-weight:700;font-size:13px;padding:10px;cursor:pointer;font-family:var(--sans)}
+.variante .vapply[disabled]{opacity:.55;cursor:default}
+/* swatches cliquables */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:9px;margin:14px 0;max-width:840px}
+.sw{border:1px solid var(--grille);border-radius:8px;overflow:hidden;background:var(--carte);font-size:11px;text-align:left;cursor:pointer;padding:0;font-family:var(--sans);position:relative}
+.sw .c{height:40px;display:block}
+.sw .t{padding:6px 8px;line-height:1.3;display:block;color:var(--gris)}
+.sw .t b{display:block;color:var(--encre)}
+.sw .copied{position:absolute;top:8px;right:8px;background:var(--encre);color:var(--fond);font-size:10px;font-weight:700;border-radius:4px;padding:2px 6px;opacity:0;transition:opacity .2s}
+.sw.ok .copied{opacity:1}
+/* planches maquettes */
+.gal{display:grid;grid-auto-flow:column;grid-auto-columns:min(88%,560px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 12px;margin:18px 0}
+.gal .planche{scroll-snap-align:start}
+.gal .planche.ph{grid-auto-columns:340px;justify-self:center}
+.ptit{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);font-weight:700;margin-bottom:9px}
+.browser{background:var(--carte);border:1px solid var(--grille);border-radius:10px;overflow:hidden;box-shadow:0 6px 24px rgba(26,20,10,.09)}
+html[data-charte="C"] .browser{border:2px solid var(--encre);box-shadow:6px 6px 0 rgba(17,17,17,.9)}
+.bbar{background:var(--soft);padding:8px 13px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--grille)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--grille)}
+.burl{flex:1;background:var(--carte);border:1px solid var(--grille);border-radius:5px;font-size:11px;color:var(--gris);padding:3px 10px;text-align:center}
+.phone{max-width:320px;margin:0 auto;background:var(--carte);border:9px solid #2A2A2A;border-radius:28px;overflow:hidden;box-shadow:0 10px 30px rgba(26,20,10,.18)}
+.email{background:var(--carte);border:1px solid var(--grille);border-radius:10px;overflow:hidden;box-shadow:0 6px 24px rgba(26,20,10,.09);max-width:560px}
+html[data-charte="C"] .email{border:2px solid var(--encre)}
+.ehead{background:var(--soft);padding:10px 15px;font-size:12px;color:var(--gris);border-bottom:1px solid var(--grille)}
+.ehead b{color:var(--encre)}
+.mq{font-size:13px}
+.mq .mast{display:flex;align-items:baseline;justify-content:space-between;padding:13px 16px 9px;border-bottom:3px double var(--encre)}
+.mq .logo{font-family:var(--font-titre);font-size:23px;font-weight:800;letter-spacing:.01em}
+.mq .logo span{color:var(--accent-ink)}
+.mq .bl{font-size:10px;color:var(--gris);letter-spacing:.08em;text-transform:uppercase}
+.mq .rub{display:flex;gap:13px;padding:8px 16px;border-bottom:1px solid var(--grille);font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--gris);overflow-x:auto;white-space:nowrap}
+.mq .rub b{color:var(--accent-ink)}
+.mq .body{padding:15px 16px;background:var(--fond)}
+.mq h5{font-family:var(--font-titre);font-size:19px;line-height:1.18;margin-bottom:6px}
+.mq .ssub{font-size:11.5px;color:var(--gris);margin-bottom:9px;font-family:var(--serif-base)}
+.mq .chart{background:var(--carte);border:1px solid var(--grille);border-radius:6px;padding:9px}
+.mq .csrc{font-size:9.5px;color:var(--gris);margin-top:6px;line-height:1.35}
+.mq .edito{background:var(--carte);border:1px solid var(--grille);border-left:4px solid var(--accent);border-radius:6px;padding:10px 12px;font-size:12px}
+.mq .edito .sig{font-family:var(--font-titre);font-style:italic;margin-top:6px;color:var(--gris)}
+.mq .teasers{display:grid;grid-template-columns:1fr;gap:9px;margin-top:11px}
+.mq .teasers .t{background:var(--carte);border:1px solid var(--grille);border-radius:6px;padding:9px 10px;font-size:11.5px;line-height:1.35}
+.mq .teasers .t b{display:block;font-family:var(--font-titre);font-size:12.5px;margin-bottom:3px}
+.mq .tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:800}
+.mq .cta{display:block;text-align:center;background:var(--cta-bg);color:var(--cta-fg);border-radius:6px;padding:9px;font-weight:700;font-size:12.5px;margin-top:11px;text-decoration:none}
+.mq p{font-size:12.5px;margin-bottom:8px;max-width:none}
+.mq .meth{background:var(--soft);border-radius:6px;padding:9px 11px;font-size:10.5px;color:var(--gris)}
+.mq .meth b{color:var(--encre)}
+.mq .hp2col{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
+/* ════════ 10. DÉCISION ════════ */
+.decide{border:2px solid var(--encre);border-radius:14px;padding:22px;background:var(--carte);margin:22px 0;max-width:840px}
+html[data-charte="C"] .decide{box-shadow:6px 6px 0 rgba(17,17,17,.9);border-radius:6px}
+.budgetbar{display:flex;height:46px;border-radius:9px;overflow:hidden;margin:12px 0 6px;max-width:680px}
+.budgetbar .b1{background:var(--cta-bg);color:var(--cta-fg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13.5px;flex-direction:column;line-height:1.2}
+.budgetbar .b2{background:var(--accent2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13.5px;flex-direction:column;line-height:1.2}
+html[data-charte="C"] .budgetbar .b2{background:var(--accent);color:#111}
+.budgetbar small{font-weight:400;font-size:10.5px;opacity:.9}
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0;max-width:900px}
+.copt{border:1.5px solid var(--grille);border-radius:12px;padding:16px 16px 14px;background:var(--carte);cursor:pointer;transition:opacity .25s,transform .25s,border-color .2s;text-align:left;font-family:var(--sans)}
+.copt.best{border-color:var(--accent);box-shadow:0 4px 16px color-mix(in srgb,var(--accent) 14%,transparent)}
+.copt h4{margin-top:2px;font-family:var(--font-titre);font-size:18px}
+.copt .prix{font-family:var(--font-titre);font-size:25px;font-weight:800;margin:4px 0 2px}
+.copt .prix small{font-size:12px;font-family:var(--sans);font-weight:400;color:var(--gris)}
+.copt .rows{margin-top:10px}
+.copt .rows .r{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed var(--grille);padding:6px 0;font-size:12.5px}
+.copt .rows .r b{text-align:right}
+.copt .rows .r span{color:var(--gris);flex:0 0 auto}
+.cmp.focused .copt:not(.sel){opacity:.42;transform:scale(.985)}
+.cmp .copt.sel{border-color:var(--accent-ink)}
+/* risques */
+.risq{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:16px 0;max-width:900px}
+.risq .card .rtit{display:flex;gap:9px;align-items:center;font-weight:800;font-size:14px;margin-bottom:6px}
+.risq .card .rtit svg{flex:0 0 26px}
+.risq .rrep{border-top:1px dashed var(--grille);margin-top:9px;padding-top:8px;font-size:12.5px;color:var(--gris)}
+.risq .rrep b{color:var(--accent-ink);text-transform:uppercase;font-size:10.5px;letter-spacing:.09em}
+/* ════════ 11. FOOTER ════════ */
+footer{margin-top:64px;border-top:var(--filet);padding:28px 0 86px;font-size:12.5px;color:var(--gris)}
+footer p{max-width:none}
+footer h3{font-size:15px;margin-top:0}
+/* ════════ 12. RESPONSIVE & PRINT ════════ */
+@media (max-width:640px){
+  .mq .hp2col{grid-template-columns:1fr}
+  .gmark span{width:64px;left:-31px;font-size:9px}
+  .tick{width:62px;font-size:9px}
+  .fab{bottom:12px;right:12px;padding:6px 9px}
+  section{padding:42px 0 12px}
+}
+@media print{
+  nav.top,.fab,.charte-inline,#snpop,.blob{display:none!important}
+  body{background:#fff}
+  body::before{display:none!important}
+  section{padding:24px 0 6px}
+  .mn{opacity:1!important;transform:none!important;position:static;margin:8px 0}
+  .margin{position:static;min-height:0}
+  .cols{display:block}
+  .tl .ph,.tl .jalon{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#depart">Aller au contenu</a>
+
+<!-- taches aquarelle (charte B) -->
+<svg class="blob b1" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+  <defs><filter id="aq1" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="22"/></filter></defs>
+  <path filter="url(#aq1)" fill="#1C3F6E" opacity=".13" d="M196 44c62-18 138 8 158 64s-20 118-78 150-138 26-176-22S52 116 96 80s62-22 100-36z"/>
+  <path filter="url(#aq1)" fill="#C4603A" opacity=".10" d="M260 120c40 6 84 40 80 86s-58 74-108 70-92-44-86-92 74-70 114-64z"/>
+</svg>
+<svg class="blob b2" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+  <defs><filter id="aq2" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="26"/></filter></defs>
+  <path filter="url(#aq2)" fill="#C4603A" opacity=".11" d="M170 60c70-24 160 12 176 78s-44 130-118 152S70 286 58 216 100 84 170 60z"/>
+  <path filter="url(#aq2)" fill="#1C3F6E" opacity=".08" d="M250 180c36 10 66 52 54 90s-66 56-110 44-72-58-56-98 76-46 112-36z"/>
+</svg>
+
+<!-- ====================== HÉRO ====================== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Proposition de média · document de travail · prolonge la tribune «&nbsp;La mesure du bonheur&nbsp;»</div>
+    <h1>Vous écrivez déjà ce média.<br>Il ne lui manque qu'une <em>rédaction</em>.</h1>
+    <svg class="plume" width="200" height="12" viewBox="0 0 200 12" aria-hidden="true"><path d="M2 8 C 30 2, 60 11, 100 6 S 170 2, 198 7" fill="none" stroke="#6B2D5E" stroke-width="1.6" stroke-linecap="round" opacity=".75"/></svg>
+    <svg class="aqua-dash" width="160" height="14" viewBox="0 0 160 14" aria-hidden="true"><ellipse cx="40" cy="7" rx="40" ry="5" fill="#C4603A" opacity=".35"/><ellipse cx="95" cy="8" rx="34" ry="4" fill="#C4603A" opacity=".22"/><ellipse cx="138" cy="6" rx="20" ry="3.4" fill="#1C3F6E" opacity=".22"/></svg>
+    <p class="lede">Depuis quinze ans — livres, tribunes, et désormais votre newsletter du dimanche —,
+    vous défendez une même conviction&nbsp;: ce que l'économie mesure mal, elle finit par le maltraiter.
+    La tribune a démontré la méthode&nbsp;: la preuve par les données. Ce document propose de l'installer
+    derrière votre voix — un média qui s'insère dans ce que vous faites déjà, et l'amplifie.</p>
+    <p class="meta"><b>Préparé par</b> Sacha Zaouati · <b>pour</b> le commanditaire de la tribune
+    «&nbsp;La mesure du bonheur&nbsp;» · juin 2026 · lecture&nbsp;: ~8&nbsp;minutes</p>
+    <span class="confid">Document de travail confidentiel — page non référencée, accessible uniquement par ce lien</span>
+    <div class="charte-inline" role="radiogroup" aria-label="Choix de la charte graphique">
+      <span class="lbl">Charte — à vous de choisir&nbsp;:</span>
+      <button class="cbtn" data-v="A" aria-pressed="true"><span class="pastille" aria-hidden="true"></span>A · Lavis &amp; encre</button>
+      <button class="cbtn" data-v="B" aria-pressed="false"><span class="pastille" aria-hidden="true"></span>B · Aquarelle éditoriale</button>
+      <button class="cbtn" data-v="C" aria-pressed="false"><span class="pastille" aria-hidden="true"></span>C · Gravure moderne</button>
+    </div>
+  </div>
+</header>
+
+<nav class="top" id="topnav" aria-label="Sommaire">
+  <div class="wrap">
+    <a href="#depart">Le constat</a>
+    <a href="#concept">1 · Concept</a>
+    <a href="#audience">2 · Audience</a>
+    <a href="#modele">3 · Modèle</a>
+    <a href="#calendrier">4 · Calendrier</a>
+    <a href="#identite">5 · Charte</a>
+    <a href="#decision">Votre décision</a>
+  </div>
+</nav>
+
+<!-- ====================== LE CONSTAT ====================== -->
+<section id="depart">
+  <div class="wrap">
+    <div class="cols">
+      <div class="main">
+        <div class="numchip"><span class="l">Le constat</span></div>
+        <h2>Ce média, vous l'avez déjà commencé</h2>
+        <p class="chapo">Essais, romans, rapports, prises de parole&nbsp;: vous publiez depuis quinze ans
+        un même journal en pièces détachées. La tribune n'a rien créé — elle a montré ce qui manquait&nbsp;:
+        une rédaction de données derrière la voix.</p>
+
+        <div class="viz constel" id="viz-constel" data-mn="viz-constel">
+          <svg viewBox="0 0 960 470" role="img" aria-label="Schéma : les canaux existants du commanditaire (neuf livres, activité d'éditeur, tribunes, conférences, rapports, 49 700 abonnés LinkedIn et newsletter My Views à 7 500 lecteurs, tribune) convergent vers le média La Mesure">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="color:var(--accent)"/></marker>
+            </defs>
+            <!-- liens -->
+            <line class="lien" x1="300" y1="225" x2="152" y2="102"/>
+            <line class="lien" x1="300" y1="225" x2="102" y2="244"/>
+            <line class="lien" x1="300" y1="225" x2="160" y2="378"/>
+            <line class="lien" x1="300" y1="225" x2="336" y2="392"/>
+            <line class="lien" x1="300" y1="225" x2="462" y2="92"/>
+            <line class="lien" x1="300" y1="225" x2="300" y2="94"/>
+            <line class="lien fort" x1="300" y1="225" x2="512" y2="300"/>
+            <path class="lien fort" d="M566 300 C 660 280, 670 240, 718 228" fill="none" marker-end="url(#arr)"/>
+            <path class="lien" d="M508 92 C 600 110, 650 170, 716 205" fill="none" marker-end="url(#arr)"/>
+            <!-- centre -->
+            <g class="sat">
+              <circle cx="300" cy="225" r="64" class="sv-soft st-accent" stroke-width="1.8"/>
+              <text x="300" y="218" text-anchor="middle" class="sv-encre sv-titre" font-size="17" font-weight="700">Une voix</text>
+              <text x="300" y="238" text-anchor="middle" class="sv-gris" font-size="11">la vôtre</text>
+            </g>
+            <!-- satellites -->
+            <g class="sat">
+              <circle cx="140" cy="92" r="48" class="sv-carte st-grille" stroke-width="1.4"/>
+              <text x="140" y="86" text-anchor="middle" class="sv-encre" font-size="12.5" font-weight="700">9 livres</text>
+              <text x="140" y="101" text-anchor="middle" class="sv-gris" font-size="9.5">essais &amp; romans</text>
+              <text x="140" y="113" text-anchor="middle" class="sv-gris" font-size="9.5">1994 → 2026</text>
+            </g>
+            <g class="sat">
+              <circle cx="300" cy="50" r="44" class="sv-carte st-grille" stroke-width="1.4"/>
+              <text x="300" y="42" text-anchor="middle" class="sv-encre" font-size="12" font-weight="700">Éditeur</text>
+              <text x="300" y="56" text-anchor="middle" class="sv-gris" font-size="9.5">collection</text>
+              <text x="300" y="68" text-anchor="middle" class="sv-gris" font-size="9.5">«&nbsp;Identités&nbsp;»</text>
+            </g>
+            <g class="sat">
+              <circle cx="88" cy="246" r="44" class="sv-carte st-grille" stroke-width="1.4"/>
+              <text x="88" y="242" text-anchor="middle" class="sv-encre" font-size="12" font-weight="700">Tribunes</text>
+              <text x="88" y="256" text-anchor="middle" class="sv-gris" font-size="9.5">presse · entretiens</text>
+            </g>
+            <g class="sat">
+              <circle cx="156" cy="384" r="44" class="sv-carte st-grille" stroke-width="1.4"/>
+              <text x="156" y="380" text-anchor="middle" class="sv-encre" font-size="12" font-weight="700">Conférences</text>
+              <text x="156" y="394" text-anchor="middle" class="sv-gris" font-size="9.5">cours · forums</text>
+            </g>
+            <g class="sat">
+              <circle cx="340" cy="396" r="46" class="sv-carte st-grille" stroke-width="1.4"/>
+              <text x="340" y="390" text-anchor="middle" class="sv-encre" font-size="12" font-weight="700">Rapports</text>
+              <text x="340" y="404" text-anchor="middle" class="sv-gris" font-size="9.5">think-tank · politiques</text>
+              <text x="340" y="416" text-anchor="middle" class="sv-gris" font-size="9.5">publiques</text>
+            </g>
+            <g class="sat">
+              <circle cx="466" cy="88" r="50" class="sv-carte st-grille" stroke-width="1.4"/>
+              <text x="466" y="78" text-anchor="middle" class="sv-encre" font-size="12" font-weight="700">Audience</text>
+              <text x="466" y="93" text-anchor="middle" class="sv-gris" font-size="9.5">49,7&nbsp;k sur LinkedIn</text>
+              <text x="466" y="106" text-anchor="middle" class="sv-encre" font-size="9.5" font-weight="700">My Views&nbsp;: 7,5&nbsp;k</text>
+            </g>
+            <g class="sat">
+              <circle cx="520" cy="304" r="54" class="sv-carte st-accent" stroke-width="2"/>
+              <text x="520" y="292" text-anchor="middle" class="sv-acc-ink" font-size="11" font-weight="800">LA TRIBUNE</text>
+              <text x="520" y="307" text-anchor="middle" class="sv-gris" font-size="9.5">«&nbsp;La mesure du bonheur&nbsp;»</text>
+              <text x="520" y="321" text-anchor="middle" class="sv-encre" font-size="10" font-weight="700">le prototype de méthode</text>
+            </g>
+            <!-- destination -->
+            <g>
+              <rect x="724" y="168" width="200" height="116" rx="14" class="sv-cta"/>
+              <text x="824" y="214" text-anchor="middle" class="sv-ctafg sv-titre" font-size="25" font-weight="800">La Mesure</text>
+              <text x="824" y="238" text-anchor="middle" class="sv-ctafg" font-size="11" opacity=".85">la rédaction qui manquait</text>
+              <text x="824" y="254" text-anchor="middle" class="sv-ctafg" font-size="11" opacity=".85">la preuve + le canal en propre</text>
+            </g>
+            <text x="724" y="320" class="sv-gris" font-size="10.5">La voix apporte l'audience,</text>
+            <text x="724" y="334" class="sv-gris" font-size="10.5">la tribune apporte la méthode,</text>
+            <text x="724" y="348" class="sv-gris" font-size="10.5">le média ajoute la preuve — et le canal.</text>
+          </svg>
+        </div>
+
+        <div class="grid3" id="stats-tribune" data-mn="stats-tribune">
+          <div class="card"><div class="bignum">5</div><div class="cap">axes d'enquête livrés — du paradoxe d'Easterlin au coût du territoire</div></div>
+          <div class="card"><div class="bignum">15</div><div class="cap">graphiques publiables (interactif + vectoriel + impression 300&nbsp;dpi)</div></div>
+          <div class="card"><div class="bignum">35</div><div class="cap">chiffres clés vérifiés par contrôle croisé — 0 erreur confirmée</div></div>
+        </div>
+
+        <p>Derrière la <a href="https://szaouati.github.io/tribune-pz-0626/" target="_blank" rel="noopener">tribune publiée</a>,
+        une <b>chaîne de production scriptée</b> — 9 sources institutionnelles interrogées par API, données
+        documentées, rapport de vérification — régénérable en quelques minutes. L'outillage d'une rédaction,
+        sans la rédaction. Et le moment s'y prête&nbsp;: votre rendez-vous du dimanche existe déjà — mais il
+        paraît sur une plateforme qui possède la liste et règle la portée. Quand un chapitre se referme,
+        mieux vaut une voix qui s'écrit dans un canal à soi.</p>
+
+        <blockquote>La question n'est pas «&nbsp;faut-il créer un média&nbsp;?&nbsp;» —
+        c'est «&nbsp;votre voix mérite-t-elle une rédaction&nbsp;?&nbsp;»</blockquote>
+      </div>
+      <aside class="margin" aria-hidden="false">
+        <div class="mn cle" data-for="viz-constel"><span class="k">Clé de lecture</span>
+        Rien à inventer&nbsp;: les sept canaux existent et publient déjà. Votre newsletter a réuni
+        <b>7&nbsp;500 lecteurs hebdomadaires en six numéros</b> — l'appétit est prouvé. Le média ajoute
+        la <b>propriété du canal</b> (liste d'adresses, archives, marque) et la <b>preuve par les données</b>.</div>
+        <div class="mn" data-for="stats-tribune"><b>Les chiffres de la tribune.</b> 5 axes, 15 graphiques,
+        35 chiffres vérifiés par contrôle croisé indépendant (0 erreur confirmée), 9 sources institutionnelles
+        interrogées par API — méthode et rapport de vérification publiés.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 1 · CONCEPT ====================== -->
+<section id="concept">
+  <div class="wrap">
+    <div class="cols">
+      <div class="main">
+        <div class="numchip"><span class="n">1</span><span class="l">Concept éditorial</span></div>
+        <h2>Le chiffre comme prolongement de la plume</h2>
+        <p class="chapo">Un média de niche, en français, qui vérifie par les données les récits que
+        l'économie se raconte. Votre newsletter s'appelle <i>My Views</i> — les vues&nbsp;; ce média apporte
+        ce qui les rend irréfutables&nbsp;: les mesures. Ses quatre rubriques fondatrices sont vos quatre
+        combats publics — il s'y glisse, il ne les remplace pas.</p>
+
+        <div class="grid4" id="rubriques" data-mn="rubriques">
+          <div class="card">
+            <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône courbe et cœur"><path d="M3 24 C9 22 10 12 15 12 S22 18 27 8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M22 21 c1.6-2 4.6-.6 4.6 1.4 0 2-2.8 3.6-4.6 5-1.8-1.4-4.6-3-4.6-5 0-2 3-3.4 4.6-1.4z" fill="var(--accent2)"/></svg>
+            <h4>Bien-être &amp; PIB</h4>
+            <p class="note">Ce que la croissance ne mesure pas. La rubrique héritée de la tribune.</p>
+            <p class="note" style="font-family:var(--serif-base);font-style:italic">«&nbsp;Plus riches, pas plus heureux&nbsp;»</p>
+          </div>
+          <div class="card">
+            <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône feuille dans un cadre"><rect x="3" y="3" width="24" height="24" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M9 21 C9 13 14 9 21 9 c0 8-5 12-12 12z" fill="var(--accent2)" opacity=".85"/><path d="M10 20 C13 16 16 13 20 10" stroke="var(--carte)" stroke-width="1.3" fill="none"/></svg>
+            <h4>Les Limites</h4>
+            <p class="note">Le climat et le vivant en chiffres — le cadre que l'économie oublie.</p>
+            <p class="note" style="font-family:var(--serif-base);font-style:italic">«&nbsp;Ce que coûte un degré de plus&nbsp;»</p>
+          </div>
+          <div class="card">
+            <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône flux financiers"><path d="M4 10 h16 M16 4 l6 6 -6 6" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 20 H10 M14 14 l-6 6 6 6" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h4>Les Flux</h4>
+            <p class="note">Où va vraiment l'argent&nbsp;: épargne européenne, fonds «&nbsp;durables&nbsp;», «&nbsp;de-equitisation&nbsp;».</p>
+            <p class="note" style="font-family:var(--serif-base);font-style:italic">«&nbsp;Le mirage liquide, en chiffres&nbsp;»</p>
+          </div>
+          <div class="card">
+            <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône cercle d'étoiles européen"><circle cx="15" cy="15" r="11" fill="none" stroke="var(--accent)" stroke-width="2"/><g fill="var(--accent2)"><circle cx="15" cy="7" r="1.7"/><circle cx="22" cy="11" r="1.7"/><circle cx="22" cy="19" r="1.7"/><circle cx="15" cy="23" r="1.7"/><circle cx="8" cy="19" r="1.7"/><circle cx="8" cy="11" r="1.7"/></g></svg>
+            <h4>L'Union</h4>
+            <p class="note">L'Europe en données&nbsp;: autonomie stratégique, énergie, dette, générations.</p>
+            <p class="note" style="font-family:var(--serif-base);font-style:italic">«&nbsp;L'Europe décroche-t-elle&nbsp;? Dix graphiques&nbsp;»</p>
+          </div>
+        </div>
+
+        <h3>Trois formats, un seul moteur</h3>
+        <div class="viz fwheel" id="viz-formats" data-mn="viz-formats">
+          <svg viewBox="0 0 560 436" role="img" aria-label="Roue des trois formats : la Grande Mesure mensuelle se décline en Répliques LinkedIn, qui alimentent la newsletter Le Chiffre, dont les abonnés financent l'enquête suivante">
+            <defs>
+              <marker id="fa-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="color:var(--gris)"/></marker>
+            </defs>
+            <circle cx="280" cy="218" r="70" class="sv-soft st-accent" stroke-width="1.6"/>
+            <text x="280" y="208" text-anchor="middle" class="sv-encre sv-titre" font-size="15" font-weight="700">Le cycle</text>
+            <text x="280" y="226" text-anchor="middle" class="sv-gris" font-size="10.5">une enquête publiée,</text>
+            <text x="280" y="240" text-anchor="middle" class="sv-gris" font-size="10.5">déclinée, financée</text>
+            <path class="farrow" d="M 338,124 A 158,158 0 0 1 442,250"/>
+            <path class="farrow" d="M 368,358 A 196,196 0 0 1 192,358"/>
+            <path class="farrow" d="M 118,250 A 158,158 0 0 1 222,124"/>
+            <text x="445" y="170" class="sv-gris" font-size="10.5" text-anchor="middle">chaque enquête</text>
+            <text x="445" y="183" class="sv-gris" font-size="10.5" text-anchor="middle">devient des posts</text>
+            <text x="280" y="408" class="sv-gris" font-size="10.5" text-anchor="middle">les posts remplissent la newsletter</text>
+            <text x="112" y="170" class="sv-gris" font-size="10.5" text-anchor="middle">les abonnés financent</text>
+            <text x="112" y="183" class="sv-gris" font-size="10.5" text-anchor="middle">l'enquête suivante</text>
+            <g class="fnode sel" data-f="gm" tabindex="0" role="button" aria-label="La Grande Mesure, format mensuel — afficher le détail">
+              <circle class="bg" cx="280" cy="84" r="58"/>
+              <text class="t1 sv-encre" x="280" y="78" text-anchor="middle" font-size="13" font-weight="800">La Grande</text>
+              <text class="t1 sv-encre" x="280" y="93" text-anchor="middle" font-size="13" font-weight="800">Mesure</text>
+              <text class="t2 sv-gris" x="280" y="108" text-anchor="middle" font-size="9.5">mensuel</text>
+            </g>
+            <g class="fnode" data-f="rep" tabindex="0" role="button" aria-label="Les Répliques, format continu — afficher le détail">
+              <circle class="bg" cx="442" cy="318" r="58"/>
+              <text class="t1 sv-encre" x="442" y="312" text-anchor="middle" font-size="13" font-weight="800">Les Répliques</text>
+              <text class="t2 sv-gris" x="442" y="328" text-anchor="middle" font-size="9.5">LinkedIn · continu</text>
+            </g>
+            <g class="fnode" data-f="chi" tabindex="0" role="button" aria-label="Le Chiffre, newsletter bimensuelle — afficher le détail">
+              <circle class="bg" cx="118" cy="318" r="58"/>
+              <text class="t1 sv-encre" x="118" y="312" text-anchor="middle" font-size="13" font-weight="800">Le Chiffre</text>
+              <text class="t2 sv-gris" x="118" y="328" text-anchor="middle" font-size="9.5">newsletter · dimanche 16&nbsp;h</text>
+            </g>
+          </svg>
+          <div class="fdetail" id="fdetail" aria-live="polite">
+            <div class="ft">La Grande Mesure <span class="pill r">Mensuel</span></div>
+            <div class="fp">Une enquête data du calibre d'un axe de la tribune&nbsp;: 5-8 graphiques, données
+            téléchargeables, note de méthode. Le produit d'appel — et la matière des reprises presse.</div>
+          </div>
+        </div>
+
+        <h3>Le nom</h3>
+        <div class="grid3" id="noms" data-mn="noms">
+          <div class="card" style="border:2px solid var(--accent)">
+            <span class="pill r">Recommandé</span>
+            <div class="bignum" style="font-size:26px">La Mesure</div>
+            <p class="note">Votre titre devient le masthead&nbsp;: la tribune fondatrice s'y range d'elle-même.
+            La donnée (mesurer), la tempérance (la mesure), la musique (la mesure d'une partition)<sup class="sn" id="snref-0" data-sn="sn0"><a href="#src0" aria-label="Note sur la marque">*</a></sup>.</p>
+          </div>
+          <div class="card">
+            <span class="pill n">Alternative</span>
+            <div class="bignum" style="font-size:26px">L'Échelle</div>
+            <p class="note">L'échelle de Cantril — le «&nbsp;0 à 10&nbsp;» du bonheur mondial, cœur méthodologique
+            de la tribune. Plus pointu, plus clivant.</p>
+          </div>
+          <div class="card">
+            <span class="pill n">Alternative</span>
+            <div class="bignum" style="font-size:26px">Indice</div>
+            <p class="note">L'indice statistique et l'indice de l'enquêteur. Très lisible, plus froid.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="mn cle" data-for="rubriques"><span class="k">Pourquoi ces quatre-là</span>
+        Bien-être, limites planétaires, circuits réels de l'argent, Europe&nbsp;: quatre thèmes que vous portez
+        en essais, en romans — et désormais chaque dimanche. Vos chroniques IA ou quantique y trouvent leur
+        banc d'essai chiffré (volet souveraineté de l'Union). Une discipline commune&nbsp;: <b>penser contre
+        soi-même</b> — publier la donnée qui pourrait nous donner tort.</div>
+        <div class="mn cle" data-for="viz-formats"><span class="k">Clé de lecture</span>
+        Cliquez sur chaque format. La rareté est volontaire&nbsp;: <b>une</b> enquête par mois, la newsletter
+        sur votre créneau du dimanche — la condition de la qualité et du coût maîtrisé. Votre édito ouvre
+        chaque numéro&nbsp;; l'écriture fait le pas de côté, la donnée fait le pas vers la preuve.</div>
+        <div class="mn" data-for="noms" data-sn="sn0"><span class="mn-n">*</span>Disponibilité du domaine et
+        antériorité de marque à valider avant lancement — prévu au budget de fondation.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 2 · AUDIENCE ====================== -->
+<section id="audience">
+  <div class="wrap">
+    <div class="cols">
+      <div class="main">
+        <div class="numchip"><span class="n">2</span><span class="l">Audience cible</span></div>
+        <h2>Une niche étroite, solvable — et déjà à portée de voix</h2>
+        <p class="chapo">Le marché français de l'info payante est petit (11&nbsp;% de payeurs<sup class="sn" id="snref-1" data-sn="sn1"><a href="#src1">1</a></sup>)
+        mais stable — et il se trouve précisément là où votre voix porte déjà&nbsp;: parmi les cadres et
+        décideurs qui vous lisent chaque dimanche.</p>
+
+        <div class="viz funnel" id="viz-funnel" data-mn="viz-funnel">
+          <svg viewBox="0 0 880 300" role="img" aria-label="Entonnoir de marché : 37 millions de comptes LinkedIn en France, 16,5 millions de visiteurs uniques mensuels, 6,5 millions de cadres, environ 700 000 lecteurs réguliers d'analyse économique, cible de 5 à 30 mille inscrits">
+            <g class="flevel"><polygon points="10,8 570,8 463.5,58 116.5,58" class="sv-encre" opacity=".82"/>
+              <text x="290" y="40" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="800">37&nbsp;M</text></g>
+            <g class="flevel"><polygon points="116.5,64 463.5,64 402,114 178,114" class="sv-encre" opacity=".62"/>
+              <text x="290" y="96" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">16,5&nbsp;M</text></g>
+            <g class="flevel"><polygon points="178,120 402,120 340.5,170 239.5,170" class="sv-encre" opacity=".42"/>
+              <text x="290" y="152" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">6,5&nbsp;M</text></g>
+            <g class="flevel"><polygon points="239.5,176 340.5,176 309.5,226 270.5,226" class="sv-encre" opacity=".25"/>
+              <text x="290" y="207" text-anchor="middle" class="sv-encre" font-size="13.5" font-weight="800">~0,7&nbsp;M</text></g>
+            <g class="flevel"><polygon points="270.5,232 309.5,232 304,282 276,282" class="sv-accent"/>
+              <text x="290" y="265" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="800">5-30&nbsp;k</text></g>
+            <g class="ftxt">
+              <line x1="575" y1="33" x2="600" y2="33" class="st-grille"/>
+              <text x="606" y="30" class="sv-encre" font-size="12.5" font-weight="700">Comptes LinkedIn en France</text>
+              <text x="606" y="44" class="sv-gris" font-size="11">déclaratif LinkedIn, 2025-26</text>
+              <line x1="470" y1="89" x2="600" y2="89" class="st-grille"/>
+              <text x="606" y="86" class="sv-encre" font-size="12.5" font-weight="700">Visiteurs uniques mensuels réels</text>
+              <text x="606" y="100" class="sv-gris" font-size="11">Arcom, moyenne 2025</text>
+              <line x1="408" y1="145" x2="600" y2="145" class="st-grille"/>
+              <text x="606" y="142" class="sv-encre" font-size="12.5" font-weight="700">Cadres &amp; prof. intellectuelles sup.</text>
+              <text x="606" y="156" class="sv-gris" font-size="11">INSEE, 2022 — 21,7&nbsp;% de l'emploi</text>
+              <line x1="345" y1="201" x2="600" y2="201" class="st-grille"/>
+              <text x="606" y="198" class="sv-encre" font-size="12.5" font-weight="700">Lecteurs d'analyse éco approfondie</text>
+              <text x="606" y="212" class="sv-gris" font-size="11">AltÉco 652&nbsp;000/n° · Les Échos 843&nbsp;000</text>
+              <line x1="308" y1="257" x2="600" y2="257" class="st-grille"/>
+              <text x="606" y="254" class="sv-acc-ink" font-size="12.5" font-weight="800">Cible réaliste à 24 mois (inscrits)</text>
+              <text x="606" y="268" class="sv-gris" font-size="11">dont ~11&nbsp;% de payeurs potentiels</text>
+            </g>
+          </svg>
+          <p class="vsrc"><b>Point de départ mesuré&nbsp;:</b> 49&nbsp;663 abonnés LinkedIn · 7&nbsp;489 abonnés de votre
+          newsletter hebdomadaire après six numéros (relevés au 07/06/2026).</p>
+          <p class="vsrc">Sources&nbsp;: LinkedIn &amp; Arcom<sup class="sn" id="snref-2" data-sn="sn2"><a href="#src2">2</a></sup> ·
+          INSEE<sup class="sn" id="snref-3" data-sn="sn3"><a href="#src3">3</a></sup> ·
+          ACPM / OneNext 2026<sup class="sn" id="snref-4" data-sn="sn4"><a href="#src4">4</a></sup> — liens complets en pied de page.</p>
+        </div>
+
+        <div class="grid2" id="personas" data-mn="personas">
+          <div class="card">
+            <span class="pill r">Persona cœur — ~70&nbsp;% de la cible</span>
+            <h4>Claire, 41 ans, directrice de la stratégie d'une ETI</h4>
+            <p class="note">Consulte LinkedIn chaque matin, paie déjà pour l'info (2&nbsp;abonnements en
+            moyenne chez les payeurs<sup class="sn" id="snref-1b" data-sn="sn1"><a href="#src1">1</a></sup>).
+            Cherche des chiffres <b>sourcés, réutilisables</b> en comité. Fuit le flux et l'opinion sans
+            preuve. 10-15&nbsp;minutes, le matin, sur mobile.</p>
+          </div>
+          <details style="margin:0">
+            <summary>Personas secondaires — enseignants, décideurs publics, presse</summary>
+            <div class="dbody"><p><b>Professeurs de SES, prépas, masters d'économie</b>&nbsp;: ils ont fait le succès
+            d'Alternatives Économiques et de Brief.eco&nbsp;; nos données téléchargeables sont des supports de
+            cours prêts à l'emploi. <b>Consultants, hauts fonctionnaires, journalistes</b>&nbsp;: réutilisent
+            graphiques et données — c'est le canal des reprises presse et de la notoriété.</p></div>
+          </details>
+        </div>
+
+        <h3>Les comparables&nbsp;: où vivent les médias de niche</h3>
+        <div class="viz comp" id="viz-comp" data-mn="viz-comp">
+          <svg viewBox="0 0 960 312" role="img" aria-label="Nuage de points : abonnés payants des médias de niche français sur échelle logarithmique, de Snowball (environ 7 000) à Alternatives Économiques (46 000), avec la cible de La Mesure entre 400 et 2 400">
+            <rect class="band" x="106" y="58" width="223" height="152" rx="8"/>
+            <text x="217" y="80" text-anchor="middle" class="sv-acc-ink" font-size="12" font-weight="800">La Mesure — cible M24</text>
+            <text x="217" y="95" text-anchor="middle" class="sv-encre" font-size="11">400 à 2&nbsp;400 payants · 60&nbsp;€/an</text>
+            <line x1="70" y1="210" x2="930" y2="210" class="st-gris" stroke-width="1.3"/>
+            <g class="sv-gris" font-size="10" text-anchor="middle">
+              <line x1="220" y1="210" x2="220" y2="216" class="st-gris"/><text x="220" y="228">1&nbsp;000</text>
+              <line x1="507" y1="210" x2="507" y2="216" class="st-gris"/><text x="507" y="228">10&nbsp;000</text>
+              <line x1="793" y1="210" x2="793" y2="216" class="st-gris"/><text x="793" y="228">100&nbsp;000</text>
+              <text x="930" y="228" text-anchor="end">abonnés payants (éch. log)</text>
+            </g>
+            <g>
+              <line x1="462" y1="210" x2="462" y2="165" class="st-grille"/><circle class="dot" cx="462" cy="165" r="7"/>
+              <text class="glab" x="462" y="148" text-anchor="middle" font-weight="700">Snowball ~7&nbsp;k</text>
+              <text class="gprix" x="462" y="160" text-anchor="middle">80&nbsp;€/an · 1 auteur</text>
+            </g>
+            <g>
+              <line x1="507" y1="210" x2="507" y2="118" class="st-grille"/><circle class="dot" cx="507" cy="118" r="7"/>
+              <text class="glab" x="507" y="101" text-anchor="middle" font-weight="700">Les Jours ~10&nbsp;k</text>
+              <text class="gprix" x="507" y="113" text-anchor="middle">9&nbsp;€/mois</text>
+            </g>
+            <g>
+              <line x1="529" y1="210" x2="529" y2="62" class="st-grille"/><circle class="dot" cx="529" cy="62" r="7"/>
+              <text class="glab" x="540" y="55" font-weight="700">Brief.me 12&nbsp;k</text>
+              <text class="gprix" x="540" y="67">9,90&nbsp;€/mois · rentable dès 2020</text>
+            </g>
+            <g>
+              <line x1="593" y1="210" x2="593" y2="160" class="st-grille"/><circle class="dot" cx="593" cy="160" r="7"/>
+              <text class="glab" x="604" y="156" font-weight="700">Arrêt sur images &lt;20&nbsp;k</text>
+              <text class="gprix" x="604" y="168">50&nbsp;€/an</text>
+            </g>
+            <g>
+              <line x1="697" y1="210" x2="697" y2="105" class="st-grille"/><circle class="dot" cx="697" cy="105" r="7"/>
+              <text class="glab" x="708" y="101" font-weight="700">Alternatives Économiques 46&nbsp;k</text>
+              <text class="gprix" x="708" y="113">6,90&nbsp;€/n° · SCOP autofinancée</text>
+            </g>
+            <text x="70" y="262" class="sv-gris" font-size="11">Gratuits à grande audience, pour mémoire&nbsp;: The Conversation FR (140&nbsp;000 inscrits newsletter) · Our World in Data («&nbsp;dizaines de millions de lecteurs/an&nbsp;», fondations).</text>
+            <text x="70" y="278" class="sv-gris" font-size="11">Chiffres ACPM/OneNext 2026 quand ils existent, déclaratifs sinon (signalés) — détail dans le tableau ci-dessous et liens en pied de page.</text>
+          </svg>
+        </div>
+
+        <details>
+          <summary>Le tableau complet des comparables (audiences, prix, modèles, dates)</summary>
+          <div class="dbody">
+            <div class="tw">
+              <table>
+                <thead><tr><th>Média</th><th>Audience (datée)</th><th class="num">Abonnés payants</th><th class="num">Prix</th><th>Modèle dominant</th></tr></thead>
+                <tbody>
+                  <tr><td><b>The Conversation France</b></td><td>6&nbsp;M pages vues/mois&nbsp;; 140&nbsp;000 inscrits (2025-26, déclaratif)</td><td class="num">—</td><td class="num">0&nbsp;€</td><td>Adhésions universitaires + dons + subventions</td></tr>
+                  <tr><td><b>Le Grand Continent</b></td><td>~350&nbsp;000 visiteurs récurrents/mois (déclaratif)</td><td class="num">n.&nbsp;p.</td><td class="num">90&nbsp;€/an</td><td>Abonnement + dons défiscalisés + volumes papier</td></tr>
+                  <tr><td><b>Alternatives Économiques</b></td><td>652&nbsp;000 lecteurs/n° (OneNext 2026)&nbsp;; diffusion payée 46&nbsp;238 (ACPM 2025)</td><td class="num">~46&nbsp;000</td><td class="num">6,90&nbsp;€/n°</td><td>Abonnements + ventes, SCOP autofinancée</td></tr>
+                  <tr><td><b>Brief.me / Brief.eco</b></td><td>n.&nbsp;p.</td><td class="num">12&nbsp;000 (2020, dernier chiffre public)</td><td class="num">9,90&nbsp;€/mois</td><td>100&nbsp;% abonnement, sans pub — rentable dès 2020</td></tr>
+                  <tr><td><b>Les Jours</b></td><td>n.&nbsp;p.</td><td class="num">~10&nbsp;000 (2024)</td><td class="num">9&nbsp;€/mois</td><td>100&nbsp;% abonnement</td></tr>
+                  <tr><td><b>Arrêt sur images</b></td><td>n.&nbsp;p.</td><td class="num">&lt;20&nbsp;000 (2022)</td><td class="num">50&nbsp;€/an</td><td>Abonnement + dons</td></tr>
+                  <tr><td><b>Snowball</b></td><td>70&nbsp;000 inscrits (déclaratif 2026)</td><td class="num">~10&nbsp;% des inscrits (2023)</td><td class="num">80&nbsp;€/an</td><td>Freemium + sponsoring</td></tr>
+                  <tr><td><b>Our World in Data</b></td><td>«&nbsp;Dizaines de millions de lecteurs/an&nbsp;» (2025)</td><td class="num">—</td><td class="num">0&nbsp;€</td><td>Fondations + dons (£2,45&nbsp;M en 2023)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <h3>Ce que les comparables enseignent</h3>
+        <div class="grid3" id="enseignements" data-mn="enseignements">
+          <div class="card">
+            <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône équilibre"><path d="M15 4 v22 M6 26 h18" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M15 7 L5 11 M15 7 l10 4" stroke="var(--accent)" stroke-width="1.6"/><path d="M2 17 a3.5 3.5 0 0 0 6 0 l-3-7zM22 17 a3.5 3.5 0 0 0 6 0 l-3-7z" fill="var(--accent2)" opacity=".9"/></svg>
+            <h4>La niche payante vit à petite échelle</h4>
+            <p class="note">Brief.me était <b>rentable avec 12&nbsp;000 abonnés</b> (741&nbsp;k€ de CA)&nbsp;;
+            Les Jours vit avec ~10&nbsp;000. Notre point d'équilibre est plus bas encore&nbsp;: chaîne de
+            production automatisée, équipe légère.</p>
+          </div>
+          <div class="card">
+            <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône créneau vide"><rect x="3" y="6" width="7" height="18" rx="1.5" fill="var(--accent)" opacity=".85"/><rect x="20" y="6" width="7" height="18" rx="1.5" fill="var(--accent)" opacity=".85"/><rect x="11.5" y="6" width="7" height="18" rx="1.5" fill="none" stroke="var(--accent2)" stroke-width="1.6" stroke-dasharray="3 3"/></svg>
+            <h4>Le créneau data × éco × français est vide</h4>
+            <p class="note">Our World in Data prouve l'appétit mondial pour la donnée rigoureuse — pas en
+            français. The Conversation prouve l'audience française de l'analyse exigeante — sans données
+            téléchargeables. <b>Personne ne fait les deux.</b></p>
+          </div>
+          <div class="card">
+            <svg width="30" height="30" viewBox="0 0 30 30" role="img" aria-label="Icône voix amplifiée"><circle cx="11" cy="11" r="5.5" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M11 16.5 C5 16.5 3 21 3 26 h16 c0-5-2-9.5-8-9.5z" fill="var(--accent)" opacity=".85"/><path d="M20 7 c3 2.5 3 6.5 0 9 M23.5 4.5 c4.6 4 4.6 10 0 14" stroke="var(--accent2)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            <h4>Une voix d'auteur accélère tout</h4>
+            <p class="note">Snowball a réuni <b>70&nbsp;000 inscrits autour d'un seul auteur</b>. Votre voix
+            le fait déjà&nbsp;: 7&nbsp;500 lecteurs hebdomadaires en six numéros — avec la crédibilité d'une
+            figure de la finance durable qui publie ses sources.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="mn" data-for="snref-1"><span class="mn-n">1</span><b>Reuters Institute, Digital News
+        Report 2025 — France.</b> 11&nbsp;% des Français paient pour de l'info en ligne&nbsp;; les payeurs cumulent
+        2&nbsp;abonnements en moyenne. <a href="#src1">Lien en pied de page</a>.</div>
+        <div class="mn cle" data-for="viz-funnel"><span class="k">Clé de lecture</span>
+        Il ne s'agit pas de conquérir le grand public&nbsp;: il s'agit de convertir une fraction d'un bassin
+        de ~700&nbsp;000 lecteurs avérés d'analyse économique — en partant d'un avantage mesuré&nbsp;:
+        ~49&nbsp;700 abonnés, et 7&nbsp;500 lecteurs réunis par votre newsletter en six numéros.</div>
+        <div class="mn" data-for="snref-2"><span class="mn-n">2</span><b>LinkedIn France&nbsp;:</b> «&nbsp;37&nbsp;M+
+        membres&nbsp;» (déclaratif). <b>Arcom&nbsp;:</b> 16,5&nbsp;M de visiteurs uniques mensuels réels (2025) —
+        l'écart mesure les comptes dormants.</div>
+        <div class="mn" data-for="snref-3"><span class="mn-n">3</span><b>INSEE Focus n°324.</b> Cadres et
+        professions intellectuelles supérieures&nbsp;: 21,7&nbsp;% de l'emploi en 2022, soit ~6,5&nbsp;M de personnes.</div>
+        <div class="mn" data-for="snref-4"><span class="mn-n">4</span><b>ACPM / OneNext 2026.</b> Audience
+        par numéro&nbsp;: Alternatives Économiques 652&nbsp;000&nbsp;; Les Échos print 843&nbsp;000. Mesures certifiées.</div>
+        <div class="mn cle" data-for="viz-comp"><span class="k">Clé de lecture</span>
+        Tous les comparables payants vivent entre ~7&nbsp;000 et ~46&nbsp;000 abonnés. La cible (bande colorée)
+        se place <b>volontairement sous</b> cette zone&nbsp;: l'équilibre n'exige pas un miracle, il exige
+        400 à 2&nbsp;400 lecteurs convaincus.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 3 · MODÈLE ====================== -->
+<section id="modele">
+  <div class="wrap">
+    <div class="cols">
+      <div class="main">
+        <div class="numchip"><span class="n">3</span><span class="l">Modèle économique</span></div>
+        <h2>Frugal par construction, piloté par indicateurs</h2>
+        <p class="chapo">Le pari n'est pas l'échelle industrielle&nbsp;: c'est l'équilibre d'un média artisanal
+        de qualité — un seuil que des structures comparables ont franchi avec moins d'atouts.</p>
+
+        <h3>Quatre piliers, deux trajectoires</h3>
+        <div class="viz pilbars" id="viz-piliers" data-mn="viz-piliers">
+          <svg viewBox="0 0 840 196" role="img" aria-label="Barres empilées : revenus en année 2. Scénario prudent 61 mille euros dont 24 d'abonnements ; scénario volontariste 224 mille euros dont 144 d'abonnements">
+            <g font-size="11.5">
+              <rect x="150" y="14" width="13" height="13" class="sv-cta" rx="2"/><text x="170" y="25" class="sv-encre">Abonnements (60&nbsp;€/an)</text>
+              <rect x="360" y="14" width="13" height="13" class="seg-aut" rx="2"/><text x="380" y="25" class="sv-encre">Aides + dons + sponsoring sobre</text>
+            </g>
+            <text x="140" y="62" text-anchor="end" class="sv-encre" font-size="12.5" font-weight="700">Prudent</text>
+            <text x="140" y="76" text-anchor="end" class="sv-gris" font-size="10.5">année 2</text>
+            <rect x="150" y="46" width="69" height="36" class="seg-abo" rx="3"/>
+            <rect x="221" y="46" width="106" height="36" class="seg-aut" rx="3"/>
+            <text x="184" y="68" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">24</text>
+            <text x="274" y="68" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700" class="lab-aut">37</text>
+            <text x="335" y="68" class="sv-encre" font-size="12.5" font-weight="800">≈ 61&nbsp;k€/an</text>
+            <text x="140" y="132" text-anchor="end" class="sv-encre" font-size="12.5" font-weight="700">Volontariste</text>
+            <text x="140" y="146" text-anchor="end" class="sv-gris" font-size="10.5">année 2</text>
+            <rect x="150" y="116" width="413" height="36" class="seg-abo" rx="3"/>
+            <rect x="565" y="116" width="230" height="36" class="seg-aut" rx="3"/>
+            <text x="356" y="138" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">144 (2&nbsp;400 abonnés × 60&nbsp;€)</text>
+            <text x="680" y="138" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700" class="lab-aut">80</text>
+            <text x="150" y="178" class="sv-gris" font-size="10.5">Montants en k€/an. Hypothèses encadrées par le marché — ajustables dans le simulateur ci-dessous.</text>
+          </svg>
+        </div>
+
+        <div class="grid4" id="piliers-cards">
+          <div class="card pilcard">
+            <svg class="pico" width="34" height="34" viewBox="0 0 34 34" role="img" aria-label="Icône abonnement"><circle cx="17" cy="17" r="14" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="17" y="22" text-anchor="middle" font-size="14" font-weight="800" fill="var(--accent-ink)" font-family="Georgia,serif">€</text></svg>
+            <div><h4 style="margin-top:0">1 · Abonnement de soutien</h4><p class="note">60&nbsp;€/an — tout ouvert en année&nbsp;1, paywall différé (7&nbsp;jours) en année&nbsp;2.</p></div>
+          </div>
+          <div class="card pilcard">
+            <svg class="pico" width="34" height="34" viewBox="0 0 34 34" role="img" aria-label="Icône institution"><path d="M4 13 L17 4 l13 9z" fill="var(--accent)"/><path d="M7 15 h4 v11 h-4z M15 15 h4 v11 h-4z M23 15 h4 v11 h-4z M4 28 h26 v3 H4z" fill="var(--accent)" opacity=".7"/></svg>
+            <div><h4 style="margin-top:0">2 · Aides à la presse</h4><p class="note">CPPAP puis bourse émergente, FSDP, pluralisme, FPL<sup class="sn" id="snref-5" data-sn="sn5"><a href="#src5">5</a></sup>. Réelles, jamais garanties&nbsp;: le budget tient sans elles.</p></div>
+          </div>
+          <div class="card pilcard">
+            <svg class="pico" width="34" height="34" viewBox="0 0 34 34" role="img" aria-label="Icône mécénat"><path d="M17 28 C8 22 3 17 3 11.5 C3 7.4 6.2 5 9.6 5 c3 0 5.4 1.7 7.4 4.6 C19 6.7 21.4 5 24.4 5 28 5 31 7.4 31 11.5 31 17 26 22 17 28z" fill="none" stroke="var(--accent)" stroke-width="2.2"/></svg>
+            <div><h4 style="margin-top:0">3 · Dons &amp; mécénat</h4><p class="note">Structure d'intérêt général (modèle Grand Continent)&nbsp;: dons défiscalisés à 66&nbsp;% — le véhicule naturel de votre engagement.</p></div>
+          </div>
+          <div class="card pilcard">
+            <svg class="pico" width="34" height="34" viewBox="0 0 34 34" role="img" aria-label="Icône partenariat sobre"><rect x="4" y="9" width="26" height="17" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M10 17.5 h14" stroke="var(--accent2)" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <div><h4 style="margin-top:0">4 · Sponsoring sobre</h4><p class="note">Un partenaire institutionnel par période, «&nbsp;présenté par&nbsp;», zéro conflit d'intérêts — <b>jamais de publicité</b>.</p></div>
+          </div>
+        </div>
+        <details>
+          <summary>Le détail des aides à la presse mobilisables</summary>
+          <div class="dbody"><p>La reconnaissance CPPAP «&nbsp;service de presse en ligne&nbsp;» (TVA à 2,1&nbsp;%) ouvre&nbsp;:
+          la <b>bourse aux entreprises de presse émergentes</b> (jusqu'à 50&nbsp;000&nbsp;€, une fois)&nbsp;; le
+          <b>Fonds stratégique</b> (FSDP, jusqu'à 70&nbsp;% des projets pour une structure de moins de 3&nbsp;ans)&nbsp;;
+          l'<b>aide au pluralisme en ligne</b> (enveloppe de 4&nbsp;M€/an)&nbsp;; le <b>Fonds pour une presse libre</b>
+          (~15&nbsp;000&nbsp;€/projet)&nbsp;; <b>Journalismfund Europe</b> pour les enquêtes transfrontalières.
+          Liens officiels en pied de page<sup class="sn" id="snref-5b" data-sn="sn5"><a href="#src5">5</a></sup>.</p></div>
+        </details>
+
+        <h3 id="simu-titre">Deux trajectoires, un simulateur — faites varier vous-même</h3>
+        <div class="sim" id="simu" data-mn="simu">
+          <div class="presets" role="group" aria-label="Préréglages de scénario">
+            <button class="preset" id="preset-prudent" aria-pressed="true">
+              <span class="pt"><span>Scénario prudent</span><span class="tot">≈ 61&nbsp;k€/an</span></span>
+              <span class="pm">M12&nbsp;: 4&nbsp;000 inscrits · 160 payants (4&nbsp;%) → <b>M24&nbsp;: 8&nbsp;000 · 400 (5&nbsp;%)</b> + 37&nbsp;k€ d'aides — média artisanal au quasi-équilibre.</span>
+            </button>
+            <button class="preset" id="preset-volont" aria-pressed="false">
+              <span class="pt"><span>Scénario volontariste</span><span class="tot">≈ 224&nbsp;k€/an</span></span>
+              <span class="pm">M12&nbsp;: 12&nbsp;000 inscrits · 720 payants (6&nbsp;%) → <b>M24&nbsp;: 30&nbsp;000 · 2&nbsp;400 (8&nbsp;%)</b> + 80&nbsp;k€ — rédaction de 3&nbsp;ETP autofinancée.</span>
+            </button>
+          </div>
+          <div class="sgrid">
+            <div class="sctl">
+              <label for="r_ins">Inscrits newsletter <output id="o_ins">8&nbsp;000</output></label>
+              <input type="range" id="r_ins" min="1000" max="40000" step="500" value="8000">
+              <div class="ticks" aria-hidden="true">
+                <span class="tick" style="left:0;transform:none;text-align:left;width:46px">1&nbsp;000</span>
+                <span class="tick row2" style="left:7.7%">démarrage prudent</span>
+                <span class="tick maj" style="left:17.9%">8&nbsp;000 scén. prudent</span>
+                <span class="tick maj row2" style="left:48.7%">20&nbsp;000+ scén. volontariste</span>
+                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:52px">40&nbsp;000</span>
+              </div>
+            </div>
+            <div class="sctl">
+              <label for="r_cnv">Conversion vers le payant <output id="o_cnv">5,0&nbsp;%</output></label>
+              <input type="range" id="r_cnv" min="1" max="12" step="0.5" value="5">
+              <div class="ticks" aria-hidden="true">
+                <span class="tick" style="left:0;transform:none;text-align:left;width:36px">1&nbsp;%</span>
+                <span class="tick row2" style="left:27.3%">norme basse 3-5&nbsp;%</span>
+                <span class="tick maj" style="left:45.5%">médiane 6&nbsp;%</span>
+                <span class="tick row2" style="left:81.8%">Snowball 10&nbsp;%+</span>
+                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:40px">12&nbsp;%</span>
+              </div>
+            </div>
+            <div class="sctl">
+              <label for="r_prx">Prix de l'abonnement (an) <output id="o_prx">60&nbsp;€</output></label>
+              <input type="range" id="r_prx" min="40" max="120" step="5" value="60">
+              <div class="ticks" aria-hidden="true">
+                <span class="tick" style="left:0;transform:none;text-align:left;width:36px">40&nbsp;€</span>
+                <span class="tick row2" style="left:12.5%">Arrêt/images 50&nbsp;€</span>
+                <span class="tick maj" style="left:25%">recommandé 60&nbsp;€</span>
+                <span class="tick row2" style="left:62.5%">Grand Continent 90&nbsp;€</span>
+                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:42px">120&nbsp;€</span>
+              </div>
+            </div>
+            <div class="sctl">
+              <label for="r_aut">Aides + dons + sponsoring (an) <output id="o_aut">37&nbsp;k€</output></label>
+              <input type="range" id="r_aut" min="0" max="120" step="1" value="37">
+              <div class="ticks" aria-hidden="true">
+                <span class="tick" style="left:0;transform:none;text-align:left;width:52px">0 · sans aides</span>
+                <span class="tick row2" style="left:12.5%">FPL 15&nbsp;k€</span>
+                <span class="tick maj" style="left:58.3%">avec FSDP 70&nbsp;k€</span>
+                <span class="tick" style="left:100%;transform:translateX(-100%);text-align:right;width:46px">120&nbsp;k€</span>
+              </div>
+            </div>
+          </div>
+          <div class="sout">
+            <div class="sbox"><div class="v" id="v_pay">400</div><div class="t">abonnés payants</div></div>
+            <div class="sbox"><div class="v" id="v_abo">24&nbsp;k€</div><div class="t">revenus d'abonnement / an</div></div>
+            <div class="sbox"><div class="v" id="v_tot">61&nbsp;k€</div><div class="t">revenu total / an</div></div>
+          </div>
+          <div class="gauge" aria-hidden="true">
+            <div class="gfill" id="gfill" style="width:23%"></div>
+            <div class="gmark" style="left:25%"><span>Palier artisanal 65&nbsp;k€</span></div>
+            <div class="gmark" style="left:50%"><span>Média installé 130&nbsp;k€</span></div>
+            <div class="gmark" style="left:88.5%"><span>Rédaction 230&nbsp;k€</span></div>
+          </div>
+          <p id="verdict" aria-live="polite">…</p>
+        </div>
+
+        <div class="grid3" id="paliers" data-mn="paliers">
+          <div class="card"><div class="bignum">65&nbsp;k€<small>/an</small></div>
+          <div class="cap"><b>Palier artisanal.</b> Rédaction données (chaîne existante), pigistes ponctuels,
+          outils, comptabilité. Le palier de l'année&nbsp;1.</div></div>
+          <div class="card"><div class="bignum">130&nbsp;k€<small>/an</small></div>
+          <div class="cap"><b>Média installé.</b> 2&nbsp;ETP (données + édition), pigistes réguliers, événements.
+          Objectif années&nbsp;2-3 en volontariste.</div></div>
+          <div class="card"><div class="bignum">230&nbsp;k€<small>/an</small></div>
+          <div class="cap"><b>Rédaction.</b> 3&nbsp;ETP, rythme hebdo, vidéo. N'est <i>pas</i> l'engagement
+          demandé aujourd'hui.</div></div>
+        </div>
+
+        <h3>Le point de décision M12&nbsp;: six seuils mesurables</h3>
+        <p class="note" style="max-width:700px">Le «&nbsp;oui&nbsp;» n'engage que l'année&nbsp;1. À M12, bilan formel&nbsp;:
+        seuils atteints, on accélère&nbsp;; manqués, on arrête proprement — les actifs (marque, données, liste,
+        chaîne) restent à vous.</p>
+        <div class="gauges" id="viz-jauges" data-mn="viz-jauges">
+          <div class="gjauge">
+            <svg viewBox="0 0 120 70" role="img" aria-label="Jauge : seuil de 4 000 inscrits sur une échelle allant jusqu'à 12 000">
+              <path class="arc-fond" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round"/>
+              <path class="arc-val" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="45.6 138.3"/>
+              <text class="gseuil" x="60" y="58" text-anchor="middle">≥ 4&nbsp;000</text>
+            </svg>
+            <div class="glbl">Inscrits newsletter</div>
+            <div class="gref">70&nbsp;k chez Snowball (6&nbsp;ans)&nbsp;; 140&nbsp;k chez The Conversation (10&nbsp;ans)</div>
+          </div>
+          <div class="gjauge">
+            <svg viewBox="0 0 120 70" role="img" aria-label="Jauge : taux d'ouverture cible de 45 pour cent">
+              <path class="arc-fond" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round"/>
+              <path class="arc-val" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="88.8 138.3"/>
+              <text class="gseuil" x="60" y="58" text-anchor="middle">≥ 45&nbsp;%</text>
+            </svg>
+            <div class="glbl">Taux d'ouverture</div>
+            <div class="gref">Moyenne beehiiv 2025&nbsp;: 41&nbsp;%<sup class="sn" id="snref-6" data-sn="sn6"><a href="#src6">6</a></sup> — une niche engagée doit faire mieux</div>
+          </div>
+          <div class="gjauge">
+            <svg viewBox="0 0 120 70" role="img" aria-label="Jauge : seuil de 160 abonnés payants">
+              <path class="arc-fond" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round"/>
+              <path class="arc-val" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="27.6 138.3"/>
+              <text class="gseuil" x="60" y="58" text-anchor="middle">≥ 160</text>
+            </svg>
+            <div class="glbl">Abonnés payants</div>
+            <div class="gref">= 4&nbsp;% de conversion, la norme basse observée (3-5&nbsp;%)</div>
+          </div>
+          <div class="gjauge">
+            <svg viewBox="0 0 120 70" role="img" aria-label="Jauge : au moins une reprise presse par mois">
+              <path class="arc-fond" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round"/>
+              <path class="arc-val" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="34.6 138.3"/>
+              <text class="gseuil" x="60" y="58" text-anchor="middle">≥ 1/mois</text>
+            </svg>
+            <div class="glbl">Reprises presse</div>
+            <div class="gref">Le levier de crédibilité du Grand Continent</div>
+          </div>
+          <div class="gjauge">
+            <svg viewBox="0 0 120 70" role="img" aria-label="Jauge : reconnaissance CPPAP et une aide obtenue, critère binaire">
+              <path class="arc-fond" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round"/>
+              <path class="arc-val" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="138.3 138.3"/>
+              <text class="gseuil" x="60" y="58" text-anchor="middle">oui</text>
+            </svg>
+            <div class="glbl">CPPAP + 1 aide</div>
+            <div class="gref">Conditionne TVA 2,1&nbsp;% et l'accès aux fonds publics</div>
+          </div>
+          <div class="gjauge">
+            <svg viewBox="0 0 120 70" role="img" aria-label="Jauge : coût d'acquisition par inscrit inférieur ou égal à 5 euros">
+              <path class="arc-fond" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round"/>
+              <path class="arc-val" d="M16 60 A44 44 0 0 1 104 60" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="69.1 138.3"/>
+              <text class="gseuil" x="60" y="58" text-anchor="middle">≤ 5&nbsp;€</text>
+            </svg>
+            <div class="glbl">Coût d'acquisition / inscrit</div>
+            <div class="gref">L'organique (Répliques) doit dominer — sinon le modèle frugal ne tient pas</div>
+          </div>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="mn cle" data-for="viz-piliers"><span class="k">Clé de lecture</span>
+        L'abonnement est le pilier structurant&nbsp;; les aides sont un <b>bonus, jamais une béquille</b> —
+        le budget de l'année&nbsp;1 tient sans elles. Et par principe éditorial&nbsp;: <b>jamais de publicité</b>,
+        un seul partenaire institutionnel à la fois.</div>
+        <div class="mn" data-for="snref-5"><span class="mn-n">5</span><b>Aides à la presse.</b> Bourse
+        émergente ≤&nbsp;50&nbsp;k€ (une fois)&nbsp;; FSDP ≤&nbsp;70&nbsp;% des projets&nbsp;; pluralisme en ligne (4&nbsp;M€/an)&nbsp;;
+        FPL ~15&nbsp;k€&nbsp;; Journalismfund Europe. Textes officiels en pied de page.</div>
+        <div class="mn cle" data-for="simu"><span class="k">Hypothèses encadrées</span>
+        Conversion gratuit→payant&nbsp;: 3-5&nbsp;% = norme observée, 6&nbsp;% = médiane des niches engagées,
+        ~10&nbsp;% = Snowball (déclaratif)<sup class="sn" data-sn="sn6">6</sup>. Référence interne&nbsp;: votre
+        newsletter a converti ~15&nbsp;% de votre audience LinkedIn en lecteurs hebdo, en six numéros. Le levier
+        décisif du volontariste&nbsp;: cette audience, et la régularité des Répliques.</div>
+        <div class="mn" data-for="snref-6"><span class="mn-n">6</span><b>Références conversion &amp; ouverture.</b>
+        beehiiv, State of Newsletters 2026 (41&nbsp;% d'ouverture moyenne)&nbsp;; S.&nbsp;Owens (~5&nbsp;% de conversion
+        réaliste)&nbsp;; Kessel 10-15&nbsp;% (déclaratif).</div>
+        <div class="mn cle" data-for="viz-jauges"><span class="k">Pourquoi des seuils</span>
+        Six chiffres écrits <b>avant</b> de commencer — pas de pilotage à l'affect. Chaque jauge montre le
+        seuil de poursuite sur son échelle de référence&nbsp;; la référence marché figure sous chaque cadran.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 4 · CALENDRIER ====================== -->
+<section id="calendrier">
+  <div class="wrap">
+    <div class="cols">
+      <div class="main">
+        <div class="numchip"><span class="n">4</span><span class="l">Calendrier</span></div>
+        <h2>Douze mois, six jalons, une porte de sortie</h2>
+        <p class="chapo">Le média paraît vite — parce que son contenu fondateur existe déjà. Survolez les
+        jalons pour le détail.</p>
+        <div class="tl-scroll" id="viz-tl" data-mn="viz-tl">
+          <div class="tl-inner">
+            <svg class="tl" id="tlsvg" viewBox="0 0 980 244" role="img" aria-label="Frise des douze premiers mois : fondation de M0 à M2, lancement à M3, régime de croisière de M4 à M11, point de décision à M12">
+              <line class="axe" x1="40" y1="160" x2="930" y2="160"/>
+              <path d="M930 160 l-9 -5 v10 z" class="sv-gris"/>
+              <g>
+                <line class="mtick" x1="50" y1="154" x2="50" y2="166"/><text class="mlab" x="50" y="180" text-anchor="middle">M0</text>
+                <line class="mtick" x1="120" y1="156" x2="120" y2="164"/><text class="mlab" x="120" y="180" text-anchor="middle">M1</text>
+                <line class="mtick" x1="190" y1="156" x2="190" y2="164"/><text class="mlab" x="190" y="180" text-anchor="middle">M2</text>
+                <line class="mtick" x1="260" y1="156" x2="260" y2="164"/><text class="mlab" x="260" y="180" text-anchor="middle">M3</text>
+                <line class="mtick" x1="330" y1="156" x2="330" y2="164"/><text class="mlab" x="330" y="180" text-anchor="middle">M4</text>
+                <line class="mtick" x1="400" y1="156" x2="400" y2="164"/><text class="mlab" x="400" y="180" text-anchor="middle">M5</text>
+                <line class="mtick" x1="470" y1="156" x2="470" y2="164"/><text class="mlab" x="470" y="180" text-anchor="middle">M6</text>
+                <line class="mtick" x1="540" y1="156" x2="540" y2="164"/><text class="mlab" x="540" y="180" text-anchor="middle">M7</text>
+                <line class="mtick" x1="610" y1="156" x2="610" y2="164"/><text class="mlab" x="610" y="180" text-anchor="middle">M8</text>
+                <line class="mtick" x1="680" y1="156" x2="680" y2="164"/><text class="mlab" x="680" y="180" text-anchor="middle">M9</text>
+                <line class="mtick" x1="750" y1="156" x2="750" y2="164"/><text class="mlab" x="750" y="180" text-anchor="middle">M10</text>
+                <line class="mtick" x1="820" y1="156" x2="820" y2="164"/><text class="mlab" x="820" y="180" text-anchor="middle">M11</text>
+                <line class="mtick" x1="890" y1="154" x2="890" y2="166"/><text class="mlab" x="890" y="180" text-anchor="middle" font-weight="700">M12</text>
+              </g>
+              <g class="ph p1"><title>Fondation (M0 → M2) : structure juridique, nom et marque, logo, site, dossier CPPAP, charte éditoriale.</title>
+                <rect x="50" y="96" width="140" height="46" rx="9"/>
+                <text x="120" y="115" text-anchor="middle" font-size="12.5" font-weight="800">Fondation</text>
+                <text x="120" y="131" text-anchor="middle" font-size="10" class="sv-gris">structure · marque · site</text>
+              </g>
+              <g class="ph p2"><title>Lancement (M3) : Le Chiffre n°1 + Grande Mesure n°1, campagne de Répliques sur LinkedIn.</title>
+                <rect x="226" y="96" width="68" height="46" rx="9"/>
+                <text x="260" y="115" text-anchor="middle" font-size="12.5" font-weight="800">n°1</text>
+                <text x="260" y="131" text-anchor="middle" font-size="10" class="sv-gris">lancement</text>
+              </g>
+              <g class="ph p3"><title>Régime de croisière (M4 → M11) : une enquête par mois, newsletter bimensuelle, dépôts d'aides, premier partenaire.</title>
+                <rect x="330" y="96" width="490" height="46" rx="9"/>
+                <text x="575" y="115" text-anchor="middle" font-size="12.5" font-weight="800">Régime de croisière</text>
+                <text x="575" y="131" text-anchor="middle" font-size="10" class="sv-gris">1 enquête/mois · newsletter bimensuelle</text>
+              </g>
+              <g class="ph p4"><title>Point de décision (M12) : bilan formel sur les six indicateurs — accélérer, poursuivre ou arrêter proprement.</title>
+                <rect x="856" y="96" width="68" height="46" rx="9"/>
+                <text x="890" y="115" text-anchor="middle" font-size="12.5" font-weight="800">Bilan</text>
+                <text x="890" y="131" text-anchor="middle" font-size="10" class="sv-gris">décision</text>
+              </g>
+              <g class="jalon j1" tabindex="0"><title>M2 — dossier CPPAP déposé : TVA 2,1 % et accès aux aides.</title>
+                <circle cx="190" cy="160" r="7"/>
+                <text class="jlab" x="190" y="200" text-anchor="middle">dossier CPPAP</text>
+                <g class="tip"><rect x="100" y="18" width="200" height="40" rx="7"/><text x="200" y="35" text-anchor="middle">Dossier CPPAP déposé</text><text x="200" y="50" text-anchor="middle" opacity=".8">TVA 2,1&nbsp;% + accès aux aides</text></g>
+              </g>
+              <g class="jalon j2" tabindex="0"><title>M3 — premier numéro : la tribune devient la Grande Mesure n°1.</title>
+                <circle cx="260" cy="160" r="7"/>
+                <text class="jlab" x="260" y="216" text-anchor="middle">premier numéro</text>
+                <g class="tip"><rect x="160" y="18" width="220" height="40" rx="7"/><text x="270" y="35" text-anchor="middle">Le Chiffre n°1 + Grande Mesure n°1</text><text x="270" y="50" text-anchor="middle" opacity=".8">la tribune devient le premier numéro</text></g>
+              </g>
+              <g class="jalon j3" tabindex="0"><title>M5 — dépôt de la bourse presse émergente et du Fonds pour une presse libre.</title>
+                <circle cx="400" cy="160" r="7"/>
+                <text class="jlab" x="400" y="200" text-anchor="middle">dépôt bourse + FPL</text>
+                <g class="tip"><rect x="290" y="18" width="220" height="40" rx="7"/><text x="400" y="35" text-anchor="middle">Dépôt bourse émergente + FPL</text><text x="400" y="50" text-anchor="middle" opacity=".8">chaque aide réduit votre appel de fonds</text></g>
+              </g>
+              <g class="jalon j4" tabindex="0"><title>M7 — premier partenaire institutionnel : sponsoring sobre, zéro conflit d'intérêts.</title>
+                <circle cx="540" cy="160" r="7"/>
+                <text class="jlab" x="540" y="216" text-anchor="middle">1er partenaire</text>
+                <g class="tip"><rect x="430" y="18" width="220" height="40" rx="7"/><text x="540" y="35" text-anchor="middle">Premier partenaire institutionnel</text><text x="540" y="50" text-anchor="middle" opacity=".8">«&nbsp;présenté par&nbsp;», zéro conflit d'intérêts</text></g>
+              </g>
+              <g class="jalon j5" tabindex="0"><title>M9 — première enquête hors du périmètre de la tribune, rubrique Les Flux.</title>
+                <circle cx="680" cy="160" r="7"/>
+                <text class="jlab" x="680" y="200" text-anchor="middle">enquête inédite</text>
+                <g class="tip"><rect x="570" y="18" width="220" height="40" rx="7"/><text x="680" y="35" text-anchor="middle">Enquête inédite «&nbsp;Les Flux&nbsp;»</text><text x="680" y="50" text-anchor="middle" opacity=".8">au-delà du stock de la tribune</text></g>
+              </g>
+              <g class="jalon j6" tabindex="0"><title>M12 — bilan formel sur les six indicateurs : accélérer, poursuivre ou arrêter proprement.</title>
+                <circle cx="890" cy="160" r="8"/>
+                <text class="jlab" x="890" y="216" text-anchor="middle" font-weight="700">bilan — 6 indicateurs</text>
+                <g class="tip"><rect x="700" y="18" width="230" height="40" rx="7"/><text x="815" y="35" text-anchor="middle">Bilan formel — 6 indicateurs</text><text x="815" y="50" text-anchor="middle" opacity=".8">accélérer · poursuivre · arrêter proprement</text></g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="mn cle" data-for="viz-tl"><span class="k">Clé de lecture</span>
+        Trois mois seulement entre le «&nbsp;oui&nbsp;» et le premier numéro&nbsp;: la matière fondatrice (5&nbsp;axes,
+        15&nbsp;graphiques) est déjà produite. L'année&nbsp;1 publie <b>10 grandes enquêtes</b> (5 rééditions
+        enrichies + 5 inédites) et <b>22 numéros</b> du Chiffre.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 5 · CHARTE ====================== -->
+<section id="identite">
+  <div class="wrap">
+    <div class="cols">
+      <div class="main">
+        <div class="numchip"><span class="n">5</span><span class="l">Identité visuelle</span></div>
+        <h2>Trois chartes — la page que vous lisez est l'essayage</h2>
+        <p class="chapo">La charte de la tribune était celle d'un document de preuve. Un média a besoin
+        d'une peau — humaniste, cultivée, dessinée&nbsp;; ni «&nbsp;tech&nbsp;», ni enfantine. <b>Chaque carte applique
+        sa charte à la page entière en un clic</b>, maquettes comprises&nbsp;; votre choix devient la version finale.</p>
+      </div>
+      <aside class="margin">
+        <div class="mn cle" data-for="identite"><span class="k">Et la charte de la tribune&nbsp;?</span>
+        Elle ne disparaît pas&nbsp;: elle reste la <b>charte des données</b> — une couleur par pays, source datée
+        et clé de lecture sous chaque graphique. La charte du média habille le reste&nbsp;: titres, marges,
+        décor. Les trois directions respectent le contraste WCAG&nbsp;AA.</div>
+      </aside>
+    </div>
+
+    <div class="variantes" id="variantes">
+      <div class="variante" data-v="A">
+        <div class="vhero">
+          <div class="vkick">La Grande Mesure · n°1</div>
+          <div class="vtitre">La <em>Mesure</em></div>
+          <svg width="150" height="9" viewBox="0 0 150 9" aria-hidden="true"><path d="M2 6 C 26 1, 50 8, 76 5 S 126 2, 148 5" fill="none" stroke="#6B2D5E" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></svg>
+          <div class="vsub">Compter ce qui compte — l'encre posée, le filet à la plume.</div>
+        </div>
+        <div class="vmeta">
+          <b>A · Lavis &amp; encre.</b> Ivoire chaud, aubergine profonde, titres Playfair Display, texture
+          papier discrète. L'esprit&nbsp;: une revue de bibliothèque, l'autorité douce de l'imprimé.
+          <div class="vsw" aria-hidden="true"><i style="background:#F7F3EB"></i><i style="background:#26211B"></i><i style="background:#6B2D5E"></i><i style="background:#8C6A3F"></i></div>
+        </div>
+        <button class="vapply" data-v="A">Appliquer à toute la page</button>
+      </div>
+      <div class="variante" data-v="B">
+        <div class="vhero">
+          <svg style="position:absolute;top:-14px;right:-18px;width:130px;opacity:.5" viewBox="0 0 120 120" aria-hidden="true"><defs><filter id="vb1"><feGaussianBlur stdDeviation="9"/></filter></defs><path filter="url(#vb1)" fill="#C4603A" opacity=".5" d="M60 14c22-8 48 6 52 28s-16 42-40 48-50-6-54-30 20-38 42-46z"/></svg>
+          <div class="vkick">La Grande Mesure · n°1</div>
+          <div class="vtitre">La <em>Mesure</em></div>
+          <svg width="120" height="12" viewBox="0 0 120 12" aria-hidden="true"><ellipse cx="34" cy="6" rx="34" ry="4.6" fill="#C4603A" opacity=".4"/><ellipse cx="82" cy="7" rx="26" ry="3.6" fill="#1C3F6E" opacity=".3"/></svg>
+          <div class="vsub">Compter ce qui compte — le lavis, la lumière d'atelier.</div>
+        </div>
+        <div class="vmeta">
+          <b>B · Aquarelle éditoriale.</b> Crème, bleu prussien et terracotta, titres DM Serif Display,
+          taches de couleur en décor de section. L'esprit&nbsp;: l'éditorial dessiné, quelque part entre
+          l'estampe et la rive de Seine.
+          <div class="vsw" aria-hidden="true"><i style="background:#FBF5E6"></i><i style="background:#1F2733"></i><i style="background:#1C3F6E"></i><i style="background:#C4603A"></i></div>
+        </div>
+        <button class="vapply" data-v="B">Appliquer à toute la page</button>
+      </div>
+      <div class="variante" data-v="C">
+        <div class="vhero">
+          <div class="vkick"><span style="display:inline-block;width:20px;height:9px;background:#D4892A;margin-right:8px"></span>La Grande Mesure · n°1</div>
+          <div class="vtitre">La <em>Mesure</em></div>
+          <div class="vsub">Compter ce qui compte — la manchette, le trait gravé.</div>
+        </div>
+        <div class="vmeta">
+          <b>C · Gravure moderne.</b> Blanc cassé, encre noire, ocre vif en seul accent, titres Cormorant
+          Garamond serrés, filets épais. L'esprit&nbsp;: la gravure de presse du XIX<sup>e</sup>, réveillée.
+          <div class="vsw" aria-hidden="true"><i style="background:#F9F6F0"></i><i style="background:#111111"></i><i style="background:#D4892A"></i><i style="background:#8A5410"></i></div>
+        </div>
+        <button class="vapply" data-v="C">Appliquer à toute la page</button>
+      </div>
+    </div>
+
+    <h3>La palette appliquée — cliquez une couleur pour copier son code</h3>
+    <div class="swatches" id="sw-charte" aria-label="Palette de la charte sélectionnée"></div>
+    <h3 style="font-size:17px">La palette-données, invariante quelle que soit la charte</h3>
+    <p class="note" style="max-width:700px">Une couleur par pays sur tous les graphiques — le lecteur fidèle lit
+    les courbes sans légende. C'est la règle des 15 graphiques déjà livrés&nbsp;; elle survit au changement d'habillage.</p>
+    <div class="swatches" id="sw-data" aria-label="Palette des données par pays"></div>
+
+    <h3>Le média tel qu'il paraîtrait — trois planches (elles suivent votre choix de charte)</h3>
+    <div class="gal" aria-label="Galerie des maquettes : page d'accueil, article mobile, newsletter">
+      <!-- Planche 1 : homepage -->
+      <div class="planche">
+        <div class="ptit">Planche 1 — la page d'accueil (web)</div>
+        <div class="browser mq">
+          <div class="bbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="burl">lamesure.fr</span></div>
+          <div class="mast">
+            <div><span class="logo">La <span>Mesure</span></span></div>
+            <div class="bl">Compter ce qui compte</div>
+          </div>
+          <div class="rub"><b>À la une</b><span>Bien-être &amp; PIB</span><span>Les Limites</span><span>Les Flux</span><span>L'Union</span><span>Données</span></div>
+          <div class="body">
+            <div class="hp2col">
+              <div>
+                <span class="tag">La Grande Mesure · n°1</span>
+                <h5>Plus riches, pas plus heureux&nbsp;: cinquante ans d'un paradoxe américain</h5>
+                <div class="ssub">Depuis 1970, le PIB par habitant des États-Unis a plus que doublé. Le bonheur déclaré n'a pas bougé. Enquête en données sur le paradoxe d'Easterlin.</div>
+                <div class="chart">
+                  <svg viewBox="0 0 360 150" width="100%" role="img" aria-label="Maquette : PIB en hausse, bonheur stable">
+                    <line x1="34" y1="20" x2="350" y2="20" stroke="#E2DED7" stroke-width="1"/>
+                    <line x1="34" y1="60" x2="350" y2="60" stroke="#E2DED7" stroke-width="1"/>
+                    <line x1="34" y1="100" x2="350" y2="100" stroke="#E2DED7" stroke-width="1"/>
+                    <line x1="34" y1="130" x2="350" y2="130" stroke="#B5AFA4" stroke-width="1.2"/>
+                    <polyline points="34,126 90,114 146,98 202,78 258,56 314,38 348,28" fill="none" stroke="#9C2B2E" stroke-width="2.6"/>
+                    <polyline points="34,96 90,97 146,95 202,99 258,98 314,101 348,100" fill="none" stroke="#595959" stroke-width="2"/>
+                    <text x="200" y="40" font-size="10" fill="#9C2B2E" font-weight="bold">PIB/habitant (réel, ×2,3)</text>
+                    <text x="232" y="116" font-size="10" fill="#595959">Bonheur déclaré (stable)</text>
+                    <text x="34" y="146" font-size="9" fill="#595959">1970</text>
+                    <text x="330" y="146" font-size="9" fill="#595959">2024</text>
+                  </svg>
+                  <div class="csrc"><b>Source&nbsp;:</b> Banque mondiale (WDI) · General Social Survey (NORC), extraction 06/06/2026.
+                  <b>Clé de lecture&nbsp;:</b> la richesse par tête a plus que doublé&nbsp;; le bonheur déclaré est resté stable. <i>(maquette — graphique réel livré dans la tribune)</i></div>
+                </div>
+              </div>
+              <div>
+                <div class="edito">
+                  <span class="tag">L'édito</span>
+                  <p style="font-family:var(--font-titre);font-style:italic">«&nbsp;Nous savons compter l'argent
+                  au centime près. Le vivant, le temps, le lien — beaucoup moins. Ce journal apprend à
+                  compter ce qui compte.&nbsp;»</p>
+                  <div class="sig">— P.&nbsp;Z., éditorialiste-fondateur <span style="font-style:normal">(votre signature)</span></div>
+                </div>
+                <div class="teasers">
+                  <div class="t"><span class="tag">Les Flux</span><b>Le mirage liquide, vérifié&nbsp;: où part l'épargne des Européens&nbsp;?</b>La «&nbsp;de-equitisation&nbsp;» mesurée&nbsp;: introductions, rachats, retraits de cote — les flux plutôt que les récits.</div>
+                  <div class="t"><span class="tag">Données ouvertes</span><b>Téléchargez les bases de l'enquête</b>Excel + CSV documentés, sources et méthode incluses.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Planche 2 : article mobile -->
+      <div class="planche" style="justify-self:center;width:min(88vw,360px)">
+        <div class="ptit">Planche 2 — l'article (mobile)</div>
+        <div class="phone mq">
+          <div class="mast" style="padding:10px 14px 8px"><span class="logo" style="font-size:18px">La <span>Mesure</span></span><span class="bl" style="font-size:8.5px">≡</span></div>
+          <div class="body" style="padding:14px">
+            <span class="tag">La Grande Mesure · juillet</span>
+            <h5 style="font-size:17px">Le bonheur à crédit&nbsp;: qui paiera les 214&nbsp;% du Japon&nbsp;?</h5>
+            <div class="ssub" style="font-size:11px">Vieillir heureux en empruntant sur ses petits-enfants&nbsp;: le laboratoire japonais — et ce qu'il annonce pour la France.</div>
+            <div class="ssub" style="font-size:10px;border-top:1px solid var(--grille);padding-top:6px">Par la rédaction · 12 juillet 2026 · 9&nbsp;min · <span style="color:var(--accent-ink);font-weight:700">données ↓</span></div>
+            <div class="chart">
+              <svg viewBox="0 0 280 150" width="100%" role="img" aria-label="Maquette : dette publique en pourcentage du PIB, Japon 214, Italie 135, États-Unis 122, France 113, Allemagne 63">
+                <text x="4" y="12" font-size="9.5" fill="#1A1A1A" font-weight="bold">Dette publique, %&nbsp;du PIB (2025)</text>
+                <g font-size="9.5">
+                  <text x="4" y="36" fill="#1A1A1A">Japon</text><rect x="58" y="27" width="196" height="12" fill="#6E5A8C"/><text x="258" y="36" fill="#1A1A1A" font-weight="bold">214</text>
+                  <text x="4" y="58" fill="#1A1A1A">Italie</text><rect x="58" y="49" width="124" height="12" fill="#4E7A5A"/><text x="186" y="58" fill="#595959">135</text>
+                  <text x="4" y="80" fill="#1A1A1A">É.-Unis</text><rect x="58" y="71" width="112" height="12" fill="#9C2B2E"/><text x="174" y="80" fill="#595959">122</text>
+                  <text x="4" y="102" fill="#1A1A1A">France</text><rect x="58" y="93" width="104" height="12" fill="#2E5E8C"/><text x="166" y="102" fill="#595959">113</text>
+                  <text x="4" y="124" fill="#1A1A1A">Allemagne</text><rect x="58" y="115" width="58" height="12" fill="#C28F2C"/><text x="120" y="124" fill="#595959">63</text>
+                </g>
+                <text x="4" y="144" font-size="8" fill="#595959">Maquette — ordres de grandeur FMI (WEO), tribune PZ-0626.</text>
+              </svg>
+              <div class="csrc"><b>Source&nbsp;:</b> FMI, WEO — extraction 06/06/2026. <b>Clé de lecture&nbsp;:</b> la dette japonaise représente plus de deux années entières de production du pays.</div>
+            </div>
+            <p>Le Japon est l'angle mort du débat français sur la dette&nbsp;: un pays vieillissant, heureux dans les enquêtes, et endetté comme aucun autre…</p>
+            <div class="meth"><b>Méthode &amp; données.</b> Sources primaires citées, extraction datée, données téléchargeables, code de collecte public. Signalez une erreur&nbsp;: elle sera corrigée et documentée.</div>
+            <a class="cta" href="#" onclick="return false">Recevoir «&nbsp;Le Chiffre&nbsp;» — gratuit</a>
+          </div>
+        </div>
+      </div>
+      <!-- Planche 3 : newsletter -->
+      <div class="planche">
+        <div class="ptit">Planche 3 — la newsletter «&nbsp;Le Chiffre&nbsp;»</div>
+        <div class="email mq">
+          <div class="ehead">De&nbsp;: <b>La Mesure &lt;bonjour@lamesure.fr&gt;</b><br>Objet&nbsp;: <b>Le Chiffre #12 — 120,9 habitants au km², le vrai prix du vide</b></div>
+          <div class="body">
+            <div class="mast" style="padding:4px 0 10px;margin-bottom:12px"><span class="logo" style="font-size:20px">Le <span>Chiffre</span></span><span class="bl" style="font-size:9px">par La Mesure · n°12</span></div>
+            <div class="edito" style="margin-bottom:12px">
+              <p style="font-family:var(--font-titre);font-style:italic">«&nbsp;La France n'est pas un pays trop cher&nbsp;: c'est un pays trop grand pour son nombre d'habitants. Toute notre dépense publique découle de cette phrase.&nbsp;»</p>
+              <div class="sig">— P.&nbsp;Z.</div>
+            </div>
+            <span class="tag">Le graphique</span>
+            <div class="chart" style="margin-top:6px">
+              <svg viewBox="0 0 360 120" width="100%" role="img" aria-label="Maquette : densité de population, France métropolitaine 121, Allemagne 236, Pays-Bas 507 habitants par kilomètre carré">
+                <text x="4" y="13" font-size="10" fill="#1A1A1A" font-weight="bold">Habitants par km² (2024)</text>
+                <g font-size="10">
+                  <text x="4" y="40" fill="#1A1A1A">France métrop.</text><rect x="104" y="30" width="58" height="14" fill="#2E5E8C"/><text x="168" y="41" fill="#1A1A1A" font-weight="bold">121</text>
+                  <text x="4" y="68" fill="#1A1A1A">Allemagne</text><rect x="104" y="58" width="113" height="14" fill="#C28F2C"/><text x="222" y="69" fill="#595959">236</text>
+                  <text x="4" y="96" fill="#1A1A1A">Pays-Bas</text><rect x="104" y="86" width="243" height="14" fill="#2E7D5B"/><text x="318" y="97" fill="#1A1A1A" font-weight="bold">507</text>
+                </g>
+                <text x="4" y="114" font-size="8" fill="#595959">Maquette — Eurostat (demo_r_d3dens, NUTS3), tribune PZ-0626, extraction 06/06/2026.</text>
+              </svg>
+              <div class="csrc"><b>Clé de lecture&nbsp;:</b> à services publics comparables, la France doit mailler un territoire 2 à 4 fois moins dense — écoles, gendarmeries, routes.</div>
+            </div>
+            <span class="tag" style="display:block;margin-top:12px">Trois chiffres vérifiés</span>
+            <div class="teasers" style="margin-top:6px">
+              <div class="t"><b>2018</b> — l'année où le Bhoutan, inventeur du «&nbsp;Bonheur national brut&nbsp;», est sorti du sondage mondial Gallup qui mesure… le bonheur.</div>
+              <div class="t"><b>−74&nbsp;%</b> — la corrélation entre densité et nombre d'écoles par habitant dans les 96 départements&nbsp;: le vide se paie en équipements (r&nbsp;≈&nbsp;−0,74).</div>
+              <div class="t"><b>56,9&nbsp;%</b> — la dépense publique française en part du PIB. En euros par habitant, les Pays-Bas dépensent pourtant davantage. Question de dénominateur.</div>
+            </div>
+            <a class="cta" href="#" onclick="return false">Soutenir La Mesure — 60&nbsp;€/an</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="max-width:760px">Maquettes d'intention&nbsp;: les graphiques reprennent les chiffres réels
+    de la tribune (mention «&nbsp;maquette&nbsp;» portée sur chacun)&nbsp;; logo et police de titrage définitifs seront
+    créés en phase de fondation, dans la charte que vous aurez choisie.</p>
+  </div>
+</section>
+
+<!-- ====================== DÉCISION ====================== -->
+<section id="decision">
+  <div class="wrap">
+    <div class="cols">
+      <div class="main">
+        <div class="numchip"><span class="l">Votre décision</span></div>
+        <h2>Ce que finance votre «&nbsp;oui&nbsp;»</h2>
+        <p class="chapo">Un engagement borné, un calendrier court, des indicateurs de sortie écrits d'avance —
+        et trois façons de répondre. Cliquez une option pour la mettre en regard des autres.</p>
+
+        <div class="decide" id="budget" data-mn="budget">
+          <h3 style="margin-top:0">L'année 1 en clair&nbsp;: 85&nbsp;k€ de budget, 75&nbsp;k€ garantis par vous</h3>
+          <div class="budgetbar" role="img" aria-label="Budget de l'année 1 : 65 mille euros de fonctionnement et 20 mille euros de lancement">
+            <div class="b1" style="width:76.5%">65&nbsp;k€<small>fonctionnement — palier artisanal</small></div>
+            <div class="b2" style="width:23.5%">20&nbsp;k€<small>lancement (une fois)</small></div>
+          </div>
+          <p class="note">Fonctionnement&nbsp;: rédaction données, pigistes, outils, hébergement, comptabilité.
+          Lancement&nbsp;: logo et police de titrage, structure juridique, marque et domaine, site, dossier CPPAP,
+          soirée de lancement.</p>
+          <details>
+            <summary>Pourquoi «&nbsp;probablement moins&nbsp;» que 75&nbsp;k€</summary>
+            <div class="dbody"><p>Les abonnements de l'année&nbsp;1 (~10&nbsp;k€ en prudent) viennent en déduction.
+            Chaque aide obtenue réduit l'appel de fonds&nbsp;: la seule bourse presse émergente (jusqu'à 50&nbsp;k€)
+            le ramènerait à ~25&nbsp;k€ — mais les aides ne sont <b>pas garanties</b>&nbsp;: le budget tient sans elles.
+            Enfin, un versement en mécénat défiscalisé (66&nbsp;%) est possible si la structure d'intérêt général
+            est retenue — coût net très inférieur.</p>
+            <p><b>Ce que l'année&nbsp;1 produit&nbsp;:</b> 10 grandes enquêtes (5 axes réédités et enrichis + 5 inédites),
+            22 numéros du Chiffre, le site et sa base de données ouvertes, la reconnaissance CPPAP engagée,
+            une communauté mesurée chaque mois — et à M12, un bilan chiffré sur six indicateurs.</p></div>
+          </details>
+        </div>
+
+        <div class="cmp" id="options" data-mn="options">
+          <button class="copt best" type="button">
+            <span class="pill r">Recommandé</span>
+            <h4>«&nbsp;Oui&nbsp;» — lancement</h4>
+            <div class="prix">85&nbsp;k€ <small>· 75&nbsp;k€ garantis, moins si aides</small></div>
+            <div class="rows">
+              <div class="r"><span>Première parution</span><b>M3</b></div>
+              <div class="r"><span>Engagement</span><b>12 mois, plafonné</b></div>
+              <div class="r"><span>Vous obtenez</span><b>10 enquêtes + 22 newsletters, marque, données, liste — à vous</b></div>
+              <div class="r"><span>Porte de sortie</span><b>bilan M12 sur 6 seuils</b></div>
+            </div>
+          </button>
+          <button class="copt" type="button">
+            <h4>«&nbsp;Oui, mais&nbsp;» — pilote 6 mois</h4>
+            <div class="prix">35&nbsp;k€ <small>· tout compris</small></div>
+            <div class="rows">
+              <div class="r"><span>Première parution</span><b>6 semaines</b></div>
+              <div class="r"><span>Engagement</span><b>6 mois, sans structure lourde</b></div>
+              <div class="r"><span>Vous obtenez</span><b>3 enquêtes + 12 newsletters, acquisition et conversion mesurées en réel</b></div>
+              <div class="r"><span>Porte de sortie</span><b>décision sur vos chiffres</b></div>
+            </div>
+          </button>
+          <button class="copt" type="button">
+            <h4>«&nbsp;Non, pas maintenant&nbsp;»</h4>
+            <div class="prix">0&nbsp;€</div>
+            <div class="rows">
+              <div class="r"><span>Première parution</span><b>—</b></div>
+              <div class="r"><span>Engagement</span><b>aucun</b></div>
+              <div class="r"><span>Vous obtenez</span><b>la tribune reste livrée, publiable, réutilisable</b></div>
+              <div class="r"><span>Porte de sortie</span><b>réouvrable dans un an, sans rien perdre</b></div>
+            </div>
+          </button>
+        </div>
+
+        <h3>Les risques, sans fard</h3>
+        <div class="risq" id="risques" data-mn="risques">
+          <div class="card">
+            <div class="rtit"><svg width="26" height="26" viewBox="0 0 26 26" role="img" aria-label="Icône marché plat"><path d="M3 19 h20 M3 19 C8 19 9 13 13 13 s5 6 10 6" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg>Le marché payant stagne</div>
+            <p class="note">11&nbsp;% de payeurs en France, stable depuis 2022<sup class="sn" id="snref-1c" data-sn="sn1"><a href="#src1">1</a></sup>.</p>
+            <div class="rrep"><b>Réponse</b> — point mort très bas (160 payants à M12), quatre piliers de
+            revenus, année&nbsp;1 financée sans hypothèse héroïque.</div>
+          </div>
+          <div class="card">
+            <div class="rtit"><svg width="26" height="26" viewBox="0 0 26 26" role="img" aria-label="Icône dépendance à une personne"><circle cx="13" cy="8" r="4.5" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M4 23 c0-5.5 4-8.5 9-8.5 s9 3 9 8.5" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg>La dépendance à votre nom</div>
+            <p class="note">L'acquisition repose d'abord sur votre audience.</p>
+            <div class="rrep"><b>Réponse</b> — transfert progressif vers la marque (compte propre, signatures
+            invitées, reprises presse), mesuré par la part d'inscrits ne venant pas de vos posts.</div>
+          </div>
+          <div class="card">
+            <div class="rtit"><svg width="26" height="26" viewBox="0 0 26 26" role="img" aria-label="Icône horloge"><circle cx="13" cy="13" r="10" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M13 7 v6 l4.5 3" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg>Les aides arrivent tard, ou pas</div>
+            <p class="note">CPPAP puis fonds publics ont leurs délais et leurs aléas.</p>
+            <div class="rrep"><b>Réponse</b> — le budget année&nbsp;1 est garanti sans aucune aide&nbsp;; chaque aide
+            obtenue est un bonus qui réduit votre appel de fonds ou finance l'accélération.</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:28px">Vous ne financez pas une promesse d'audience. Vous donnez une
+        rédaction à une voix qui a déjà ses lecteurs — avec un plafond de dépense connu, des indicateurs de
+        sortie écrits d'avance, et un créneau que personne n'occupe en français.</blockquote>
+      </div>
+      <aside class="margin">
+        <div class="mn cle" data-for="budget"><span class="k">Clé de lecture</span>
+        L'engagement réel est <b>75&nbsp;k€ garantis</b> (85&nbsp;k€ moins ~10&nbsp;k€ d'abonnements attendus),
+        et chaque aide obtenue le réduit — détail dans le volet dépliable.</div>
+        <div class="mn cle" data-for="options"><span class="k">Comment lire</span>
+        Les trois options sont réversibles et compatibles&nbsp;: un pilote réussi devient un lancement&nbsp;;
+        un «&nbsp;non&nbsp;» d'aujourd'hui n'abîme rien — la chaîne de production est documentée.</div>
+        <div class="mn" data-for="risques"><b>Le risque qui n'est pas listé.</b> Ne rien faire a aussi un
+        coût&nbsp;: votre newsletter continuera de paraître — mais en location, sur une plateforme qui garde
+        la liste d'adresses et dont l'algorithme règle la portée.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+  <div class="wrap">
+    <h3>Sources &amp; méthodologie de cette proposition</h3>
+    <p>Chiffres vérifiés au 7 juin 2026. Les données déclaratives (revendiquées par les médias eux-mêmes, non
+    certifiées) sont signalées. Les projections sont des hypothèses de travail explicites, pas des engagements.
+    Les notes numérotées s'affichent en marge à l'écran large, au tap sur mobile — liens complets ci-dessous.</p>
+    <p id="src1"><sup>1</sup>&nbsp;Reuters Institute, <a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/france" target="_blank" rel="noopener">Digital News Report 2025 — France</a> (11&nbsp;% de payeurs&nbsp;; 2&nbsp;abonnements en moyenne chez les payeurs).</p>
+    <p id="src2"><sup>2</sup>&nbsp;LinkedIn France&nbsp;: «&nbsp;37&nbsp;M+ membres&nbsp;» (<a href="https://www.blogdumoderateur.com/chiffres-linkedin/" target="_blank" rel="noopener">déclaratif LinkedIn, 2025-26</a>)&nbsp;; 16,5&nbsp;M de visiteurs uniques mensuels (<a href="https://www.xavierdegraux.be/vrais-chiffres-linkedin-france-arcom/" target="_blank" rel="noopener">Arcom, 2025</a>).</p>
+    <p id="src3"><sup>3</sup>&nbsp;<a href="https://www.insee.fr/fr/statistiques/8173452" target="_blank" rel="noopener">INSEE Focus n°324</a> (cadres et professions intellectuelles supérieures&nbsp;: 21,7&nbsp;% de l'emploi, 2022).</p>
+    <p id="src4"><sup>4</sup>&nbsp;<a href="https://www.acpm.fr/Support/alternatives-economiques" target="_blank" rel="noopener">ACPM — Alternatives Économiques</a> (diffusion payée 2025&nbsp;; audience OneNext 2026)&nbsp;; <a href="https://www.acpm.fr/les-membres/support/3274132475-1-1/les-echos" target="_blank" rel="noopener">ACPM — Les Échos</a>.</p>
+    <p id="src5"><sup>5</sup>&nbsp;<a href="https://www.culture.gouv.fr/catalogue-des-demarches-et-subventions/appels-a-projets-candidatures/bourse-pour-les-entreprises-de-presse-emergentes" target="_blank" rel="noopener">Bourse presse émergente (ministère de la Culture)</a>&nbsp;; <a href="https://www.culture.gouv.fr/thematiques/presse-ecrite/liste-des-aides-a-la-presse-et-des-appels-a-projets/1.-presentation-du-fonds-strategique-pour-le-developpement-de-la-presse" target="_blank" rel="noopener">FSDP</a>&nbsp;; <a href="https://www.culture.gouv.fr/catalogue-des-demarches-et-subventions/subvention/aide-au-pluralisme-des-services-de-presse-tout-en-ligne-sptel" target="_blank" rel="noopener">aide au pluralisme en ligne</a>&nbsp;; <a href="https://www.cppap.fr/services-de-presse-en-ligne/" target="_blank" rel="noopener">CPPAP</a>&nbsp;; <a href="https://fondspresselibre.org/appels-a-projets-du-fpl/lappel-a-projets-2026" target="_blank" rel="noopener">Fonds pour une presse libre</a>&nbsp;; <a href="https://www.journalismfund.eu/european-cross-border-grants" target="_blank" rel="noopener">Journalismfund Europe</a>.</p>
+    <p id="src6"><sup>6</sup>&nbsp;<a href="https://www.beehiiv.com/blog/the-state-of-newsletters-2026" target="_blank" rel="noopener">beehiiv, State of Newsletters 2026</a> (ouverture moyenne 41&nbsp;%)&nbsp;; <a href="https://simonowens.substack.com/p/whats-a-realistic-conversion-rate" target="_blank" rel="noopener">S.&nbsp;Owens — taux de conversion réalistes (~5&nbsp;%)</a>&nbsp;; <a href="https://www.kessel.media/faq" target="_blank" rel="noopener">Kessel</a> (10-15&nbsp;%, déclaratif).</p>
+    <p id="src0"><sup>*</sup>&nbsp;Nom «&nbsp;La Mesure&nbsp;»&nbsp;: disponibilité du domaine et recherche d'antériorité de marque à valider avant lancement (prévu au budget, phase de fondation).</p>
+    <p>Compteurs d'audience du commanditaire&nbsp;: profil LinkedIn (49&nbsp;663 abonnés) et newsletter hebdomadaire
+    «&nbsp;My Views&nbsp;» (7&nbsp;489 abonnés, 6 numéros), relevés le 07/06/2026.</p>
+    <p>Autres comparables&nbsp;: <a href="https://fr.wikipedia.org/wiki/Brief.me" target="_blank" rel="noopener">Brief.me, 12&nbsp;000 abonnés en 2020 (mind Media)</a>&nbsp;·
+    <a href="https://fr.wikipedia.org/wiki/Les_Jours" target="_blank" rel="noopener">Les Jours, ~10&nbsp;000 abonnés (Le Monde, 2024)</a>&nbsp;·
+    <a href="https://legrandcontinent.eu/fr/offre-abonnement/" target="_blank" rel="noopener">Le Grand Continent — offre</a>&nbsp;·
+    <a href="https://theconversation.com/fr/gouvernance" target="_blank" rel="noopener">The Conversation France — gouvernance</a>&nbsp;·
+    <a href="https://media.snowball.xyz/" target="_blank" rel="noopener">Snowball</a>&nbsp;·
+    <a href="https://ourworldindata.org/top-of-the-charts-2025" target="_blank" rel="noopener">Our World in Data</a>&nbsp;·
+    <a href="https://www.arcom.fr/se-documenter/etudes-et-donnees/etudes-bilans-et-rapports-de-larcom/les-francais-et-linformation-2eme-edition" target="_blank" rel="noopener">Arcom, «&nbsp;Les Français et l'information&nbsp;», 2026</a>.</p>
+    <p>Repère académique&nbsp;: J.&nbsp;Duval, <i>Critique de la raison journalistique — les transformations de la presse
+    économique en France</i> (Seuil, 2004)&nbsp;; catalogue de la <a href="https://www.bis-sorbonne.fr/" target="_blank" rel="noopener">Bibliothèque
+    interuniversitaire de la Sorbonne</a> consulté — les bases sous abonnement n'étant pas citables publiquement ici.</p>
+    <p style="margin-top:14px">Proposition préparée par <b>Sacha Zaouati</b> · sacha.zaouati@etu.sorbonne-universite.fr ·
+    composée avec la chaîne de fabrication de la tribune, dans la charte que vous sélectionnez ci-dessus (choix mémorisé) ·
+    <a href="https://szaouati.github.io/tribune-pz-0626/" target="_blank" rel="noopener">revoir la tribune livrée</a>.</p>
+  </div>
+</footer>
+
+<!-- sélecteur flottant de charte -->
+<div class="fab" role="radiogroup" aria-label="Changer de charte graphique">
+  <span class="flbl">Charte</span>
+  <button data-v="A" aria-pressed="true" aria-label="Charte A — Lavis et encre">A</button>
+  <button data-v="B" aria-pressed="false" aria-label="Charte B — Aquarelle éditoriale">B</button>
+  <button data-v="C" aria-pressed="false" aria-label="Charte C — Gravure moderne">C</button>
+</div>
+<div id="snpop" role="note"></div>
+
+<script>
+(function(){
+"use strict";
+var doc=document;
+function $(s,c){return (c||doc).querySelector(s)}
+function $$(s,c){return Array.prototype.slice.call((c||doc).querySelectorAll(s))}
+
+/* ════════ format français ════════ */
+var NBSP=" ";
+function fmtInt(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,NBSP)}
+function fmtK(n){return fmtInt(Math.round(n/1000))+NBSP+"k€"}
+
+/* ════════ chartes ════════ */
+var PALETTES={
+  A:[["Ivoire chaud","#F7F3EB","fond"],["Carte","#FFFEFA","cartes"],["Encre","#26211B","texte"],["Taupe","#6A5F52","texte second"],["Aubergine","#6B2D5E","accent"],["Bronze","#8C6A3F","accent second"]],
+  B:[["Crème","#FBF5E6","fond"],["Carte","#FFFDF4","cartes"],["Encre bleutée","#1F2733","texte"],["Gris bleu","#5D6573","texte second"],["Bleu prussien","#1C3F6E","accent"],["Terracotta","#C4603A","accent chaud"]],
+  C:[["Blanc cassé","#F9F6F0","fond"],["Blanc","#FFFFFF","cartes"],["Encre noire","#111111","texte"],["Gris pierre","#4A4742","texte second"],["Ocre vif","#D4892A","accent unique"],["Ocre foncé","#8A5410","accent texte"]]
+};
+var DATAPAL=[["États-Unis","#9C2B2E"],["France · UE","#2E5E8C"],["Allemagne","#C28F2C"],["Pays-Bas","#2E7D5B"],["Japon","#6E5A8C"],["Gris référence","#595959"]];
+
+function swatchHTML(nom,hex,usage){
+  return '<button class="sw" type="button" data-hex="'+hex+'" aria-label="Copier le code '+hex+' ('+nom+')">'+
+    '<span class="c" style="background:'+hex+';border-bottom:1px solid var(--grille)"></span>'+
+    '<span class="t"><b>'+nom+'</b>'+hex+(usage?' · '+usage:'')+'</span>'+
+    '<span class="copied">copié ✓</span></button>';
+}
+function buildSwatches(v){
+  var el=$('#sw-charte');
+  if(el){el.innerHTML=PALETTES[v].map(function(s){return swatchHTML(s[0],s[1],s[2])}).join('')}
+  var d=$('#sw-data');
+  if(d&&!d.dataset.built){d.innerHTML=DATAPAL.map(function(s){return swatchHTML(s[0],s[1],'')}).join('');d.dataset.built='1'}
+}
+function copyTxt(t,done){
+  function fallback(){
+    var ta=doc.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
+    doc.body.appendChild(ta);ta.select();
+    try{doc.execCommand('copy')}catch(e){}
+    doc.body.removeChild(ta);done();
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(done,fallback);
+  }else{fallback()}
+}
+doc.addEventListener('click',function(ev){
+  var sw=ev.target.closest?ev.target.closest('.sw'):null;
+  if(!sw)return;
+  copyTxt(sw.getAttribute('data-hex'),function(){
+    sw.classList.add('ok');
+    setTimeout(function(){sw.classList.remove('ok')},1300);
+  });
+});
+
+var CHLABELS={A:'A · Lavis & encre',B:'B · Aquarelle éditoriale',C:'C · Gravure moderne'};
+function applyCharte(v){
+  if(!PALETTES[v])v='A';
+  doc.documentElement.setAttribute('data-charte',v);
+  $$('.cbtn,.fab button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-v')===v))});
+  $$('.variante').forEach(function(card){
+    var on=card.getAttribute('data-v')===v;
+    card.classList.toggle('active',on);
+    var btn=$('.vapply',card);
+    if(btn){btn.textContent=on?'Charte appliquée ✓':'Appliquer à toute la page'}
+  });
+  buildSwatches(v);
+  try{localStorage.setItem('pz_charte',v)}catch(e){}
+  setTimeout(layoutNotes,80);
+  setTimeout(layoutNotes,500); /* après chargement de la police */
+}
+$$('.cbtn,.fab button,.vapply').forEach(function(b){
+  b.addEventListener('click',function(){applyCharte(this.getAttribute('data-v'))});
+});
+
+/* ════════ sidenotes : alignement + révélation ════════ */
+function layoutNotes(){
+  $$('.cols').forEach(function(col){
+    var aside=$('.margin',col);
+    if(!aside)return;
+    if(getComputedStyle(aside).display==='none')return;
+    var aTop=aside.getBoundingClientRect().top;
+    var cursor=0;
+    $$('.mn',aside).forEach(function(n){
+      var key=n.getAttribute('data-for');
+      var ref=key?doc.getElementById(key):null;
+      var y=0;
+      if(ref){y=ref.getBoundingClientRect().top-aTop}
+      if(y<cursor)y=cursor;
+      n.style.top=y+'px';
+      cursor=y+n.offsetHeight+18;
+    });
+    aside.style.minHeight=cursor+'px';
+  });
+}
+var rT;
+window.addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(layoutNotes,150)});
+window.addEventListener('load',layoutNotes);
+if(doc.fonts&&doc.fonts.ready){doc.fonts.ready.then(function(){layoutNotes()})}
+$$('details').forEach(function(d){d.addEventListener('toggle',function(){setTimeout(layoutNotes,30)})});
+
+(function(){
+  var targets={};
+  $$('.mn[data-for]').forEach(function(n){
+    var el=doc.getElementById(n.getAttribute('data-for'));
+    if(el)targets[n.getAttribute('data-for')]=el;
+  });
+  function revealAll(){$$('.mn').forEach(function(n){n.classList.add('on')})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          var id=e.target.id;
+          $$('.mn[data-for="'+id+'"]').forEach(function(n){n.classList.add('on')});
+          io.unobserve(e.target);
+        }
+      });
+    },{rootMargin:'0px 0px -6% 0px'});
+    Object.keys(targets).forEach(function(k){io.observe(targets[k])});
+  }else{revealAll()}
+})();
+
+/* ════════ popover de note (mobile/tablette) ════════ */
+var snMap={};
+$$('.mn').forEach(function(n){
+  var sn=n.getAttribute('data-sn');
+  if(!sn){
+    var key=n.getAttribute('data-for');
+    var ref=key?doc.getElementById(key):null;
+    if(ref&&ref.getAttribute)sn=ref.getAttribute('data-sn');
+  }
+  if(sn&&!snMap[sn])snMap[sn]=n.innerHTML;
+});
+doc.addEventListener('click',function(ev){
+  var pop=$('#snpop');
+  if(!pop)return;
+  var sup=ev.target.closest?ev.target.closest('sup.sn'):null;
+  if(sup&&window.innerWidth<1100){
+    ev.preventDefault();
+    var html=snMap[sup.getAttribute('data-sn')];
+    if(!html)return;
+    if(pop.style.display==='block'&&pop._for===sup){pop.style.display='none';pop._for=null;return}
+    pop.innerHTML=html;
+    pop.style.display='block';
+    pop._for=sup;
+    var r=sup.getBoundingClientRect();
+    var maxX=doc.documentElement.clientWidth-310;
+    var x=Math.max(8,Math.min(r.left-20+window.scrollX,maxX+window.scrollX));
+    pop.style.left=x+'px';
+    pop.style.top=(window.scrollY+r.bottom+10)+'px';
+  }else if(!(ev.target.closest&&ev.target.closest('#snpop'))){
+    pop.style.display='none';pop._for=null;
+  }
+});
+
+/* ════════ roue des formats ════════ */
+var FDET={
+  gm:{t:'La Grande Mesure',p:'Mensuel',d:'Une enquête data du calibre d’un axe de la tribune : 5-8 graphiques, données téléchargeables, note de méthode. Le produit d’appel — et la matière des reprises presse.'},
+  rep:{t:'Les Répliques',p:'Continu',d:'La déclinaison LinkedIn de chaque enquête — un graphique, une clé de lecture — portée par votre compte puis par celui du média. Le moteur d’acquisition, à coût marginal nul : il prolonge ce que vous faites déjà chaque semaine.'},
+  chi:{t:'Le Chiffre',p:'Bimensuel',d:'La newsletter : un chiffre vérifié qui contredit une idée reçue, un graphique, trois brèves chiffrées — et votre édito en ouverture. Le créneau est déjà le vôtre — dimanche 16 h : bimensuel au lancement, hebdomadaire quand la rédaction tournera.'}
+};
+function selFormat(node){
+  $$('.fwheel .fnode').forEach(function(n){n.classList.toggle('sel',n===node)});
+  var k=node.getAttribute('data-f'),d=FDET[k];
+  var det=$('#fdetail');
+  if(det&&d){det.innerHTML='<div class="ft">'+d.t+' <span class="pill r">'+d.p+'</span></div><div class="fp">'+d.d+'</div>'}
+}
+$$('.fwheel .fnode').forEach(function(n){
+  n.addEventListener('click',function(){selFormat(n)});
+  n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();selFormat(n)}});
+});
+
+/* ════════ simulateur ════════ */
+var PALIERS=[{s:65000,n:'palier artisanal (65 k€)'},{s:130000,n:'média installé (130 k€)'},{s:230000,n:'rédaction complète (230 k€)'}];
+var MAX=260000;
+var rIns=$('#r_ins'),rCnv=$('#r_cnv'),rPrx=$('#r_prx'),rAut=$('#r_aut');
+var pPru=$('#preset-prudent'),pVol=$('#preset-volont');
+function calc(){
+  var ins=+rIns.value,cnv=+rCnv.value,prx=+rPrx.value,aut=+rAut.value*1000;
+  var pay=Math.round(ins*cnv/100);
+  var abo=pay*prx;
+  var tot=abo+aut;
+  $('#o_ins').textContent=fmtInt(ins);
+  $('#o_cnv').textContent=cnv.toLocaleString('fr-FR',{minimumFractionDigits:1})+NBSP+'%';
+  $('#o_prx').textContent=prx+NBSP+'€';
+  $('#o_aut').textContent=(aut/1000)+NBSP+'k€';
+  $('#v_pay').textContent=fmtInt(pay);
+  $('#v_abo').textContent=fmtK(abo);
+  $('#v_tot').textContent=fmtK(tot);
+  $('#gfill').style.width=Math.min(100,tot/MAX*100)+'%';
+  var v;
+  if(tot<PALIERS[0].s){
+    v='Ces hypothèses couvrent '+Math.round(tot/PALIERS[0].s*100)+' % du palier artisanal — l’écart ('+fmtK(PALIERS[0].s-tot)+') correspond au mécénat fondateur.';
+  }else if(tot<PALIERS[1].s){
+    v='Le palier artisanal est couvert (excédent de '+fmtK(tot-PALIERS[0].s)+') — le média vit sans nouvel apport et investit vers le palier « média installé ».';
+  }else if(tot<PALIERS[2].s){
+    v='Le palier « média installé » (2 ETP) est financé — trajectoire du scénario volontariste.';
+  }else{
+    v='Une rédaction complète de 3 ETP est autofinancée — au-delà de l’objectif fixé à 24 mois.';
+  }
+  $('#verdict').innerHTML='<b>Lecture :</b> '+v;
+}
+function setPreset(vals,btn){
+  rIns.value=vals[0];rCnv.value=vals[1];rPrx.value=vals[2];rAut.value=vals[3];
+  if(pPru)pPru.setAttribute('aria-pressed',String(btn===pPru));
+  if(pVol)pVol.setAttribute('aria-pressed',String(btn===pVol));
+  calc();
+}
+if(pPru)pPru.addEventListener('click',function(){setPreset([8000,5,60,37],pPru)});
+if(pVol)pVol.addEventListener('click',function(){setPreset([30000,8,60,80],pVol)});
+[rIns,rCnv,rPrx,rAut].forEach(function(r){
+  r.addEventListener('input',function(){
+    if(pPru)pPru.setAttribute('aria-pressed','false');
+    if(pVol)pVol.setAttribute('aria-pressed','false');
+    calc();
+  });
+});
+calc();
+
+/* ════════ timeline : animation à l'arrivée ════════ */
+(function(){
+  var tl=$('#tlsvg');
+  if(!tl)return;
+  if(!('IntersectionObserver' in window)){tl.classList.add('anim');return}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){tl.classList.add('anim');io.disconnect()}});
+  },{threshold:.25});
+  io.observe(tl);
+})();
+
+/* ════════ comparateur d'options ════════ */
+(function(){
+  var cmp=$('#options');
+  if(!cmp)return;
+  $$('.copt',cmp).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(btn.classList.contains('sel')){
+        btn.classList.remove('sel');cmp.classList.remove('focused');
+      }else{
+        $$('.copt',cmp).forEach(function(b){b.classList.remove('sel')});
+        btn.classList.add('sel');cmp.classList.add('focused');
+      }
+    });
+  });
+})();
+
+/* ════════ nav active ════════ */
+var navLinks=$$('#topnav a');
+var secIds=['depart','concept','audience','modele','calendrier','identite','decision'];
+var secs=secIds.map(function(i){return doc.getElementById(i)});
+function spy(){
+  var y=window.scrollY+150,cur=0;
+  secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});
+  navLinks.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+}
+window.addEventListener('scroll',spy,{passive:true});
+
+/* ════════ init ════════ */
+var stored=null;
+try{stored=localStorage.getItem('pz_charte')}catch(e){}
+applyCharte(stored||'A');
+spy();
+layoutNotes();
+})();
+</script>
+</body>
+</html>
